@@ -1,0 +1,24 @@
+# Travel Destination Configuration
+name: Barcelona
+country: Spain
+description: Mediterranean charm and Gaudí architecture
+rating: 4.6/5
+price_range: $
+best_season: Summer
+updated: 2025-10-24T10:58:48.660Z
+
+activities:
+  - Cultural performances
+  - Local cuisine tasting
+  - Night markets
+
+accommodations:
+  hotels: 33
+  hostels: 18
+  resorts: 13
+
+transportation:
+  airport: Barcelona International Airport
+  public_transport: true
+  taxi_available: true
+  rental_cars: true
