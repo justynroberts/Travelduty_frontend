@@ -1,0 +1,26 @@
+{
+  "id": "J2GFARK2",
+  "name": "Rome Adventure Package",
+  "destinations": [
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 6
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 3
+    }
+  ],
+  "total_duration": 8,
+  "price_usd": 1116,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-24T10:28:12.398Z"
+}
