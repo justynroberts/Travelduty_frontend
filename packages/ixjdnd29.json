@@ -1,0 +1,36 @@
+{
+  "id": "IXJDND29",
+  "name": "Rome Adventure Package",
+  "destinations": [
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 1
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 2
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 5
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 18,
+  "price_usd": 1163,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-24T08:32:03.942Z"
+}
