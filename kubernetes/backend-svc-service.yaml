@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-svc
+  labels:
+    app: travelduty
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8413
+    targetPort: 8825
+    protocol: TCP
+    name: http
+  selector:
+    app: travelduty
+    component: backend
