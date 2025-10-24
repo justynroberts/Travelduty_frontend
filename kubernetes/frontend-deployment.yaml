@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: travelduty
+    component: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: travelduty
+      component: frontend
+  template:
+    metadata:
+      labels:
+        app: travelduty
+        component: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: travelduty/frontend:ezxtu
+        ports:
+        - containerPort: 8303
+        env:
+        - name: NODE_ENV
+          value: production
+        - name: VERSION
+          value: "1.3.5"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "200m"
+          limits:
+            memory: "256Mi"
+            cpu: "1500m"

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  labels:
+    app: travelduty
+data:
+  api_endpoint: https://api.travelduty.com
+  log_level: info
+  cache_ttl: "1953"
+  max_connections: "82"
+  timezone: UTC
