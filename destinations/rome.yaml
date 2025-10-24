@@ -1,0 +1,24 @@
+# Travel Destination Configuration
+name: Rome
+country: Italy
+description: Ancient ruins and Renaissance art
+rating: 3.9/5
+price_range: $$$$
+best_season: Fall
+updated: 2025-10-24T08:42:01.966Z
+
+activities:
+  - Water sports
+  - Night markets
+  - Beach activities
+
+accommodations:
+  hotels: 38
+  hostels: 23
+  resorts: 12
+
+transportation:
+  airport: Rome International Airport
+  public_transport: true
+  taxi_available: true
+  rental_cars: true
