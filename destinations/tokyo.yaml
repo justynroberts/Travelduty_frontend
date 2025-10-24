@@ -1,0 +1,25 @@
+# Travel Destination Configuration
+name: Tokyo
+country: Japan
+description: Modern metropolis with ancient temples
+rating: 4.4/5
+price_range: $$$$
+best_season: Spring
+updated: 2025-10-24T14:48:04.450Z
+
+activities:
+  - Sightseeing tours
+  - Mountain hiking
+  - Historical site tours
+  - Museum visits
+
+accommodations:
+  hotels: 35
+  hostels: 21
+  resorts: 4
+
+transportation:
+  airport: Tokyo International Airport
+  public_transport: true
+  taxi_available: true
+  rental_cars: true
