@@ -1,0 +1,26 @@
+# Travel Destination Configuration
+name: New York
+country: USA
+description: The city that never sleeps
+rating: 4.0/5
+price_range: $$$
+best_season: Fall
+updated: 2025-10-24T08:38:48.516Z
+
+activities:
+  - Water sports
+  - Shopping districts
+  - Mountain hiking
+  - Local cuisine tasting
+  - Cultural performances
+
+accommodations:
+  hotels: 44
+  hostels: 6
+  resorts: 8
+
+transportation:
+  airport: New York International Airport
+  public_transport: true
+  taxi_available: true
+  rental_cars: true
