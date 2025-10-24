@@ -1,0 +1,24 @@
+# Travel Destination Configuration
+name: Dubai
+country: UAE
+description: Futuristic skyline and luxury
+rating: 4.5/5
+price_range: $$$$
+best_season: Winter
+updated: 2025-10-24T08:42:54.750Z
+
+activities:
+  - Mountain hiking
+  - Historical site tours
+  - Museum visits
+
+accommodations:
+  hotels: 38
+  hostels: 13
+  resorts: 6
+
+transportation:
+  airport: Dubai International Airport
+  public_transport: true
+  taxi_available: true
+  rental_cars: true
