@@ -1,0 +1,31 @@
+{
+  "id": "Q8W16IRO",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 6
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 2
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 7,
+  "price_usd": 3150,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-24T16:38:39.447Z"
+}
