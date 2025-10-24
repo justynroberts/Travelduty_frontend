@@ -1,0 +1,25 @@
+# Travel Destination Configuration
+name: London
+country: UK
+description: Historic capital with modern flair
+rating: 3.0/5
+price_range: $
+best_season: Winter
+updated: 2025-10-24T08:52:39.356Z
+
+activities:
+  - Museum visits
+  - Sightseeing tours
+  - Local cuisine tasting
+  - Mountain hiking
+
+accommodations:
+  hotels: 28
+  hostels: 6
+  resorts: 3
+
+transportation:
+  airport: London International Airport
+  public_transport: true
+  taxi_available: true
+  rental_cars: true
