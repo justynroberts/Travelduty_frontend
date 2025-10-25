@@ -5,10 +5,10 @@ metadata:
   labels:
     app: travelduty
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
-  - port: 8094
-    targetPort: 8154
+  - port: 8625
+    targetPort: 8354
     protocol: TCP
     name: http
   selector:
