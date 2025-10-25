@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: backend
-        image: travelduty/backend:9jaaw
+        image: travelduty/backend:cqf9pj
         ports:
-        - containerPort: 8605
+        - containerPort: 8593
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.7.6"
+          value: "1.3.2"
         resources:
           requests:
-            memory: "512Mi"
-            cpu: "300m"
+            memory: "256Mi"
+            cpu: "500m"
           limits:
             memory: "512Mi"
-            cpu: "1000m"
+            cpu: "500m"
