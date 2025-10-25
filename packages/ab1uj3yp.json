@@ -1,0 +1,26 @@
+{
+  "id": "AB1UJ3YP",
+  "name": "London Adventure Package",
+  "destinations": [
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 3
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 13,
+  "price_usd": 2547,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-25T00:50:37.194Z"
+}
