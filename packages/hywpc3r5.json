@@ -1,0 +1,31 @@
+{
+  "id": "HYWPC3R5",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 6
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 2
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 14,
+  "price_usd": 1414,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-25T11:28:20.901Z"
+}
