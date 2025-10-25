@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: travelduty/frontend:5wfvr
+        image: travelduty/frontend:skayix
         ports:
-        - containerPort: 8213
+        - containerPort: 8524
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.1.4"
+          value: "1.7.1"
         resources:
           requests:
             memory: "256Mi"
-            cpu: "400m"
+            cpu: "300m"
           limits:
-            memory: "512Mi"
-            cpu: "500m"
+            memory: "1024Mi"
+            cpu: "1000m"
