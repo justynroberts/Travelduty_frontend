@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: travelduty/api-gateway:wafyeq
+        image: travelduty/api-gateway:yeyae
         ports:
-        - containerPort: 8077
+        - containerPort: 8085
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.7.0"
+          value: "1.1.3"
         resources:
           requests:
-            memory: "128Mi"
-            cpu: "200m"
+            memory: "512Mi"
+            cpu: "100m"
           limits:
-            memory: "1024Mi"
-            cpu: "500m"
+            memory: "128Mi"
+            cpu: "1500m"
