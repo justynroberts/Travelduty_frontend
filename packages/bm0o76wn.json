@@ -1,0 +1,31 @@
+{
+  "id": "BM0O76WN",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 2
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 3
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 11,
+  "price_usd": 3698,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-25T16:14:41.055Z"
+}
