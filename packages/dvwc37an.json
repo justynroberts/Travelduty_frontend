@@ -1,0 +1,31 @@
+{
+  "id": "DVWC37AN",
+  "name": "Rome Adventure Package",
+  "destinations": [
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 2
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 4
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 15,
+  "price_usd": 3665,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-25T07:50:11.244Z"
+}
