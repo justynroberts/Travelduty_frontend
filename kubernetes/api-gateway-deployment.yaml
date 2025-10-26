@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: travelduty/api-gateway:zdi7sa
+        image: travelduty/api-gateway:rizyp
         ports:
-        - containerPort: 8806
+        - containerPort: 8872
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.1.0"
+          value: "1.8.9"
         resources:
           requests:
             memory: "512Mi"
-            cpu: "400m"
+            cpu: "300m"
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            memory: "512Mi"
+            cpu: "1500m"
