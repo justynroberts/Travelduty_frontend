@@ -1,0 +1,26 @@
+{
+  "id": "04CP35QP",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 2
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 2077,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-26T16:13:17.450Z"
+}
