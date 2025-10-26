@@ -1,0 +1,26 @@
+{
+  "id": "YO1U0CMU",
+  "name": "New York Adventure Package",
+  "destinations": [
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 4
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 3
+    }
+  ],
+  "total_duration": 7,
+  "price_usd": 1154,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-26T20:14:40.664Z"
+}
