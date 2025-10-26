@@ -5,10 +5,10 @@ metadata:
   labels:
     app: travelduty
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
-  - port: 8043
-    targetPort: 8595
+  - port: 8045
+    targetPort: 8335
     protocol: TCP
     name: http
   selector:
