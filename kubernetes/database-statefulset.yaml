@@ -6,7 +6,7 @@ metadata:
     app: travelduty
 spec:
   serviceName: database
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: travelduty
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: database
-        image: postgres:14
+        image: postgres:15
         ports:
         - containerPort: 5432
           name: postgres
@@ -33,4 +33,4 @@ spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
-          storage: 32Gi
+          storage: 18Gi
