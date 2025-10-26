@@ -1,0 +1,26 @@
+{
+  "id": "UV5N8JL9",
+  "name": "Barcelona Adventure Package",
+  "destinations": [
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 3
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 7
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 3425,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-26T06:09:27.377Z"
+}
