@@ -1,0 +1,31 @@
+{
+  "id": "RJ703QER",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 4
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 3
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 3
+    }
+  ],
+  "total_duration": 16,
+  "price_usd": 2222,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-26T08:19:26.373Z"
+}
