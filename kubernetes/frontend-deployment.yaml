@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: travelduty/frontend:hydttp
+        image: travelduty/frontend:k60v7o
         ports:
-        - containerPort: 8798
+        - containerPort: 8785
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.7.6"
+          value: "1.1.3"
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "500m"
+            memory: "512Mi"
+            cpu: "300m"
           limits:
             memory: "1024Mi"
             cpu: "1000m"
