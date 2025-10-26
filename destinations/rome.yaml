@@ -2,23 +2,20 @@
 name: Rome
 country: Italy
 description: Ancient ruins and Renaissance art
-rating: 4.9/5
-price_range: $
-best_season: Fall
-updated: 2025-10-26T12:29:36.463Z
+rating: 4.4/5
+price_range: $$$
+best_season: Spring
+updated: 2025-10-26T23:45:25.586Z
 
 activities:
-  - Cultural performances
-  - Historical site tours
-  - Museum visits
-  - Beach activities
   - Local cuisine tasting
   - Mountain hiking
+  - Cultural performances
 
 accommodations:
-  hotels: 24
-  hostels: 20
-  resorts: 17
+  hotels: 25
+  hostels: 16
+  resorts: 12
 
 transportation:
   airport: Rome International Airport
