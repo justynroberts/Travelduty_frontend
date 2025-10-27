@@ -19,14 +19,14 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: travelduty/api-gateway:l6muvx
+        image: travelduty/api-gateway:kh44a
         ports:
-        - containerPort: 8944
+        - containerPort: 8174
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.8.9"
+          value: "1.6.5"
         resources:
           requests:
             memory: "512Mi"
