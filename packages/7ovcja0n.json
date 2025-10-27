@@ -1,0 +1,26 @@
+{
+  "id": "7OVCJA0N",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 5
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 2069,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-27T12:59:52.036Z"
+}
