@@ -1,0 +1,26 @@
+{
+  "id": "IKSXR7RS",
+  "name": "London Adventure Package",
+  "destinations": [
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 2
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 5,
+  "price_usd": 3694,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-28T07:37:40.876Z"
+}
