@@ -1,0 +1,31 @@
+{
+  "id": "1D8MP636",
+  "name": "Barcelona Adventure Package",
+  "destinations": [
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 3
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 3
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 12,
+  "price_usd": 3905,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-28T13:32:45.977Z"
+}
