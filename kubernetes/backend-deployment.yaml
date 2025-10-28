@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: backend
-        image: travelduty/backend:rqbpb
+        image: travelduty/backend:p4mloh
         ports:
-        - containerPort: 8256
+        - containerPort: 8935
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.4.3"
+          value: "1.2.6"
         resources:
           requests:
-            memory: "128Mi"
-            cpu: "500m"
+            memory: "512Mi"
+            cpu: "300m"
           limits:
             memory: "1024Mi"
             cpu: "1500m"
