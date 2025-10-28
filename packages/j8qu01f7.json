@@ -1,0 +1,36 @@
+{
+  "id": "J8QU01F7",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 4
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 5
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 7
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 3
+    }
+  ],
+  "total_duration": 17,
+  "price_usd": 2180,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-28T09:18:52.693Z"
+}
