@@ -6,7 +6,7 @@ metadata:
     app: travelduty
 spec:
   serviceName: database
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: travelduty
@@ -33,4 +33,4 @@ spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
-          storage: 13Gi
+          storage: 40Gi
