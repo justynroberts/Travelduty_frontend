@@ -2,20 +2,23 @@
 name: London
 country: UK
 description: Historic capital with modern flair
-rating: 3.2/5
-price_range: $
-best_season: Winter
-updated: 2025-10-27T22:17:18.257Z
+rating: 3.9/5
+price_range: $$
+best_season: Summer
+updated: 2025-10-28T02:16:36.273Z
 
 activities:
+  - Night markets
+  - Sightseeing tours
+  - Cultural performances
   - Shopping districts
-  - Beach activities
   - Historical site tours
+  - Mountain hiking
 
 accommodations:
-  hotels: 22
-  hostels: 15
-  resorts: 4
+  hotels: 46
+  hostels: 24
+  resorts: 7
 
 transportation:
   airport: London International Airport
