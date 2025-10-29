@@ -1,0 +1,31 @@
+{
+  "id": "DCY64QPB",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 2
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 5
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 14,
+  "price_usd": 1619,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-29T06:08:00.082Z"
+}
