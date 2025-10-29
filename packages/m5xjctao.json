@@ -1,0 +1,31 @@
+{
+  "id": "M5XJCTAO",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 4
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 1
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 3
+    }
+  ],
+  "total_duration": 12,
+  "price_usd": 2823,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-29T06:47:26.012Z"
+}
