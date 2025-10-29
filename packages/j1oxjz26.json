@@ -1,0 +1,26 @@
+{
+  "id": "J1OXJZ26",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 5
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 7
+    }
+  ],
+  "total_duration": 4,
+  "price_usd": 3715,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-29T03:11:10.679Z"
+}
