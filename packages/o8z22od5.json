@@ -1,0 +1,31 @@
+{
+  "id": "O8Z22OD5",
+  "name": "Barcelona Adventure Package",
+  "destinations": [
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 5
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 7
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 12,
+  "price_usd": 1341,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-29T02:40:16.805Z"
+}
