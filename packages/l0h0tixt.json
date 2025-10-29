@@ -1,0 +1,36 @@
+{
+  "id": "L0H0TIXT",
+  "name": "New York Adventure Package",
+  "destinations": [
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 7
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 7
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 1
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 7,
+  "price_usd": 1637,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-29T11:06:29.273Z"
+}
