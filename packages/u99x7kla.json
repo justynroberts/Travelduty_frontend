@@ -1,0 +1,26 @@
+{
+  "id": "U99X7KLA",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 1
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 14,
+  "price_usd": 1869,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-30T20:32:35.084Z"
+}
