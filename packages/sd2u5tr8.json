@@ -1,0 +1,26 @@
+{
+  "id": "SD2U5TR8",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 1
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 12,
+  "price_usd": 3545,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-30T16:33:08.559Z"
+}
