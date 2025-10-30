@@ -6,7 +6,7 @@ metadata:
     app: travelduty
     component: frontend
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: travelduty
@@ -19,9 +19,9 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: travelduty/frontend:8s0y3
+        image: travelduty/frontend:hapkm
         ports:
-        - containerPort: 8460
+        - containerPort: 8782
         env:
         - name: NODE_ENV
           value: production
@@ -29,8 +29,8 @@ spec:
           value: "1.6.4"
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "100m"
+            memory: "512Mi"
+            cpu: "200m"
           limits:
             memory: "1024Mi"
             cpu: "1000m"
