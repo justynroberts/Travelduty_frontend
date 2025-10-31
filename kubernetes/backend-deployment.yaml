@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: backend
-        image: travelduty/backend:5xicmp
+        image: travelduty/backend:iwevu
         ports:
-        - containerPort: 8543
+        - containerPort: 8810
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.9.6"
+          value: "1.9.8"
         resources:
           requests:
             memory: "512Mi"
-            cpu: "500m"
+            cpu: "100m"
           limits:
-            memory: "256Mi"
-            cpu: "1000m"
+            memory: "1024Mi"
+            cpu: "500m"
