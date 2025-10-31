@@ -1,0 +1,31 @@
+{
+  "id": "K19W7E98",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 6
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 3
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 11,
+  "price_usd": 2897,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-31T17:12:22.780Z"
+}
