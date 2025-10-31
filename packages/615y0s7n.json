@@ -1,0 +1,26 @@
+{
+  "id": "615Y0S7N",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 1
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 7
+    }
+  ],
+  "total_duration": 4,
+  "price_usd": 1706,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-31T03:10:29.098Z"
+}
