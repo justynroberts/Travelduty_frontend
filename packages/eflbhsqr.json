@@ -1,0 +1,31 @@
+{
+  "id": "EFLBHSQR",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 5
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 2
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 12,
+  "price_usd": 3893,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-31T23:53:24.116Z"
+}
