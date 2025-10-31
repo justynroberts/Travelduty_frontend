@@ -1,0 +1,26 @@
+{
+  "id": "QJ99029Z",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 3
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 14,
+  "price_usd": 2018,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-10-31T09:47:40.382Z"
+}
