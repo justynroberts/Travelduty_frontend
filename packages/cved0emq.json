@@ -1,0 +1,31 @@
+{
+  "id": "CVED0EMQ",
+  "name": "Bangkok Adventure Package",
+  "destinations": [
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 1
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 5
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 3,
+  "price_usd": 3879,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-01T00:42:07.800Z"
+}
