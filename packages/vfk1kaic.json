@@ -1,0 +1,26 @@
+{
+  "id": "VFK1KAIC",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 1
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 7,
+  "price_usd": 3319,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-01T16:42:09.262Z"
+}
