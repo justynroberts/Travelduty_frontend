@@ -1,0 +1,26 @@
+{
+  "id": "VUJETSMO",
+  "name": "New York Adventure Package",
+  "destinations": [
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 4
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 4,
+  "price_usd": 3521,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-01T17:10:46.385Z"
+}
