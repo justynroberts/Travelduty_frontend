@@ -1,0 +1,26 @@
+{
+  "id": "XX8WTY6D",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 3
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 7,
+  "price_usd": 2849,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-01T05:39:51.840Z"
+}
