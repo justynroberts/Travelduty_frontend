@@ -1,0 +1,31 @@
+{
+  "id": "BM54QT01",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 5
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 4
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 3
+    }
+  ],
+  "total_duration": 15,
+  "price_usd": 3650,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-01T06:20:21.378Z"
+}
