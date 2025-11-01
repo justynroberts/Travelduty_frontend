@@ -1,0 +1,26 @@
+{
+  "id": "N93VX22B",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 6
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 1481,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-01T09:48:18.433Z"
+}
