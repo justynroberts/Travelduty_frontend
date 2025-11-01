@@ -1,0 +1,31 @@
+{
+  "id": "QLN8OGPD",
+  "name": "London Adventure Package",
+  "destinations": [
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 6
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 3
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 3
+    }
+  ],
+  "total_duration": 18,
+  "price_usd": 3965,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-01T05:59:58.769Z"
+}
