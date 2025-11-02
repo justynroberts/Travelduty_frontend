@@ -1,0 +1,26 @@
+{
+  "id": "SGIJQND6",
+  "name": "Barcelona Adventure Package",
+  "destinations": [
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 5
+    },
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 3
+    }
+  ],
+  "total_duration": 11,
+  "price_usd": 3325,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-02T02:13:37.049Z"
+}
