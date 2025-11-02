@@ -1,0 +1,26 @@
+{
+  "id": "HHZX5MJU",
+  "name": "Bangkok Adventure Package",
+  "destinations": [
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 5
+    },
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 3845,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-02T23:21:32.414Z"
+}
