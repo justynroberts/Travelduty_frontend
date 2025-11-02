@@ -1,0 +1,31 @@
+{
+  "id": "ILQ6KXDP",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 5
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 4
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 11,
+  "price_usd": 1012,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-02T23:00:50.236Z"
+}
