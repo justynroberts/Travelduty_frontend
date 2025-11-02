@@ -1,0 +1,26 @@
+{
+  "id": "G23QCJBQ",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 6
+    },
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 5,
+  "price_usd": 1402,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-02T16:49:51.746Z"
+}
