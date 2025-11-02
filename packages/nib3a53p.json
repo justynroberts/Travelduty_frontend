@@ -1,0 +1,26 @@
+{
+  "id": "NIB3A53P",
+  "name": "Rome Adventure Package",
+  "destinations": [
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 5
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 11,
+  "price_usd": 3197,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-02T11:13:54.627Z"
+}
