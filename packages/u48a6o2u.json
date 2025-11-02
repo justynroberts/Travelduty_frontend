@@ -1,0 +1,31 @@
+{
+  "id": "U48A6O2U",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 1
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 4
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 15,
+  "price_usd": 1767,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-02T15:15:48.173Z"
+}
