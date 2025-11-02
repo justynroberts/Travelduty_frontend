@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: travelduty/api-gateway:xjunq
+        image: travelduty/api-gateway:zidn2
         ports:
-        - containerPort: 8163
+        - containerPort: 8533
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.2.3"
+          value: "1.7.5"
         resources:
           requests:
-            memory: "128Mi"
-            cpu: "100m"
+            memory: "512Mi"
+            cpu: "500m"
           limits:
-            memory: "1024Mi"
-            cpu: "1500m"
+            memory: "256Mi"
+            cpu: "1000m"
