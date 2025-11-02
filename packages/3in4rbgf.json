@@ -1,0 +1,31 @@
+{
+  "id": "3IN4RBGF",
+  "name": "Rome Adventure Package",
+  "destinations": [
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 3
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 5
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 8,
+  "price_usd": 1820,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-02T18:11:37.964Z"
+}
