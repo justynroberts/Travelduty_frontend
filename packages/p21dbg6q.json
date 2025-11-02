@@ -1,0 +1,36 @@
+{
+  "id": "P21DBG6Q",
+  "name": "Paris Adventure Package",
+  "destinations": [
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 5
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 6
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 4
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 21,
+  "price_usd": 3743,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-02T19:51:33.732Z"
+}
