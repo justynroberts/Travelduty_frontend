@@ -1,0 +1,26 @@
+{
+  "id": "18JC4LJW",
+  "name": "Bangkok Adventure Package",
+  "destinations": [
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 2
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 7,
+  "price_usd": 1884,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-03T08:38:51.277Z"
+}
