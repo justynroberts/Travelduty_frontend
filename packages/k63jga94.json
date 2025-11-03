@@ -1,0 +1,26 @@
+{
+  "id": "K63JGA94",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 5
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 12,
+  "price_usd": 3307,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-03T11:46:22.326Z"
+}
