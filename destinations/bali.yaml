@@ -4,20 +4,19 @@ country: Indonesia
 description: Tropical paradise with rich culture
 rating: 4.4/5
 price_range: $$$
-best_season: Fall
-updated: 2025-11-03T06:29:56.133Z
+best_season: Summer
+updated: 2025-11-03T08:48:13.710Z
 
 activities:
   - Sightseeing tours
-  - Shopping districts
   - Historical site tours
-  - Local cuisine tasting
-  - Cultural performances
+  - Beach activities
+  - Mountain hiking
 
 accommodations:
-  hotels: 33
-  hostels: 22
-  resorts: 12
+  hotels: 31
+  hostels: 8
+  resorts: 7
 
 transportation:
   airport: Bali International Airport
