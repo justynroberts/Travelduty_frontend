@@ -1,0 +1,36 @@
+{
+  "id": "016N6MZJ",
+  "name": "Barcelona Adventure Package",
+  "destinations": [
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 1
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 1
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 7
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 12,
+  "price_usd": 1274,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-03T21:51:15.664Z"
+}
