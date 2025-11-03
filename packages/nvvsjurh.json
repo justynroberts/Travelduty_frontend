@@ -1,0 +1,31 @@
+{
+  "id": "NVVSJURH",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 5
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 5
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 12,
+  "price_usd": 2802,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-03T15:00:29.051Z"
+}
