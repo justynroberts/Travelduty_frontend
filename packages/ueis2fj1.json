@@ -1,0 +1,31 @@
+{
+  "id": "UEIS2FJ1",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 5
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 2
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 12,
+  "price_usd": 1130,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-03T13:48:50.445Z"
+}
