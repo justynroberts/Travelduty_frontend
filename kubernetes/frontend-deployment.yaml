@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: travelduty/frontend:wd0atl
+        image: travelduty/frontend:alegre
         ports:
-        - containerPort: 8766
+        - containerPort: 8655
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.3.2"
+          value: "1.3.9"
         resources:
           requests:
-            memory: "128Mi"
-            cpu: "500m"
+            memory: "256Mi"
+            cpu: "200m"
           limits:
-            memory: "512Mi"
-            cpu: "500m"
+            memory: "1024Mi"
+            cpu: "1000m"
