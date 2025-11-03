@@ -1,0 +1,31 @@
+{
+  "id": "7JQFT2KE",
+  "name": "London Adventure Package",
+  "destinations": [
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 6
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 6
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 14,
+  "price_usd": 3764,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-03T09:59:02.689Z"
+}
