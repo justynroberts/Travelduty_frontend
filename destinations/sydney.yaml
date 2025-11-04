@@ -2,20 +2,20 @@
 name: Sydney
 country: Australia
 description: Harbor city with stunning beaches
-rating: 3.8/5
-price_range: $$
-best_season: Fall
-updated: 2025-11-04T03:39:35.404Z
+rating: 3.7/5
+price_range: $
+best_season: Spring
+updated: 2025-11-04T08:10:29.885Z
 
 activities:
-  - Sightseeing tours
-  - Museum visits
-  - Shopping districts
+  - Cultural performances
+  - Night markets
+  - Local cuisine tasting
 
 accommodations:
-  hotels: 36
-  hostels: 18
-  resorts: 14
+  hotels: 34
+  hostels: 6
+  resorts: 9
 
 transportation:
   airport: Sydney International Airport
