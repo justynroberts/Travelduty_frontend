@@ -4,20 +4,19 @@ country: Australia
 description: Harbor city with stunning beaches
 rating: 4.9/5
 price_range: $$$$
-best_season: Fall
-updated: 2025-11-04T14:00:46.558Z
+best_season: Winter
+updated: 2025-11-04T14:40:19.400Z
 
 activities:
-  - Museum visits
-  - Sightseeing tours
   - Beach activities
-  - Water sports
+  - Mountain hiking
   - Local cuisine tasting
+  - Water sports
 
 accommodations:
-  hotels: 47
-  hostels: 7
-  resorts: 3
+  hotels: 55
+  hostels: 11
+  resorts: 5
 
 transportation:
   airport: Sydney International Airport
