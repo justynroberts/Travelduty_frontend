@@ -1,0 +1,36 @@
+{
+  "id": "AD6XTI42",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 6
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 6
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 6
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 15,
+  "price_usd": 3800,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-05T09:10:23.306Z"
+}
