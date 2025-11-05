@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: travelduty/frontend:egcv8
+        image: travelduty/frontend:zapgaf
         ports:
-        - containerPort: 8377
+        - containerPort: 8822
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.8.8"
+          value: "1.7.7"
         resources:
           requests:
             memory: "256Mi"
             cpu: "300m"
           limits:
-            memory: "512Mi"
-            cpu: "1000m"
+            memory: "1024Mi"
+            cpu: "1500m"
