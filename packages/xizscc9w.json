@@ -1,0 +1,31 @@
+{
+  "id": "XIZSCC9W",
+  "name": "Paris Adventure Package",
+  "destinations": [
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 7
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 6
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 10,
+  "price_usd": 1902,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-05T22:33:53.181Z"
+}
