@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: travelduty/frontend:syoi36
+        image: travelduty/frontend:8bes6n
         ports:
-        - containerPort: 8767
+        - containerPort: 8194
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.0.6"
+          value: "1.1.5"
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "200m"
+            memory: "128Mi"
+            cpu: "500m"
           limits:
             memory: "1024Mi"
-            cpu: "500m"
+            cpu: "1500m"
