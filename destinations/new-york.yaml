@@ -2,23 +2,21 @@
 name: New York
 country: USA
 description: The city that never sleeps
-rating: 4.2/5
-price_range: $$$$
-best_season: Winter
-updated: 2025-11-05T17:22:41.669Z
+rating: 3.9/5
+price_range: $$$
+best_season: Spring
+updated: 2025-11-05T22:44:40.347Z
 
 activities:
-  - Night markets
-  - Sightseeing tours
-  - Historical site tours
   - Beach activities
-  - Mountain hiking
-  - Water sports
+  - Night markets
+  - Museum visits
+  - Shopping districts
 
 accommodations:
-  hotels: 39
+  hotels: 55
   hostels: 10
-  resorts: 6
+  resorts: 10
 
 transportation:
   airport: New York International Airport
