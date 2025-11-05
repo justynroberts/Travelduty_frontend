@@ -5,7 +5,7 @@ metadata:
   labels:
     app: travelduty
 spec:
-  schedule: "5 4 * * *"
+  schedule: "10 7 * * *"
   jobTemplate:
     spec:
       template:
