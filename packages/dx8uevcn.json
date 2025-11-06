@@ -1,0 +1,31 @@
+{
+  "id": "DX8UEVCN",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 1
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 2
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 16,
+  "price_usd": 1840,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-06T10:03:41.152Z"
+}
