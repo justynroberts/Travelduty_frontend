@@ -1,0 +1,36 @@
+{
+  "id": "I9WNT1ZI",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 4
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 1
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 7
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 18,
+  "price_usd": 3427,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-06T01:13:26.129Z"
+}

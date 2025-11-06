@@ -1,0 +1,36 @@
+{
+  "id": "X3FGRTH9",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 1
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 1
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 7
+    },
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 16,
+  "price_usd": 2205,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-06T01:13:26.131Z"
+}
