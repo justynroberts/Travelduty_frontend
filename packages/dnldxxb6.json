@@ -1,0 +1,36 @@
+{
+  "id": "DNLDXXB6",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 2
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 6
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 7
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 20,
+  "price_usd": 1945,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-06T09:12:38.365Z"
+}
