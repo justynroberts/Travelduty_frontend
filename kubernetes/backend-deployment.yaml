@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: backend
-        image: travelduty/backend:oveznp
+        image: travelduty/backend:hmid8c
         ports:
-        - containerPort: 8530
+        - containerPort: 8501
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.2.6"
+          value: "1.2.4"
         resources:
           requests:
-            memory: "128Mi"
-            cpu: "100m"
+            memory: "64Mi"
+            cpu: "300m"
           limits:
             memory: "512Mi"
             cpu: "500m"
