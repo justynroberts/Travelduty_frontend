@@ -1,0 +1,26 @@
+{
+  "id": "3P2LGPS1",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 1
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 3,
+  "price_usd": 1533,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-06T19:25:05.047Z"
+}
