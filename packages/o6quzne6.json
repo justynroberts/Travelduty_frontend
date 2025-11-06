@@ -1,0 +1,31 @@
+{
+  "id": "O6QUZNE6",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 7
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 5
+    },
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 3611,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-06T04:59:09.736Z"
+}
