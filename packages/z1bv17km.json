@@ -1,0 +1,31 @@
+{
+  "id": "Z1BV17KM",
+  "name": "London Adventure Package",
+  "destinations": [
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 1
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 7
+    },
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 13,
+  "price_usd": 1994,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-06T08:52:32.480Z"
+}
