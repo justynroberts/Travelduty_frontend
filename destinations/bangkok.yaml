@@ -4,20 +4,18 @@ country: Thailand
 description: Vibrant street life and ornate shrines
 rating: 3.7/5
 price_range: $$
-best_season: Spring
-updated: 2025-11-06T15:24:40.242Z
+best_season: Winter
+updated: 2025-11-06T16:45:18.702Z
 
 activities:
   - Local cuisine tasting
-  - Mountain hiking
-  - Night markets
-  - Beach activities
+  - Water sports
   - Museum visits
 
 accommodations:
-  hotels: 53
-  hostels: 16
-  resorts: 7
+  hotels: 12
+  hostels: 6
+  resorts: 17
 
 transportation:
   airport: Bangkok International Airport
