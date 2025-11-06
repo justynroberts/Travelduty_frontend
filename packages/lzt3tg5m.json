@@ -1,0 +1,36 @@
+{
+  "id": "LZT3TG5M",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 2
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 6
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 1
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 20,
+  "price_usd": 2942,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-06T19:15:44.494Z"
+}
