@@ -2,23 +2,20 @@
 name: Tokyo
 country: Japan
 description: Modern metropolis with ancient temples
-rating: 4.6/5
-price_range: $
-best_season: Winter
-updated: 2025-11-07T20:18:13.268Z
+rating: 4.0/5
+price_range: $$$$
+best_season: Spring
+updated: 2025-11-07T23:10:18.854Z
 
 activities:
+  - Local cuisine tasting
+  - Beach activities
   - Shopping districts
-  - Sightseeing tours
-  - Water sports
-  - Museum visits
-  - Cultural performances
-  - Mountain hiking
 
 accommodations:
-  hotels: 34
-  hostels: 12
-  resorts: 11
+  hotels: 59
+  hostels: 17
+  resorts: 13
 
 transportation:
   airport: Tokyo International Airport
