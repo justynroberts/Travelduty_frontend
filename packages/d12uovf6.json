@@ -1,0 +1,36 @@
+{
+  "id": "D12UOVF6",
+  "name": "Bangkok Adventure Package",
+  "destinations": [
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 7
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 1
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 2
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 3
+    }
+  ],
+  "total_duration": 23,
+  "price_usd": 2889,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-07T20:39:10.866Z"
+}
