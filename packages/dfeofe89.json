@@ -1,0 +1,26 @@
+{
+  "id": "DFEOFE89",
+  "name": "Rome Adventure Package",
+  "destinations": [
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 2
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 5,
+  "price_usd": 2131,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-07T14:58:16.834Z"
+}

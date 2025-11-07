@@ -1,0 +1,31 @@
+{
+  "id": "6V1K506D",
+  "name": "Bangkok Adventure Package",
+  "destinations": [
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 2
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 5
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 13,
+  "price_usd": 1019,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-07T14:58:16.840Z"
+}
