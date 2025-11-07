@@ -1,0 +1,36 @@
+{
+  "id": "88QNQYTX",
+  "name": "Paris Adventure Package",
+  "destinations": [
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 4
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 6
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 4
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 7
+    }
+  ],
+  "total_duration": 15,
+  "price_usd": 2413,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-07T21:49:17.908Z"
+}

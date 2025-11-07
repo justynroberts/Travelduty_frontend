@@ -1,0 +1,36 @@
+{
+  "id": "MS1IO3ZH",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 5
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 4
+    },
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 5
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 3
+    }
+  ],
+  "total_duration": 21,
+  "price_usd": 3768,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-07T21:49:17.907Z"
+}
