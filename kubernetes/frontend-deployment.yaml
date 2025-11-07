@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: travelduty/frontend:yfu97b
+        image: travelduty/frontend:7amc7tb
         ports:
-        - containerPort: 8906
+        - containerPort: 8084
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.0.6"
+          value: "1.0.2"
         resources:
           requests:
-            memory: "512Mi"
-            cpu: "500m"
+            memory: "64Mi"
+            cpu: "300m"
           limits:
-            memory: "256Mi"
-            cpu: "1500m"
+            memory: "1024Mi"
+            cpu: "500m"
