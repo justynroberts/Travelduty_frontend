@@ -1,0 +1,26 @@
+{
+  "id": "B4QXTV4J",
+  "name": "New York Adventure Package",
+  "destinations": [
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 5
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 6,
+  "price_usd": 3746,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-08T09:15:35.209Z"
+}
