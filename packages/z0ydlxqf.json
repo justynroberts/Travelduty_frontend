@@ -1,0 +1,36 @@
+{
+  "id": "Z0YDLXQF",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 3
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 3
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 2
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 6,
+  "price_usd": 2068,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-08T07:44:52.163Z"
+}
