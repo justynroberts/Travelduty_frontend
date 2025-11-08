@@ -7,8 +7,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 8217
-    targetPort: 8823
+  - port: 8491
+    targetPort: 8391
     protocol: TCP
     name: http
   selector:
