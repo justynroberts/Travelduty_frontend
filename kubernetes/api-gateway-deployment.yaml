@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: travelduty/api-gateway:hrioma
+        image: travelduty/api-gateway:2alx5
         ports:
-        - containerPort: 8673
+        - containerPort: 8326
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.1.9"
+          value: "1.4.1"
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "500m"
+            memory: "128Mi"
+            cpu: "100m"
           limits:
-            memory: "1024Mi"
-            cpu: "500m"
+            memory: "256Mi"
+            cpu: "1000m"
