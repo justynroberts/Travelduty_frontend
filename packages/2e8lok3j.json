@@ -1,0 +1,26 @@
+{
+  "id": "2E8LOK3J",
+  "name": "Rome Adventure Package",
+  "destinations": [
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 6
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 8,
+  "price_usd": 3630,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-09T20:43:11.590Z"
+}
