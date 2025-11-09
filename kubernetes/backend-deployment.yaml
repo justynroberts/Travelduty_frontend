@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: backend
-        image: travelduty/backend:qig31n
+        image: travelduty/backend:bukjs
         ports:
-        - containerPort: 8674
+        - containerPort: 8383
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.2.9"
+          value: "1.6.5"
         resources:
           requests:
-            memory: "128Mi"
-            cpu: "300m"
+            memory: "64Mi"
+            cpu: "100m"
           limits:
-            memory: "1024Mi"
-            cpu: "1000m"
+            memory: "128Mi"
+            cpu: "1500m"
