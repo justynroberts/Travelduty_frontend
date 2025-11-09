@@ -1,0 +1,31 @@
+{
+  "id": "J9QVG90T",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 2
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 3
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 7,
+  "price_usd": 2992,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-09T15:48:11.095Z"
+}
