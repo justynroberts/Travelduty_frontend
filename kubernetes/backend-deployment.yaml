@@ -19,17 +19,17 @@ spec:
     spec:
       containers:
       - name: backend
-        image: travelduty/backend:nacgcc
+        image: travelduty/backend:btvhqb
         ports:
-        - containerPort: 8861
+        - containerPort: 8276
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.4.4"
+          value: "1.2.6"
         resources:
           requests:
-            memory: "256Mi"
+            memory: "64Mi"
             cpu: "400m"
           limits:
             memory: "1024Mi"
