@@ -1,0 +1,31 @@
+{
+  "id": "DYQ9G3BN",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 3
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 1
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 3
+    }
+  ],
+  "total_duration": 12,
+  "price_usd": 3748,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-10T19:31:08.524Z"
+}
