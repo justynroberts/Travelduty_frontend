@@ -33,4 +33,4 @@ spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
-          storage: 13Gi
+          storage: 49Gi
