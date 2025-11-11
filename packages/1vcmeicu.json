@@ -1,0 +1,31 @@
+{
+  "id": "1VCMEICU",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 4
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 5
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 7
+    }
+  ],
+  "total_duration": 16,
+  "price_usd": 1391,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-11T00:59:58.011Z"
+}
