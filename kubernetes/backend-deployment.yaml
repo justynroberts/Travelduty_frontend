@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: backend
-        image: travelduty/backend:dd6mho
+        image: travelduty/backend:zcagli
         ports:
-        - containerPort: 8491
+        - containerPort: 8085
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.8.4"
+          value: "1.8.8"
         resources:
           requests:
             memory: "256Mi"
-            cpu: "100m"
+            cpu: "500m"
           limits:
             memory: "256Mi"
             cpu: "1000m"
