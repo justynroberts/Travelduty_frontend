@@ -1,0 +1,31 @@
+{
+  "id": "FNPR8K7K",
+  "name": "Bangkok Adventure Package",
+  "destinations": [
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 4
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 6
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 7
+    }
+  ],
+  "total_duration": 10,
+  "price_usd": 3598,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-11T20:38:13.261Z"
+}
