@@ -1,0 +1,31 @@
+{
+  "id": "L4UJ5BZQ",
+  "name": "Bangkok Adventure Package",
+  "destinations": [
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 2
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 2
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 17,
+  "price_usd": 2175,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-11T20:28:32.315Z"
+}
