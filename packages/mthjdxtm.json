@@ -1,0 +1,26 @@
+{
+  "id": "MTHJDXTM",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 2
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 1421,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-11T10:12:13.134Z"
+}
