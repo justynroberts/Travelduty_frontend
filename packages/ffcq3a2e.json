@@ -1,0 +1,31 @@
+{
+  "id": "FFCQ3A2E",
+  "name": "Barcelona Adventure Package",
+  "destinations": [
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 5
+    },
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 7
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 17,
+  "price_usd": 3085,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-11T22:48:45.012Z"
+}
