@@ -1,0 +1,36 @@
+{
+  "id": "1Y9MU6V2",
+  "name": "New York Adventure Package",
+  "destinations": [
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 2
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 1
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 1
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 15,
+  "price_usd": 1494,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-11T03:48:35.340Z"
+}
