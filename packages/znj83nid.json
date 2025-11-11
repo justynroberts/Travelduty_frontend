@@ -1,0 +1,31 @@
+{
+  "id": "ZNJ83NID",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 7
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 3
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 13,
+  "price_usd": 1942,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-11T05:26:53.229Z"
+}
