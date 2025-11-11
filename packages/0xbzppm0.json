@@ -1,0 +1,26 @@
+{
+  "id": "0XBZPPM0",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 3
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 7,
+  "price_usd": 2118,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-11T11:04:17.486Z"
+}
