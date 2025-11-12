@@ -1,0 +1,31 @@
+{
+  "id": "ZSUEHPWL",
+  "name": "Bangkok Adventure Package",
+  "destinations": [
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 6
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 1
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 8,
+  "price_usd": 2513,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-12T18:44:38.116Z"
+}
