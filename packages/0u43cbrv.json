@@ -1,0 +1,31 @@
+{
+  "id": "0U43CBRV",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 5
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 4
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 3
+    }
+  ],
+  "total_duration": 15,
+  "price_usd": 1224,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-12T18:35:18.755Z"
+}
