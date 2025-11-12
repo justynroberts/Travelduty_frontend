@@ -1,0 +1,31 @@
+{
+  "id": "CJ9O9PXL",
+  "name": "Bangkok Adventure Package",
+  "destinations": [
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 3
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 6
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 14,
+  "price_usd": 3061,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-12T23:07:23.657Z"
+}
