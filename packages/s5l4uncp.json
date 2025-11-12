@@ -1,0 +1,26 @@
+{
+  "id": "S5L4UNCP",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 3
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 7
+    }
+  ],
+  "total_duration": 8,
+  "price_usd": 2960,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-12T07:49:57.454Z"
+}
