@@ -2,21 +2,23 @@
 name: Barcelona
 country: Spain
 description: Mediterranean charm and Gaudí architecture
-rating: 4.9/5
-price_range: $$$$
-best_season: Summer
-updated: 2025-11-12T17:55:05.765Z
+rating: 4.0/5
+price_range: $
+best_season: Winter
+updated: 2025-11-12T18:14:49.689Z
 
 activities:
-  - Local cuisine tasting
-  - Historical site tours
+  - Night markets
+  - Shopping districts
+  - Cultural performances
+  - Water sports
   - Mountain hiking
-  - Beach activities
+  - Historical site tours
 
 accommodations:
-  hotels: 53
-  hostels: 12
-  resorts: 16
+  hotels: 57
+  hostels: 23
+  resorts: 12
 
 transportation:
   airport: Barcelona International Airport

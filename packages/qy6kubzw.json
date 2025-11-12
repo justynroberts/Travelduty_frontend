@@ -1,0 +1,31 @@
+{
+  "id": "QY6KUBZW",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 4
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 5
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 1795,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-12T18:14:49.684Z"
+}
