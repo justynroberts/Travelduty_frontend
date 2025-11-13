@@ -1,0 +1,26 @@
+{
+  "id": "7UI73TLZ",
+  "name": "Barcelona Adventure Package",
+  "destinations": [
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 6
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 7,
+  "price_usd": 2359,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-13T13:41:22.397Z"
+}
