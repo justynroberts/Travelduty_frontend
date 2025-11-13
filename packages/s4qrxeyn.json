@@ -1,0 +1,31 @@
+{
+  "id": "S4QRXEYN",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 7
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 5
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 19,
+  "price_usd": 1742,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-13T02:22:29.576Z"
+}
