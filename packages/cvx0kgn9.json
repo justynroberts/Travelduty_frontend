@@ -1,0 +1,31 @@
+{
+  "id": "CVX0KGN9",
+  "name": "Bangkok Adventure Package",
+  "destinations": [
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 7
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 4
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 12,
+  "price_usd": 3847,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-13T20:59:32.463Z"
+}
