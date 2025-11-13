@@ -6,7 +6,7 @@ metadata:
     app: travelduty
     component: backend
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: travelduty
@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: backend
-        image: travelduty/backend:z2t27t
+        image: travelduty/backend:i42mgn
         ports:
-        - containerPort: 8251
+        - containerPort: 8515
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.0.3"
+          value: "1.5.1"
         resources:
           requests:
-            memory: "256Mi"
+            memory: "128Mi"
             cpu: "500m"
           limits:
-            memory: "256Mi"
-            cpu: "1000m"
+            memory: "128Mi"
+            cpu: "1500m"
