@@ -4,21 +4,19 @@ country: Japan
 description: Modern metropolis with ancient temples
 rating: 4.1/5
 price_range: $
-best_season: Winter
-updated: 2025-11-13T21:29:41.394Z
+best_season: Summer
+updated: 2025-11-13T23:18:54.621Z
 
 activities:
-  - Beach activities
   - Local cuisine tasting
+  - Night markets
+  - Beach activities
   - Museum visits
-  - Historical site tours
-  - Sightseeing tours
-  - Cultural performances
 
 accommodations:
-  hotels: 55
-  hostels: 6
-  resorts: 11
+  hotels: 25
+  hostels: 21
+  resorts: 9
 
 transportation:
   airport: Tokyo International Airport
