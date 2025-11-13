@@ -1,0 +1,26 @@
+{
+  "id": "FFMKU3N3",
+  "name": "Rome Adventure Package",
+  "destinations": [
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 1
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 7,
+  "price_usd": 1271,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-13T08:06:21.377Z"
+}
