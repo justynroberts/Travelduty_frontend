@@ -1,0 +1,31 @@
+{
+  "id": "3PS7PS72",
+  "name": "Rome Adventure Package",
+  "destinations": [
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 4
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 6
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 13,
+  "price_usd": 2713,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-13T22:48:50.029Z"
+}
