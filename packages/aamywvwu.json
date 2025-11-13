@@ -1,0 +1,31 @@
+{
+  "id": "AAMYWVWU",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 4
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 4
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 3018,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-13T20:09:35.001Z"
+}
