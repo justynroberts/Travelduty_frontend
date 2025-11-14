@@ -1,0 +1,31 @@
+{
+  "id": "PMNLZN32",
+  "name": "London Adventure Package",
+  "destinations": [
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 7
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 3
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 8,
+  "price_usd": 1372,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-14T06:12:31.627Z"
+}
