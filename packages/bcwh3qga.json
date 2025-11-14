@@ -1,0 +1,31 @@
+{
+  "id": "BCWH3QGA",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 7
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 5
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 2714,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-14T11:01:02.453Z"
+}
