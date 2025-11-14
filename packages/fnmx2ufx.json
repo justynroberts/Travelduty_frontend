@@ -1,0 +1,26 @@
+{
+  "id": "FNMX2UFX",
+  "name": "London Adventure Package",
+  "destinations": [
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 2
+    },
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 4,
+  "price_usd": 2590,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-14T23:24:47.615Z"
+}
