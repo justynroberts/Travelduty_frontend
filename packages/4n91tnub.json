@@ -1,0 +1,26 @@
+{
+  "id": "4N91TNUB",
+  "name": "New York Adventure Package",
+  "destinations": [
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 6
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 5,
+  "price_usd": 2306,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-14T05:20:37.763Z"
+}
