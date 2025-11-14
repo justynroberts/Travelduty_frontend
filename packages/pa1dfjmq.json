@@ -1,0 +1,26 @@
+{
+  "id": "PA1DFJMQ",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 2
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 7,
+  "price_usd": 3777,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-14T16:54:17.073Z"
+}
