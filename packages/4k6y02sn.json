@@ -1,0 +1,26 @@
+{
+  "id": "4K6Y02SN",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 6
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 6,
+  "price_usd": 1008,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-14T18:12:54.598Z"
+}
