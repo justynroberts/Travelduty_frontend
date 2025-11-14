@@ -1,0 +1,36 @@
+{
+  "id": "ZUFX52EC",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 4
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 1
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 6
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 12,
+  "price_usd": 1093,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-14T22:04:30.893Z"
+}
