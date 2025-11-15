@@ -2,23 +2,22 @@
 name: Paris
 country: France
 description: City of lights and romance
-rating: 4.5/5
-price_range: $$
-best_season: Fall
-updated: 2025-11-15T06:54:15.458Z
+rating: 4.0/5
+price_range: $
+best_season: Spring
+updated: 2025-11-15T11:16:54.523Z
 
 activities:
   - Mountain hiking
-  - Local cuisine tasting
-  - Sightseeing tours
-  - Museum visits
   - Night markets
   - Beach activities
+  - Cultural performances
+  - Water sports
 
 accommodations:
-  hotels: 13
-  hostels: 16
-  resorts: 9
+  hotels: 56
+  hostels: 6
+  resorts: 3
 
 transportation:
   airport: Paris International Airport
