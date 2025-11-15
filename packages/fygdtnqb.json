@@ -1,0 +1,31 @@
+{
+  "id": "FYGDTNQB",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 7
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 2
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 16,
+  "price_usd": 2076,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-15T00:17:04.054Z"
+}
