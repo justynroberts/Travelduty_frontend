@@ -1,0 +1,26 @@
+{
+  "id": "FXBBYHEQ",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 5
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 8,
+  "price_usd": 1216,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-15T03:35:22.489Z"
+}
