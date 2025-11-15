@@ -4,21 +4,19 @@ country: Italy
 description: Ancient ruins and Renaissance art
 rating: 3.6/5
 price_range: $$$
-best_season: Winter
-updated: 2025-11-15T16:59:09.943Z
+best_season: Fall
+updated: 2025-11-15T19:09:53.632Z
 
 activities:
-  - Historical site tours
-  - Museum visits
-  - Night markets
-  - Local cuisine tasting
-  - Cultural performances
+  - Shopping districts
+  - Beach activities
   - Water sports
+  - Museum visits
 
 accommodations:
-  hotels: 12
-  hostels: 12
-  resorts: 3
+  hotels: 31
+  hostels: 22
+  resorts: 7
 
 transportation:
   airport: Rome International Airport
