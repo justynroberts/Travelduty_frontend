@@ -2,23 +2,21 @@
 name: Bali
 country: Indonesia
 description: Tropical paradise with rich culture
-rating: 4.2/5
-price_range: $
+rating: 4.7/5
+price_range: $$$$
 best_season: Fall
-updated: 2025-11-15T19:30:26.659Z
+updated: 2025-11-15T21:33:15.041Z
 
 activities:
-  - Water sports
   - Museum visits
-  - Cultural performances
-  - Historical site tours
   - Sightseeing tours
-  - Local cuisine tasting
+  - Historical site tours
+  - Shopping districts
 
 accommodations:
-  hotels: 43
-  hostels: 8
-  resorts: 9
+  hotels: 54
+  hostels: 15
+  resorts: 5
 
 transportation:
   airport: Bali International Airport
