@@ -1,0 +1,36 @@
+{
+  "id": "MSIZ028Z",
+  "name": "Barcelona Adventure Package",
+  "destinations": [
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 4
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 4
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 4
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 14,
+  "price_usd": 1483,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-15T05:03:22.531Z"
+}
