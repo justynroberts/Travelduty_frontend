@@ -1,0 +1,31 @@
+{
+  "id": "FZ660UWM",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 6
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 3
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 11,
+  "price_usd": 1513,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-15T13:38:02.126Z"
+}
