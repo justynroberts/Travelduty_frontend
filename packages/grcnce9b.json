@@ -1,0 +1,31 @@
+{
+  "id": "GRCNCE9B",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 6
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 3
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 16,
+  "price_usd": 1612,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-15T15:28:56.211Z"
+}

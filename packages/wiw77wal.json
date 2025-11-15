@@ -1,0 +1,31 @@
+{
+  "id": "WIW77WAL",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 6
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 4
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 15,
+  "price_usd": 1382,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-15T15:28:56.213Z"
+}
