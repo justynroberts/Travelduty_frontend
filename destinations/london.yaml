@@ -4,18 +4,19 @@ country: UK
 description: Historic capital with modern flair
 rating: 4.3/5
 price_range: $$$
-best_season: Spring
-updated: 2025-11-15T23:55:18.012Z
+best_season: Winter
+updated: 2025-11-16T00:45:51.753Z
 
 activities:
-  - Museum visits
   - Local cuisine tasting
-  - Cultural performances
-  - Water sports
+  - Museum visits
+  - Night markets
+  - Historical site tours
+  - Shopping districts
 
 accommodations:
-  hotels: 48
-  hostels: 22
+  hotels: 14
+  hostels: 17
   resorts: 12
 
 transportation:
