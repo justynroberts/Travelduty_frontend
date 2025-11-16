@@ -1,0 +1,26 @@
+{
+  "id": "AS8H3C72",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 2
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 7,
+  "price_usd": 3573,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-16T01:05:27.733Z"
+}
