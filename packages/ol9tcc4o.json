@@ -1,0 +1,31 @@
+{
+  "id": "OL9TCC4O",
+  "name": "London Adventure Package",
+  "destinations": [
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 2
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 2
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 8,
+  "price_usd": 1875,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-16T21:04:26.937Z"
+}
