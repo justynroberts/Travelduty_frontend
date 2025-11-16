@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: travelduty/api-gateway:06og29
+        image: travelduty/api-gateway:iws7q
         ports:
-        - containerPort: 8243
+        - containerPort: 8281
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.9.2"
+          value: "1.6.2"
         resources:
           requests:
-            memory: "512Mi"
-            cpu: "300m"
-          limits:
             memory: "256Mi"
+            cpu: "200m"
+          limits:
+            memory: "1024Mi"
             cpu: "1500m"
