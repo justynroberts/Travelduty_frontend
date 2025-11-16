@@ -1,0 +1,26 @@
+{
+  "id": "FFS4ICJ0",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 4
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 3
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 1789,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-16T04:58:38.844Z"
+}
