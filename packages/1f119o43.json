@@ -1,0 +1,26 @@
+{
+  "id": "1F119O43",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 6
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 7,
+  "price_usd": 3679,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-16T00:35:53.952Z"
+}
