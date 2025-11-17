@@ -1,0 +1,31 @@
+{
+  "id": "9UVUC7QN",
+  "name": "London Adventure Package",
+  "destinations": [
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 3
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 6
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 13,
+  "price_usd": 1592,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-17T18:03:35.930Z"
+}
