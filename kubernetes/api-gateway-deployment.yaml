@@ -6,7 +6,7 @@ metadata:
     app: travelduty
     component: api-gateway
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: travelduty
@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: travelduty/api-gateway:ec7517p
+        image: travelduty/api-gateway:q715qe
         ports:
-        - containerPort: 8246
+        - containerPort: 8076
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.3.3"
+          value: "1.9.9"
         resources:
           requests:
-            memory: "512Mi"
+            memory: "128Mi"
             cpu: "300m"
           limits:
-            memory: "1024Mi"
+            memory: "256Mi"
             cpu: "1500m"
