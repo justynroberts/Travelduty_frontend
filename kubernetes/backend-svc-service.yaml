@@ -5,10 +5,10 @@ metadata:
   labels:
     app: travelduty
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
-  - port: 8521
-    targetPort: 8870
+  - port: 8042
+    targetPort: 8677
     protocol: TCP
     name: http
   selector:
