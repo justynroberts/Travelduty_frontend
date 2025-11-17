@@ -1,0 +1,31 @@
+{
+  "id": "HF9MU6L3",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 5
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 5
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 12,
+  "price_usd": 3788,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-17T12:11:27.993Z"
+}
