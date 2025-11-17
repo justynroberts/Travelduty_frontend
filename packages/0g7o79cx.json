@@ -1,0 +1,36 @@
+{
+  "id": "0G7O79CX",
+  "name": "London Adventure Package",
+  "destinations": [
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 6
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 4
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 7
+    },
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 18,
+  "price_usd": 1340,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-17T13:40:49.501Z"
+}
