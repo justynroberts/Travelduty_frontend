@@ -1,0 +1,26 @@
+{
+  "id": "PL8BBG7I",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 2
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 7
+    }
+  ],
+  "total_duration": 4,
+  "price_usd": 3110,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-17T20:25:14.349Z"
+}
