@@ -1,0 +1,26 @@
+{
+  "id": "O9IAS8B5",
+  "name": "Barcelona Adventure Package",
+  "destinations": [
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 2
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 3554,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-17T21:06:00.827Z"
+}
