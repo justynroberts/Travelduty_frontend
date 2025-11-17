@@ -1,0 +1,31 @@
+{
+  "id": "SV63LLZQ",
+  "name": "Barcelona Adventure Package",
+  "destinations": [
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 1
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 1
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 13,
+  "price_usd": 1858,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-17T15:41:43.670Z"
+}
