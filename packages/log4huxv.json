@@ -1,0 +1,31 @@
+{
+  "id": "LOG4HUXV",
+  "name": "Barcelona Adventure Package",
+  "destinations": [
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 3
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 2
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 3454,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-18T22:12:35.535Z"
+}
