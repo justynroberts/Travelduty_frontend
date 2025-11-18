@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: travelduty/api-gateway:kdnyra
+        image: travelduty/api-gateway:srombn
         ports:
-        - containerPort: 8419
+        - containerPort: 8410
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.2.5"
+          value: "1.4.0"
         resources:
           requests:
             memory: "128Mi"
-            cpu: "200m"
+            cpu: "300m"
           limits:
-            memory: "256Mi"
+            memory: "128Mi"
             cpu: "1500m"
