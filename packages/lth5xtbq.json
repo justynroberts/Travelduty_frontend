@@ -1,0 +1,31 @@
+{
+  "id": "LTH5XTBQ",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 4
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 1
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 8,
+  "price_usd": 1393,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-18T12:48:58.416Z"
+}
