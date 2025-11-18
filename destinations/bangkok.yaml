@@ -2,20 +2,23 @@
 name: Bangkok
 country: Thailand
 description: Vibrant street life and ornate shrines
-rating: 4.4/5
-price_range: $$$$
-best_season: Spring
-updated: 2025-11-18T13:49:21.586Z
+rating: 4.7/5
+price_range: $$$
+best_season: Summer
+updated: 2025-11-18T14:19:35.636Z
 
 activities:
+  - Cultural performances
+  - Sightseeing tours
+  - Water sports
+  - Night markets
   - Mountain hiking
-  - Local cuisine tasting
-  - Museum visits
+  - Beach activities
 
 accommodations:
-  hotels: 44
-  hostels: 22
-  resorts: 5
+  hotels: 27
+  hostels: 24
+  resorts: 14
 
 transportation:
   airport: Bangkok International Airport
