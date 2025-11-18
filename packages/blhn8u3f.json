@@ -1,0 +1,31 @@
+{
+  "id": "BLHN8U3F",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 6
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 7
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 8,
+  "price_usd": 2151,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-18T16:18:49.007Z"
+}
