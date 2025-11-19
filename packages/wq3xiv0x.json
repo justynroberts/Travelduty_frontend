@@ -1,0 +1,26 @@
+{
+  "id": "WQ3XIV0X",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 6
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 3613,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-19T15:09:04.592Z"
+}
