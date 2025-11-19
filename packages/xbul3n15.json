@@ -1,0 +1,36 @@
+{
+  "id": "XBUL3N15",
+  "name": "Barcelona Adventure Package",
+  "destinations": [
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 6
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 6
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 5
+    },
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 3
+    }
+  ],
+  "total_duration": 11,
+  "price_usd": 1532,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-19T20:33:13.981Z"
+}
