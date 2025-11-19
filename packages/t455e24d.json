@@ -1,0 +1,31 @@
+{
+  "id": "T455E24D",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 7
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 5
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 14,
+  "price_usd": 2570,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-19T23:14:08.708Z"
+}
