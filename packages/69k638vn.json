@@ -1,0 +1,36 @@
+{
+  "id": "69K638VN",
+  "name": "London Adventure Package",
+  "destinations": [
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 3
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 4
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 3
+    },
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 3
+    }
+  ],
+  "total_duration": 20,
+  "price_usd": 2289,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-19T22:54:37.522Z"
+}
