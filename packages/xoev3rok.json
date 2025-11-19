@@ -1,0 +1,36 @@
+{
+  "id": "XOEV3ROK",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 7
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 1
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 7
+    },
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 22,
+  "price_usd": 2074,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-19T14:20:57.184Z"
+}
