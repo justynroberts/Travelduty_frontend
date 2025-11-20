@@ -1,0 +1,31 @@
+{
+  "id": "WS1GRHYS",
+  "name": "Barcelona Adventure Package",
+  "destinations": [
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 1
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 5
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 12,
+  "price_usd": 3259,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-20T15:04:56.074Z"
+}
