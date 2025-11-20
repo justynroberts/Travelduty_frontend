@@ -1,0 +1,26 @@
+{
+  "id": "PS4XOU14",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 6
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 4
+    }
+  ],
+  "total_duration": 8,
+  "price_usd": 3379,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-20T10:55:29.926Z"
+}
