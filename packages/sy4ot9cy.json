@@ -1,0 +1,36 @@
+{
+  "id": "SY4OT9CY",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 5
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 7
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 2
+    },
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 21,
+  "price_usd": 3646,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-20T10:05:34.652Z"
+}
