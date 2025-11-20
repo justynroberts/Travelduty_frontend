@@ -1,0 +1,31 @@
+{
+  "id": "OTW54CBB",
+  "name": "Barcelona Adventure Package",
+  "destinations": [
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 2
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 7
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 7
+    }
+  ],
+  "total_duration": 14,
+  "price_usd": 2258,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-20T23:49:38.603Z"
+}
