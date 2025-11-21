@@ -7,6 +7,6 @@ metadata:
 data:
   api_endpoint: https://api.travelduty.com
   log_level: info
-  cache_ttl: "1519"
-  max_connections: "37"
+  cache_ttl: "3812"
+  max_connections: "10"
   timezone: UTC
