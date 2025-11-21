@@ -5,18 +5,19 @@ description: The city that never sleeps
 rating: 4.0/5
 price_range: $$$$
 best_season: Fall
-updated: 2025-11-21T11:58:05.996Z
+updated: 2025-11-21T13:26:12.078Z
 
 activities:
-  - Local cuisine tasting
-  - Historical site tours
-  - Museum visits
+  - Beach activities
+  - Cultural performances
+  - Water sports
   - Sightseeing tours
+  - Local cuisine tasting
 
 accommodations:
-  hotels: 30
-  hostels: 11
-  resorts: 17
+  hotels: 20
+  hostels: 20
+  resorts: 8
 
 transportation:
   airport: New York International Airport
