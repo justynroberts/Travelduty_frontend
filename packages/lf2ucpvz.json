@@ -1,0 +1,36 @@
+{
+  "id": "LF2UCPVZ",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 1
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 5
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 3
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 24,
+  "price_usd": 3859,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-21T15:04:54.305Z"
+}
