@@ -1,0 +1,26 @@
+{
+  "id": "73ZR5OMQ",
+  "name": "London Adventure Package",
+  "destinations": [
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 3
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 11,
+  "price_usd": 3486,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-21T18:04:56.061Z"
+}
