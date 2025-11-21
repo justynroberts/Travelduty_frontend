@@ -1,0 +1,31 @@
+{
+  "id": "29NY6DR5",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 1
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 3
+    },
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 10,
+  "price_usd": 3578,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-21T01:10:24.067Z"
+}
