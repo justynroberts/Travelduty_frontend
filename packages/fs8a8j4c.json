@@ -1,0 +1,31 @@
+{
+  "id": "FS8A8J4C",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 5
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 1
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 7
+    }
+  ],
+  "total_duration": 12,
+  "price_usd": 1983,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-21T07:56:44.578Z"
+}
