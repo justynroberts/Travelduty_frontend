@@ -1,0 +1,26 @@
+{
+  "id": "O3IYES50",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 4
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 7
+    }
+  ],
+  "total_duration": 7,
+  "price_usd": 3342,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-22T20:37:21.212Z"
+}
