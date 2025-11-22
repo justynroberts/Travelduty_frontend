@@ -1,0 +1,36 @@
+{
+  "id": "UY289TZK",
+  "name": "Paris Adventure Package",
+  "destinations": [
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 1
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 1
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 5
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 3301,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-22T01:55:39.850Z"
+}
