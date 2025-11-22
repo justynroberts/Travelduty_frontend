@@ -1,0 +1,26 @@
+{
+  "id": "FPBKE9TS",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 7
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 11,
+  "price_usd": 2878,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-22T04:33:59.251Z"
+}

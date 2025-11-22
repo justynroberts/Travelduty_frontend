@@ -1,0 +1,36 @@
+{
+  "id": "KCCK24P5",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 3
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 7
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 1
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 22,
+  "price_usd": 1037,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-22T04:33:59.226Z"
+}
