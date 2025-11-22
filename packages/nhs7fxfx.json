@@ -1,0 +1,31 @@
+{
+  "id": "NHS7FXFX",
+  "name": "Tokyo Adventure Package",
+  "destinations": [
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 3
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 3
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 7
+    }
+  ],
+  "total_duration": 13,
+  "price_usd": 3413,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-22T03:45:41.887Z"
+}
