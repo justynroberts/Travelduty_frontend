@@ -1,0 +1,31 @@
+{
+  "id": "GD194199",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 4
+    },
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 7
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 7
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 3739,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-22T10:45:39.714Z"
+}
