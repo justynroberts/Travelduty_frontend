@@ -19,18 +19,18 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: travelduty/api-gateway:vnvzexc
+        image: travelduty/api-gateway:hsap86
         ports:
-        - containerPort: 8958
+        - containerPort: 8570
         env:
         - name: NODE_ENV
           value: production
         - name: VERSION
-          value: "1.7.0"
+          value: "1.0.0"
         resources:
           requests:
             memory: "64Mi"
-            cpu: "400m"
-          limits:
-            memory: "1024Mi"
             cpu: "500m"
+          limits:
+            memory: "128Mi"
+            cpu: "1500m"
