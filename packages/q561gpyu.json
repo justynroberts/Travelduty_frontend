@@ -1,0 +1,31 @@
+{
+  "id": "Q561GPYU",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 7
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 2
+    },
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 3397,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-23T19:49:07.997Z"
+}
