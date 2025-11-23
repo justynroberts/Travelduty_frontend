@@ -2,22 +2,23 @@
 name: Dubai
 country: UAE
 description: Futuristic skyline and luxury
-rating: 4.7/5
-price_range: $$$$
-best_season: Winter
-updated: 2025-11-23T07:02:42.945Z
+rating: 3.7/5
+price_range: $
+best_season: Summer
+updated: 2025-11-23T07:53:06.562Z
 
 activities:
-  - Water sports
+  - Museum visits
   - Beach activities
-  - Sightseeing tours
-  - Shopping districts
+  - Cultural performances
   - Local cuisine tasting
+  - Water sports
+  - Sightseeing tours
 
 accommodations:
-  hotels: 27
-  hostels: 6
-  resorts: 8
+  hotels: 17
+  hostels: 14
+  resorts: 14
 
 transportation:
   airport: Dubai International Airport
