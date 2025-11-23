@@ -1,0 +1,26 @@
+{
+  "id": "A3M3KK18",
+  "name": "London Adventure Package",
+  "destinations": [
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 5
+    },
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 7
+    }
+  ],
+  "total_duration": 5,
+  "price_usd": 1883,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-23T11:19:42.407Z"
+}
