@@ -1,0 +1,26 @@
+{
+  "id": "YEFZWN89",
+  "name": "London Adventure Package",
+  "destinations": [
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 3
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 2223,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-24T08:49:57.689Z"
+}
