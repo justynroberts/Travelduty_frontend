@@ -1,0 +1,36 @@
+{
+  "id": "7PZH4LSI",
+  "name": "Dubai Adventure Package",
+  "destinations": [
+    {
+      "name": "Dubai",
+      "country": "UAE",
+      "duration_days": 6
+    },
+    {
+      "name": "Paris",
+      "country": "France",
+      "duration_days": 4
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 3
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 10,
+  "price_usd": 3494,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-24T12:01:55.256Z"
+}
