@@ -1,0 +1,31 @@
+{
+  "id": "FDTZNJ0L",
+  "name": "London Adventure Package",
+  "destinations": [
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 7
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 7
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 12,
+  "price_usd": 3830,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-24T11:10:39.297Z"
+}
