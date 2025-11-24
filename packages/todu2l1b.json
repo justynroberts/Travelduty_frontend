@@ -1,0 +1,31 @@
+{
+  "id": "TODU2L1B",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 4
+    },
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 1
+    },
+    {
+      "name": "New York",
+      "country": "USA",
+      "duration_days": 3
+    }
+  ],
+  "total_duration": 14,
+  "price_usd": 2821,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-24T16:14:34.130Z"
+}
