@@ -1,0 +1,26 @@
+{
+  "id": "X4KH9TLX",
+  "name": "Rome Adventure Package",
+  "destinations": [
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 7
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 6
+    }
+  ],
+  "total_duration": 11,
+  "price_usd": 1935,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-24T01:05:05.644Z"
+}
