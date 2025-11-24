@@ -1,0 +1,26 @@
+{
+  "id": "R0AGK4TV",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 2
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 7
+    }
+  ],
+  "total_duration": 8,
+  "price_usd": 3376,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-24T15:43:59.575Z"
+}
