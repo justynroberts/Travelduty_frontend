@@ -1,0 +1,26 @@
+{
+  "id": "X1HPFMQS",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 7
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 1
+    }
+  ],
+  "total_duration": 13,
+  "price_usd": 3121,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-24T18:26:40.326Z"
+}
