@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: database
-        image: postgres:14
+        image: postgres:13
         ports:
         - containerPort: 5432
           name: postgres
@@ -33,4 +33,4 @@ spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
-          storage: 19Gi
+          storage: 47Gi
