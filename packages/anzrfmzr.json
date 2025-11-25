@@ -1,0 +1,31 @@
+{
+  "id": "ANZRFMZR",
+  "name": "Sydney Adventure Package",
+  "destinations": [
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 1
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 7
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 3
+    }
+  ],
+  "total_duration": 12,
+  "price_usd": 3274,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-25T04:08:33.632Z"
+}
