@@ -1,0 +1,31 @@
+{
+  "id": "M2XIL1PT",
+  "name": "Rome Adventure Package",
+  "destinations": [
+    {
+      "name": "Rome",
+      "country": "Italy",
+      "duration_days": 4
+    },
+    {
+      "name": "Sydney",
+      "country": "Australia",
+      "duration_days": 6
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 5
+    }
+  ],
+  "total_duration": 9,
+  "price_usd": 2890,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-25T04:39:53.078Z"
+}
