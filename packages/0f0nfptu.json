@@ -1,0 +1,31 @@
+{
+  "id": "0F0NFPTU",
+  "name": "Bangkok Adventure Package",
+  "destinations": [
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 3
+    },
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 7
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 13,
+  "price_usd": 1848,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-25T05:00:27.834Z"
+}
