@@ -1,0 +1,36 @@
+{
+  "id": "93NW35QF",
+  "name": "London Adventure Package",
+  "destinations": [
+    {
+      "name": "London",
+      "country": "UK",
+      "duration_days": 1
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 5
+    },
+    {
+      "name": "Bangkok",
+      "country": "Thailand",
+      "duration_days": 1
+    },
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "duration_days": 7
+    }
+  ],
+  "total_duration": 15,
+  "price_usd": 2788,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-25T09:25:15.201Z"
+}
