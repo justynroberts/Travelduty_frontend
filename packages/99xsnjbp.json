@@ -1,0 +1,26 @@
+{
+  "id": "99XSNJBP",
+  "name": "Bali Adventure Package",
+  "destinations": [
+    {
+      "name": "Bali",
+      "country": "Indonesia",
+      "duration_days": 4
+    },
+    {
+      "name": "Tokyo",
+      "country": "Japan",
+      "duration_days": 2
+    }
+  ],
+  "total_duration": 10,
+  "price_usd": 2894,
+  "includes": [
+    "Round-trip flights",
+    "Hotel accommodations",
+    "Airport transfers",
+    "Travel insurance",
+    "24/7 support"
+  ],
+  "created_at": "2025-11-25T06:03:02.240Z"
+}
