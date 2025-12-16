@@ -1,10 +1,36 @@
-git:
-  push_enabled: true
+repositories:
+  - path: /Users/justynroberts/work/git-deploy-schedule
+    branch: main
+    enabled: true
+
 schedule:
   base_interval: 600
   jitter_range: 50
+
 ollama:
-  theme: kubernetes
+  enabled: true
+  url: http://oracle.local:11434
+  model: llama3.2:3b
+  timeout: 30
+  max_tokens: 100
+  theme: "Kubernetes around Travelduty site. Pick site related features and k8s components"
+  system_prompt: "Generate a short, conventional commit message based on the provided git diff. Use types: feat, fix, chore, docs, refactor, test, style."
+
+commit:
+  use_ollama: true
+  message_template: "chore: automated update - {timestamp}"
+  author_name: "Auto Deploy Bot"
+  author_email: "bot@example.com"
+
+push:
+  enabled: true
+  retry_attempts: 3
+  retry_delay: 30
+
+logging:
+  level: INFO
+  file: logs/scheduler.log
+
 server:
   host: 0.0.0.0
   port: 3001
