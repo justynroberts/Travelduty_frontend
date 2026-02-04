@@ -13,4 +13,7 @@ fi
 git config --global user.email "scheduler@git-deploy.local"
 git config --global user.name "Git Deploy Scheduler"
 
+# Mark mounted repo as safe (fixes dubious ownership error)
+git config --global --add safe.directory /repo
+
 exec "$@"
