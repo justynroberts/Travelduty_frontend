@@ -46,3 +46,4 @@ logs/*.log
 Thumbs.db
 .ssh/
 database/.github_token
+node_modules/
