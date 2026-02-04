@@ -160,9 +160,50 @@ class MessageGenerator:
         # Remove any leading/trailing whitespace
         message = message.strip()
 
-        # Take only the first line if multiple lines
+        # Split into lines and find the actual commit message
         lines = message.split('\n')
-        message = lines[0].strip()
+
+        # Preamble patterns to skip (common LLM response patterns)
+        preamble_patterns = [
+            'here is', 'here\'s', 'sure', 'certainly', 'of course',
+            'i\'ll', 'i will', 'let me', 'the commit message',
+            'a commit message', 'commit message:', 'based on',
+            'looking at', 'analyzing', 'after reviewing'
+        ]
+
+        # Find the first line that looks like a commit message
+        commit_message = None
+        for line in lines:
+            line = line.strip().strip('"\'`')
+            if not line:
+                continue
+
+            # Skip lines that look like preambles
+            line_lower = line.lower()
+            is_preamble = any(line_lower.startswith(p) for p in preamble_patterns)
+
+            if is_preamble:
+                continue
+
+            # Check if this line looks like a conventional commit
+            if ':' in line:
+                parts = line.split(':', 1)
+                commit_type = parts[0].strip().lower().replace('(', ' ').split()[0]
+                valid_types = ['feat', 'fix', 'docs', 'style', 'refactor',
+                              'perf', 'test', 'build', 'ci', 'chore', 'revert']
+                if commit_type in valid_types:
+                    commit_message = line
+                    break
+
+            # If we haven't found a conventional commit yet, save first non-preamble line
+            if commit_message is None and len(line) >= 10:
+                commit_message = line
+
+        # Use the found message or fall back to first line
+        message = commit_message or lines[0].strip()
+
+        # Remove markdown backticks
+        message = message.strip('`').strip()
 
         # Limit length to 72 characters (conventional commit guideline)
         if len(message) > 72:
