@@ -678,13 +678,19 @@
                         </div>
                         <div class="token-input-group" id="tokenInputGroup">
                             <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxx" class="token-input">
+                            <button class="btn btn-secondary btn-sm" onclick="testToken()">
+                                <i data-feather="check-circle"></i> Test
+                            </button>
                             <button class="btn btn-primary btn-sm" onclick="saveToken()">
                                 <i data-feather="save"></i> Save
                             </button>
                         </div>
                         <div class="token-actions" id="tokenActions" style="display: none;">
                             <button class="btn btn-secondary btn-sm" onclick="testPush()">
-                                <i data-feather="check-circle"></i> Test Connection
+                                <i data-feather="wifi"></i> Test
+                            </button>
+                            <button class="btn btn-secondary btn-sm" onclick="showUpdateToken()">
+                                <i data-feather="edit-2"></i> Update
                             </button>
                             <button class="btn btn-danger btn-sm" onclick="removeToken()">
                                 <i data-feather="trash-2"></i> Remove

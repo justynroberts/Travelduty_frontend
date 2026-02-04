@@ -318,7 +318,7 @@ async def delete_token():
 
 @app.post("/api/settings/test-push")
 async def test_push():
-    """Test git push capability."""
+    """Test git push capability with saved token."""
     try:
         repo_path = os.environ.get("REPO_PATH", "/repo")
 
@@ -339,6 +339,75 @@ async def test_push():
     except subprocess.TimeoutExpired:
         return {"status": "error", "message": "Connection timed out"}
     except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+
+@app.post("/api/settings/test-token")
+async def test_token(data: TokenUpdate):
+    """Test a token by checking push permissions via GitHub API."""
+    import urllib.request
+    import json as json_module
+
+    try:
+        repo_path = os.environ.get("REPO_PATH", "/repo")
+
+        # Get the remote URL
+        result = subprocess.run(
+            ["git", "remote", "get-url", "origin"],
+            capture_output=True,
+            text=True,
+            cwd=repo_path
+        )
+
+        if result.returncode != 0:
+            return {"status": "error", "message": "Could not get remote URL"}
+
+        remote_url = result.stdout.strip()
+
+        # Extract owner/repo from URL
+        # https://github.com/owner/repo.git -> owner/repo
+        if "github.com" not in remote_url:
+            return {"status": "error", "message": "Remote is not a GitHub URL"}
+
+        # Parse owner/repo
+        parts = remote_url.replace("https://github.com/", "").replace("git@github.com:", "").replace(".git", "").split("/")
+        if len(parts) < 2:
+            return {"status": "error", "message": "Could not parse repo from URL"}
+
+        owner, repo = parts[0], parts[1]
+
+        # Check token permissions via GitHub API
+        api_url = f"https://api.github.com/repos/{owner}/{repo}"
+        req = urllib.request.Request(api_url)
+        req.add_header("Authorization", f"token {data.token}")
+        req.add_header("Accept", "application/vnd.github.v3+json")
+        req.add_header("User-Agent", "git-deploy-scheduler")
+
+        try:
+            with urllib.request.urlopen(req, timeout=10) as response:
+                repo_data = json_module.loads(response.read().decode())
+
+                # Check if we have push permission
+                permissions = repo_data.get("permissions", {})
+                can_push = permissions.get("push", False)
+
+                if can_push:
+                    return {"status": "success", "message": "Token valid with push access!"}
+                else:
+                    return {"status": "error", "message": "Token valid but no push permission"}
+
+        except urllib.error.HTTPError as e:
+            if e.code == 401:
+                return {"status": "error", "message": "Invalid token"}
+            elif e.code == 403:
+                return {"status": "error", "message": "Token lacks repo access"}
+            elif e.code == 404:
+                return {"status": "error", "message": "Repo not found or token lacks access"}
+            else:
+                return {"status": "error", "message": f"GitHub API error: {e.code}"}
+
+    except Exception as e:
+        logger.error(f"Error testing token: {e}")
         return {"status": "error", "message": str(e)}
 
 

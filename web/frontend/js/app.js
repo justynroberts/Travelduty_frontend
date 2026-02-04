@@ -422,6 +422,37 @@ async function loadSettings() {
     }
 }
 
+async function testToken() {
+    const tokenInput = document.getElementById('tokenInput');
+    const token = tokenInput.value.trim();
+
+    if (!token) {
+        showNotification('Please enter a token first', 'error');
+        return;
+    }
+
+    showNotification('Testing token...', 'info');
+
+    try {
+        const response = await fetch(`${API_BASE}/api/settings/test-token`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: token })
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            showNotification('Token is valid! Click Save to use it.', 'success');
+        } else {
+            showNotification(data.message || 'Token test failed', 'error');
+        }
+    } catch (error) {
+        console.error('Error testing token:', error);
+        showNotification('Failed to test token', 'error');
+    }
+}
+
 async function saveToken() {
     const tokenInput = document.getElementById('tokenInput');
     const token = tokenInput.value.trim();
@@ -500,5 +531,23 @@ async function testPush() {
     } catch (error) {
         console.error('Error testing push:', error);
         showNotification('Connection test failed', 'error');
+    }
+}
+
+function showUpdateToken() {
+    // Show the input group to allow updating the token
+    const tokenInputGroup = document.getElementById('tokenInputGroup');
+    const tokenActions = document.getElementById('tokenActions');
+    const tokenInput = document.getElementById('tokenInput');
+
+    tokenInputGroup.style.display = 'flex';
+    tokenActions.style.display = 'none';
+    tokenInput.value = '';
+    tokenInput.placeholder = 'Enter new token...';
+    tokenInput.focus();
+
+    // Re-initialize feather icons
+    if (typeof feather !== 'undefined') {
+        feather.replace();
     }
 }
