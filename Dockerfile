@@ -1,8 +1,8 @@
 FROM python:3.11-slim
 
-# Install git
+# Install git and curl (for healthcheck)
 RUN apt-get update && \
-    apt-get install -y git && \
+    apt-get install -y git curl && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -14,13 +14,13 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY . .
+COPY src/ ./src/
+COPY web/ ./web/
+COPY config/ ./config/
+COPY main.py main_web.py ./
 
-# Create logs directory
-RUN mkdir -p logs
+# Create directories
+RUN mkdir -p logs database
 
-# Set permissions
-RUN chmod +x main.py
-
-# Default command
-CMD ["python", "main.py"]
+# Default command - run web UI on port 5001
+CMD ["python", "main_web.py", "--port", "5001"]
