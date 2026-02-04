@@ -1,9 +1,12 @@
 """FastAPI HTTP server for web UI integration."""
 
 import logging
+import os
+import subprocess
 from typing import Optional, Dict, Any
 from datetime import datetime
 import threading
+from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -42,6 +45,15 @@ def set_scheduler(scheduler):
 class ControlAction(BaseModel):
     """Control action model."""
     action: str  # pause, resume, trigger
+
+
+class TokenUpdate(BaseModel):
+    """Token update model."""
+    token: str
+
+
+# Token storage path (in mounted database directory for persistence)
+TOKEN_FILE = Path("database/.github_token")
 
 
 @app.get("/")
@@ -201,6 +213,133 @@ async def get_logs(lines: int = 100):
     except Exception as e:
         logger.error(f"Error getting logs: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+def _configure_git_credentials(token: str):
+    """Configure git to use the token for authentication."""
+    try:
+        # Set credential helper
+        subprocess.run(["git", "config", "--global", "credential.helper", "store"], check=True)
+
+        # Write credentials file
+        creds_file = Path.home() / ".git-credentials"
+        creds_file.write_text(f"https://x-access-token:{token}@github.com\n")
+        creds_file.chmod(0o600)
+
+        logger.info("Git credentials configured successfully")
+        return True
+    except Exception as e:
+        logger.error(f"Failed to configure git credentials: {e}")
+        return False
+
+
+def _load_saved_token():
+    """Load token from file if it exists."""
+    if TOKEN_FILE.exists():
+        try:
+            token = TOKEN_FILE.read_text().strip()
+            if token:
+                _configure_git_credentials(token)
+                return True
+        except Exception as e:
+            logger.error(f"Failed to load saved token: {e}")
+    return False
+
+
+# Load saved token on startup
+_load_saved_token()
+
+
+@app.get("/api/settings")
+async def get_settings():
+    """Get current settings."""
+    has_token = TOKEN_FILE.exists() and TOKEN_FILE.read_text().strip() != ""
+
+    # Test git push capability
+    push_enabled = False
+    if has_token:
+        try:
+            result = subprocess.run(
+                ["git", "ls-remote", "--exit-code", "origin"],
+                capture_output=True,
+                timeout=10,
+                cwd=os.environ.get("REPO_PATH", "/repo")
+            )
+            push_enabled = result.returncode == 0
+        except Exception:
+            pass
+
+    return {
+        "has_github_token": has_token,
+        "push_enabled": push_enabled
+    }
+
+
+@app.post("/api/settings/token")
+async def set_token(data: TokenUpdate):
+    """Save GitHub token."""
+    try:
+        # Save token to file
+        TOKEN_FILE.parent.mkdir(parents=True, exist_ok=True)
+        TOKEN_FILE.write_text(data.token)
+        TOKEN_FILE.chmod(0o600)
+
+        # Configure git credentials
+        if _configure_git_credentials(data.token):
+            logger.info("GitHub token saved and configured")
+            return {"status": "success", "message": "Token saved successfully"}
+        else:
+            raise HTTPException(status_code=500, detail="Failed to configure git credentials")
+
+    except Exception as e:
+        logger.error(f"Error saving token: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.delete("/api/settings/token")
+async def delete_token():
+    """Remove saved GitHub token."""
+    try:
+        if TOKEN_FILE.exists():
+            TOKEN_FILE.unlink()
+
+        # Remove credentials file
+        creds_file = Path.home() / ".git-credentials"
+        if creds_file.exists():
+            creds_file.unlink()
+
+        logger.info("GitHub token removed")
+        return {"status": "success", "message": "Token removed"}
+
+    except Exception as e:
+        logger.error(f"Error removing token: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/settings/test-push")
+async def test_push():
+    """Test git push capability."""
+    try:
+        repo_path = os.environ.get("REPO_PATH", "/repo")
+
+        # Test remote access
+        result = subprocess.run(
+            ["git", "ls-remote", "--exit-code", "origin"],
+            capture_output=True,
+            text=True,
+            timeout=15,
+            cwd=repo_path
+        )
+
+        if result.returncode == 0:
+            return {"status": "success", "message": "Git remote access working"}
+        else:
+            return {"status": "error", "message": f"Git remote access failed: {result.stderr}"}
+
+    except subprocess.TimeoutExpired:
+        return {"status": "error", "message": "Connection timed out"}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
 
 
 # Mount static files

@@ -13,11 +13,14 @@ services:
       - /Volumes/Code/work/git-deploy-schedule/logs:/app/logs
       # Mount database for persistence
       - /Volumes/Code/work/git-deploy-schedule/database:/app/database
+      # Mount SSH keys for git push
+      - /Volumes/Code/work/git-deploy-schedule/.ssh:/root/.ssh:ro
     environment:
       - REPO_PATH=/repo
       - OLLAMA_URL=http://host.docker.internal:11434
       - OLLAMA_MODEL=llama3.2:3b
       - LOG_LEVEL=INFO
+      - GITHUB_TOKEN=${GITHUB_TOKEN:-}
     extra_hosts:
       - "oracle.local:host-gateway"
     restart: unless-stopped

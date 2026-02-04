@@ -23,7 +23,8 @@ async function loadData() {
         await Promise.all([
             loadStatus(),
             loadHistory(),
-            loadStats()
+            loadStats(),
+            loadSettings()
         ]);
     } catch (error) {
         console.error('Error loading data:', error);
@@ -377,3 +378,127 @@ document.addEventListener('visibilitychange', () => {
         }
     }
 });
+
+// Settings / Token Management
+async function loadSettings() {
+    try {
+        const response = await fetch(`${API_BASE}/api/settings`);
+        const data = await response.json();
+
+        const tokenStatusText = document.getElementById('tokenStatusText');
+        const tokenInputGroup = document.getElementById('tokenInputGroup');
+        const tokenActions = document.getElementById('tokenActions');
+        const pushStatus = document.getElementById('pushStatus');
+
+        if (data.has_github_token) {
+            tokenStatusText.textContent = 'Configured';
+            tokenStatusText.className = 'value success';
+            tokenInputGroup.style.display = 'none';
+            tokenActions.style.display = 'flex';
+
+            if (data.push_enabled) {
+                pushStatus.textContent = 'Enabled';
+                pushStatus.className = 'value success';
+            } else {
+                pushStatus.textContent = 'Auth Error';
+                pushStatus.className = 'value error';
+            }
+        } else {
+            tokenStatusText.textContent = 'Not configured';
+            tokenStatusText.className = 'value error';
+            tokenInputGroup.style.display = 'flex';
+            tokenActions.style.display = 'none';
+            pushStatus.textContent = 'Disabled';
+            pushStatus.className = 'value error';
+        }
+
+        // Re-initialize feather icons for new elements
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+        }
+
+    } catch (error) {
+        console.error('Error loading settings:', error);
+    }
+}
+
+async function saveToken() {
+    const tokenInput = document.getElementById('tokenInput');
+    const token = tokenInput.value.trim();
+
+    if (!token) {
+        showNotification('Please enter a token', 'error');
+        return;
+    }
+
+    if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
+        showNotification('Invalid token format', 'error');
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_BASE}/api/settings/token`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: token })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            showNotification('Token saved successfully', 'success');
+            tokenInput.value = '';
+            loadSettings();
+        } else {
+            showNotification(data.detail || 'Failed to save token', 'error');
+        }
+    } catch (error) {
+        console.error('Error saving token:', error);
+        showNotification('Failed to save token', 'error');
+    }
+}
+
+async function removeToken() {
+    if (!confirm('Remove GitHub token? Push will be disabled.')) {
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_BASE}/api/settings/token`, {
+            method: 'DELETE'
+        });
+
+        if (response.ok) {
+            showNotification('Token removed', 'success');
+            loadSettings();
+        } else {
+            showNotification('Failed to remove token', 'error');
+        }
+    } catch (error) {
+        console.error('Error removing token:', error);
+        showNotification('Failed to remove token', 'error');
+    }
+}
+
+async function testPush() {
+    showNotification('Testing connection...', 'info');
+
+    try {
+        const response = await fetch(`${API_BASE}/api/settings/test-push`, {
+            method: 'POST'
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            showNotification('Connection successful!', 'success');
+        } else {
+            showNotification(data.message || 'Connection failed', 'error');
+        }
+
+        loadSettings();
+    } catch (error) {
+        console.error('Error testing push:', error);
+        showNotification('Connection test failed', 'error');
+    }
+}

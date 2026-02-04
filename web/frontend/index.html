@@ -437,6 +437,124 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
+        .settings-section {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid #252525;
+        }
+
+        .token-config {
+            margin-top: 12px;
+        }
+
+        .token-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #252525;
+            font-size: 14px;
+        }
+
+        .token-input-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .token-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid #3a3a3a;
+            border-radius: 8px;
+            background: #141414;
+            color: #e5e5e5;
+            font-family: 'Outfit', monospace;
+            font-size: 14px;
+        }
+
+        .token-input:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+        }
+
+        .token-input::placeholder {
+            color: #525252;
+        }
+
+        .token-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .btn-sm {
+            padding: 8px 14px;
+            font-size: 13px;
+        }
+
+        .token-help {
+            margin-top: 12px;
+        }
+
+        .help-link {
+            color: #525252;
+            font-size: 12px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.2s;
+        }
+
+        .help-link:hover {
+            color: #8b5cf6;
+        }
+
+        .help-link svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast.success {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .toast.error {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -542,6 +660,41 @@
                     <div class="info-row">
                         <span class="label"><i data-feather="database"></i> Database</span>
                         <span class="value success" id="dbStatus">Connected</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label"><i data-feather="upload-cloud"></i> Push Status</span>
+                        <span class="value" id="pushStatus">Checking...</span>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <div class="card-title" style="margin-top: 8px;">
+                        <span><i data-feather="settings"></i> GitHub Settings</span>
+                    </div>
+                    <div class="token-config">
+                        <div class="token-status" id="tokenStatus">
+                            <span class="label"><i data-feather="key"></i> Personal Access Token</span>
+                            <span class="value" id="tokenStatusText">Not configured</span>
+                        </div>
+                        <div class="token-input-group" id="tokenInputGroup">
+                            <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxx" class="token-input">
+                            <button class="btn btn-primary btn-sm" onclick="saveToken()">
+                                <i data-feather="save"></i> Save
+                            </button>
+                        </div>
+                        <div class="token-actions" id="tokenActions" style="display: none;">
+                            <button class="btn btn-secondary btn-sm" onclick="testPush()">
+                                <i data-feather="check-circle"></i> Test Connection
+                            </button>
+                            <button class="btn btn-danger btn-sm" onclick="removeToken()">
+                                <i data-feather="trash-2"></i> Remove
+                            </button>
+                        </div>
+                        <div class="token-help">
+                            <a href="https://github.com/settings/tokens/new?scopes=repo" target="_blank" class="help-link">
+                                <i data-feather="external-link"></i> Create a new token
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

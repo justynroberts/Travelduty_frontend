@@ -22,5 +22,11 @@ COPY main.py main_web.py ./
 # Create directories
 RUN mkdir -p logs database
 
+# Copy and setup entrypoint
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+
 # Default command - run web UI on port 5001
 CMD ["python", "main_web.py", "--port", "5001"]
