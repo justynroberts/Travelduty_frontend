@@ -103,16 +103,9 @@ class MessageGenerator:
             response = self.ollama_client.generate(prompt, system_prompt)
 
             if response:
-                # Clean and validate response
-                # Remove markdown code blocks if present
-                if response.startswith('`') and response.endswith('`'):
-                    response = response.strip('`').strip()
+                # Pass full response to sanitizer - it will find the actual commit message
+                message = self._sanitize_message(response)
 
-                # Take only first line if Ollama added explanation
-                lines = response.split('\n')
-                message = lines[0].strip()
-
-                message = self._sanitize_message(message)
                 if self._validate_message(message):
                     return message
                 else:
