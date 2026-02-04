@@ -424,6 +424,11 @@ async function loadSettings() {
 
 async function testToken() {
     const tokenInput = document.getElementById('tokenInput');
+    if (!tokenInput) {
+        alert('Token input not found');
+        return;
+    }
+
     const token = tokenInput.value.trim();
 
     if (!token) {
