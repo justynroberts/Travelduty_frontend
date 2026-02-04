@@ -247,6 +247,26 @@ class GitOperations:
 
         return False
 
+    def get_last_commit_hash(self) -> Optional[str]:
+        """Get the last commit hash.
+
+        Returns:
+            Last commit hash or None
+        """
+        try:
+            result = subprocess.run(
+                ["git", "rev-parse", "HEAD"],
+                cwd=str(self.repo_path),
+                capture_output=True,
+                text=True
+            )
+            if result.returncode == 0:
+                return result.stdout.strip()
+            return None
+        except Exception as e:
+            logger.error(f"Failed to get last commit hash: {e}")
+            return None
+
     def get_last_commit_message(self) -> Optional[str]:
         """Get the last commit message.
 
@@ -254,7 +274,15 @@ class GitOperations:
             Last commit message or None
         """
         try:
-            return self.repo.head.commit.message.strip()
+            result = subprocess.run(
+                ["git", "log", "-1", "--format=%s"],
+                cwd=str(self.repo_path),
+                capture_output=True,
+                text=True
+            )
+            if result.returncode == 0:
+                return result.stdout.strip()
+            return None
         except Exception as e:
             logger.error(f"Failed to get last commit message: {e}")
             return None

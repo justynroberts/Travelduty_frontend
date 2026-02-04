@@ -204,7 +204,7 @@ class GitScheduler:
                 return False
 
             # Get the commit hash
-            commit_hash = self.git_ops.repo.head.commit.hexsha
+            commit_hash = self.git_ops.get_last_commit_hash() or ""
 
             # Push if enabled
             push_success = False
