@@ -6,10 +6,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Git Deploy Schedule is an automated git commit scheduler that uses Ollama AI to generate contextual commit messages. It commits changes at randomized intervals (10 minutes ± 50 seconds) with intelligent commit messages based on actual file diffs.
 
-The project has three deployment modes:
+The project has **two implementations**:
+1. **Python Backend** (primary) - Production-ready with CLI, Web UI, and Docker support
+2. **Node.js/TypeScript** (`app/`) - Alternative implementation with Express server
+
+### Python Deployment Modes
 1. **CLI Mode** (`main.py`) - Command-line scheduler for headless/server operation
 2. **Web UI Mode** (`main_web.py`) - Web-based dashboard with real-time monitoring via FastAPI
-3. **Electron App** (`electron-app/`) - Desktop application wrapper for the web UI
+3. **Electron App** (`electron-app/`) - Desktop application wrapper for the Python web UI
 
 ## Common Commands
 
@@ -93,6 +97,26 @@ docker-compose down
 docker-compose up -d --build
 ```
 
+### Node.js/TypeScript Version (app/)
+```bash
+cd app
+
+# Install dependencies
+npm install
+
+# Run in development (with hot reload)
+npm run dev
+
+# Build TypeScript
+npm run build
+
+# Run production build
+npm start
+
+# Run tests
+npm test
+```
+
 ## Architecture
 
 ### Core Python Components
@@ -144,6 +168,27 @@ docker-compose up -d --build
    - `/api/control` - Pause/resume/trigger scheduler
    - `/api/logs` - Recent log entries
    - Requires `set_scheduler()` to inject scheduler instance
+
+### Node.js/TypeScript Components (app/)
+
+Alternative implementation using Express + TypeScript:
+
+1. **index.ts** - Main entry point (`app/src/index.ts`)
+   - Initializes all services and starts Express server
+   - Graceful shutdown handling
+
+2. **services/** - Core business logic
+   - `scheduler.ts` - Scheduler service matching Python behavior
+   - `git.ts` - Git operations via simple-git library
+   - `ollama.ts` - Ollama API client
+   - `messageGenerator.ts` - Commit message generation with fallback
+   - `config.ts` - YAML configuration loader
+   - `database.ts` - SQLite storage via sqlite3
+   - `credentials.ts` - Secure credential storage via keytar
+
+3. **routes/api.ts** - Express REST API routes
+
+4. **public/** - Static web UI files (separate from Python's web/frontend/)
 
 ### Application Entry Points
 
@@ -225,6 +270,14 @@ git-deploy-schedule/
 │   ├── config.py           # Configuration management
 │   ├── database.py         # SQLite database
 │   └── api.py              # FastAPI REST API
+├── app/                    # Node.js/TypeScript alternative
+│   ├── src/
+│   │   ├── index.ts        # Express server entry point
+│   │   ├── services/       # Business logic (scheduler, git, ollama, etc.)
+│   │   ├── routes/         # API routes
+│   │   └── types/          # TypeScript type definitions
+│   ├── public/             # Static web UI for Node version
+│   └── package.json
 ├── tests/                  # Python tests
 ├── config/
 │   └── config.yaml         # Main configuration file
@@ -233,17 +286,14 @@ git-deploy-schedule/
 ├── logs/
 │   └── scheduler.log       # Application logs (auto-created)
 ├── web/
-│   └── frontend/           # Web UI (HTML/CSS/JS)
-│       ├── index.html
-│       ├── css/styles.css
-│       └── js/app.js
-├── electron-app/           # Electron desktop wrapper
+│   └── frontend/           # Web UI for Python version
+├── electron-app/           # Electron desktop wrapper (wraps Python backend)
 │   ├── src/
 │   │   ├── main.js         # Electron main process
 │   │   └── preload.js      # Preload script
 │   └── package.json
-├── main.py                 # CLI entry point
-├── main_web.py             # Web UI entry point
+├── main.py                 # Python CLI entry point
+├── main_web.py             # Python Web UI entry point
 ├── requirements.txt        # Python dependencies
 ├── Dockerfile              # Docker image
 └── docker-compose.yml      # Docker Compose config
