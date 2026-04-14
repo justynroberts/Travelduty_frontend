@@ -3,12 +3,31 @@
 
 import sys
 import argparse
+import subprocess
+import time
 from pathlib import Path
 
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from src.scheduler import GitScheduler
+
+
+def ensure_ollama():
+    """Start Ollama if it's not already running."""
+    try:
+        import urllib.request
+        urllib.request.urlopen("http://oracle.local:11434/api/tags", timeout=3)
+        print("Ollama: already running")
+    except Exception:
+        print("Ollama: not running, starting...")
+        subprocess.Popen(
+            ["ollama", "serve"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+        time.sleep(2)
+        print("Ollama: started")
 
 
 def main():
@@ -39,6 +58,9 @@ def main():
     args = parser.parse_args()
 
     try:
+        # Ensure Ollama is running for AI commit messages
+        ensure_ollama()
+
         # Initialize scheduler
         scheduler = GitScheduler(config_path=args.config)
 

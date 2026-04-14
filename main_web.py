@@ -3,6 +3,7 @@
 
 import sys
 import argparse
+import subprocess
 import threading
 import time
 from pathlib import Path
@@ -26,6 +27,23 @@ def run_scheduler(scheduler: GitScheduler):
         scheduler.run()
     except Exception as e:
         print(f"Scheduler error: {e}")
+
+
+def ensure_ollama():
+    """Start Ollama if it's not already running."""
+    try:
+        import urllib.request
+        urllib.request.urlopen("http://oracle.local:11434/api/tags", timeout=3)
+        print("Ollama: already running")
+    except Exception:
+        print("Ollama: not running, starting...")
+        subprocess.Popen(
+            ["ollama", "serve"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+        time.sleep(2)
+        print("Ollama: started")
 
 
 def main():
@@ -64,6 +82,9 @@ def main():
     args = parser.parse_args()
 
     try:
+        # Ensure Ollama is running for AI commit messages
+        ensure_ollama()
+
         # Initialize scheduler
         scheduler = GitScheduler(config_path=args.config)
         set_scheduler(scheduler)
