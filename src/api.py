@@ -259,11 +259,12 @@ async def get_settings():
     push_enabled = False
     if has_token:
         try:
+            repo_path = str(scheduler_instance.git_ops.repo_path) if scheduler_instance and scheduler_instance.git_ops else os.environ.get("REPO_PATH", str(Path.home()))
             result = subprocess.run(
                 ["git", "ls-remote", "--exit-code", "origin"],
                 capture_output=True,
                 timeout=10,
-                cwd=os.environ.get("REPO_PATH", "/repo")
+                cwd=repo_path
             )
             push_enabled = result.returncode == 0
         except Exception:
@@ -320,7 +321,7 @@ async def delete_token():
 async def test_push():
     """Test git push capability with saved token."""
     try:
-        repo_path = os.environ.get("REPO_PATH", "/repo")
+        repo_path = str(scheduler_instance.git_ops.repo_path) if scheduler_instance and scheduler_instance.git_ops else os.environ.get("REPO_PATH", str(Path.home()))
 
         # Test remote access
         result = subprocess.run(
@@ -349,7 +350,7 @@ async def test_token(data: TokenUpdate):
     import json as json_module
 
     try:
-        repo_path = os.environ.get("REPO_PATH", "/repo")
+        repo_path = str(scheduler_instance.git_ops.repo_path) if scheduler_instance and scheduler_instance.git_ops else os.environ.get("REPO_PATH", str(Path.home()))
 
         # Get the remote URL
         result = subprocess.run(
