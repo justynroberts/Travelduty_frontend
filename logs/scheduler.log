@@ -95,3 +95,32 @@ error: failed to push some refs to 'origin'
 2026-05-18 15:21:41,256 - src.database - INFO - Added commit to database: 6d20c57e2117b50e2946f0439bbd22028971d8cf
 2026-05-18 15:21:41,256 - src.scheduler - INFO - Next commit in 566.7 seconds (9.44 minutes)
 2026-05-18 15:21:41,256 - src.scheduler - INFO - Waiting until 15:21:41 + 567s
+2026-05-18 15:31:08,514 - src.git_operations - INFO - Staged all changes
+2026-05-18 15:31:08,528 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-18 15:31:08,528 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-18 15:31:08,528 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-18 15:31:08,528 - src.ollama_client - INFO - Sending request to Ollama: http://192.168.5.2:11434/api/generate
+2026-05-18 15:31:13,641 - src.ollama_client - INFO - Ollama generated: Here's a concise conventional commit message based on the provided git diff:
+
+`feat(kube-scheduler): Implement Git Deploy Scheduler for continuous deployment`
+
+This message follows standard commit naming conventions, indicating that this is a new feature (`feat`) related to the Kubernetes scheduler component. The commit description provides a brief overview of what was changed, making it easy for others to quickly understand the purpose and impact of the commit.
+2026-05-18 15:31:13,641 - src.scheduler - INFO - Generated commit message: feat(kube-scheduler): Implement Git Deploy Scheduler for continuous d...
+2026-05-18 15:31:13,644 - src.git_operations - INFO - Created commit: feat(kube-scheduler): Implement Git Deploy Schedul...
+2026-05-18 15:31:13,645 - src.scheduler - INFO - Pushing to remote...
+2026-05-18 15:31:13,646 - src.git_operations - WARNING - Push attempt 1/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-18 15:31:13,646 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-18 15:31:43,653 - src.git_operations - WARNING - Push attempt 2/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-18 15:31:43,653 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-18 15:32:13,664 - src.git_operations - WARNING - Push attempt 3/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-18 15:32:13,664 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-18 15:32:13,664 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-18 15:32:13,674 - src.database - INFO - Added commit to database: c830f7767b2397381a33859eb32abc0aea7ace80
+2026-05-18 15:32:13,675 - src.scheduler - INFO - Next commit in 574.1 seconds (9.57 minutes)
+2026-05-18 15:32:13,675 - src.scheduler - INFO - Waiting until 15:32:13 + 574s
