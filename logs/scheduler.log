@@ -52,3 +52,19 @@
 2026-05-18 15:10:09,951 - src.scheduler - INFO - Using repository: /repo
 2026-05-18 15:10:09,952 - src.git_operations - ERROR - Not a git repository: /repo
 2026-05-18 15:10:09,952 - src.scheduler - ERROR - Failed to initialize git repository: /repo
+2026-05-18 15:10:20,554 - src.scheduler - INFO - ============================================================
+2026-05-18 15:10:20,554 - src.scheduler - INFO - Git Deploy Scheduler Starting
+2026-05-18 15:10:20,554 - src.scheduler - INFO - ============================================================
+2026-05-18 15:10:20,554 - src.scheduler - INFO - Using repository: /repo
+2026-05-18 15:10:20,555 - src.git_operations - INFO - Initialized git repository at /repo
+2026-05-18 15:10:20,555 - src.scheduler - INFO - Git repository initialized on branch: master
+2026-05-18 15:10:20,557 - src.ollama_client - INFO - Ollama health check passed
+2026-05-18 15:10:20,557 - src.scheduler - INFO - Ollama client initialized: http://192.168.5.2:11434 (model: llama3.2:3b)
+2026-05-18 15:10:20,557 - src.scheduler - INFO - Message generator initialized
+2026-05-18 15:10:20,559 - src.database - INFO - Connected to database: database/scheduler.db
+2026-05-18 15:10:20,566 - src.database - INFO - Database tables initialized
+2026-05-18 15:10:20,566 - src.scheduler - INFO - Database initialized
+2026-05-18 15:10:20,566 - src.scheduler - INFO - Scheduler running in continuous mode
+2026-05-18 15:10:20,566 - src.scheduler - INFO - Press Ctrl+C to stop
+2026-05-18 15:10:20,566 - src.scheduler - INFO - Next commit in 614.3 seconds (10.24 minutes)
+2026-05-18 15:10:20,566 - src.scheduler - INFO - Waiting until 15:10:20 + 614s
