@@ -1195,3 +1195,40 @@ error: failed to push some refs to 'origin'
 2026-05-18 21:42:49,700 - src.database - INFO - Added commit to database: 286ae6f0ebcc0d326329c49a2624ed4204e04c91
 2026-05-18 21:42:49,700 - src.scheduler - INFO - Next commit in 603.9 seconds (10.07 minutes)
 2026-05-18 21:42:49,700 - src.scheduler - INFO - Waiting until 21:42:49 + 604s
+2026-05-18 21:52:54,042 - src.git_operations - INFO - Staged all changes
+2026-05-18 21:52:54,059 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-18 21:52:54,059 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-18 21:52:54,059 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-18 21:52:54,059 - src.ollama_client - INFO - Sending request to Ollama: http://192.168.5.2:11434/api/generate
+2026-05-18 21:53:01,799 - src.ollama_client - INFO - Ollama generated: Here is a concise conventional commit message:
+
+`feat(logs): Enhance Logging to Display Deployment Status`
+
+This commit introduces improved logging functionality, allowing users to track the scheduler's activity more effectively by displaying deployment status. 
+
+Alternatively, if you want to specify the underlying database change as well, you could use:
+
+`docs: Update logging documentation to include new deployment status feature in logs/scheduler.log and modify scheduler.db to support this feature`
+
+Or, for a Kubernetes component perspective:
+
+`chore(k
+2026-05-18 21:53:01,800 - src.scheduler - INFO - Generated commit message: feat(logs): Enhance Logging to Display Deployment Status
+2026-05-18 21:53:01,818 - src.git_operations - INFO - Created commit: feat(logs): Enhance Logging to Display Deployment ...
+2026-05-18 21:53:01,822 - src.scheduler - INFO - Pushing to remote...
+2026-05-18 21:53:01,825 - src.git_operations - WARNING - Push attempt 1/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-18 21:53:01,825 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-18 21:53:31,838 - src.git_operations - WARNING - Push attempt 2/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-18 21:53:31,838 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-18 21:54:01,844 - src.git_operations - WARNING - Push attempt 3/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-18 21:54:01,844 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-18 21:54:01,844 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-18 21:54:01,852 - src.database - INFO - Added commit to database: d627e6254a0f68ecbec9d75a6cda2b3c533cf5ed
+2026-05-18 21:54:01,852 - src.scheduler - INFO - Next commit in 564.8 seconds (9.41 minutes)
+2026-05-18 21:54:01,852 - src.scheduler - INFO - Waiting until 21:54:01 + 565s
