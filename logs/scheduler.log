@@ -729,3 +729,34 @@ error: failed to push some refs to 'origin'
 2026-05-18 18:55:46,900 - src.database - INFO - Added commit to database: 9853c282aea745546a98a9b4f8b63503dc6278ef
 2026-05-18 18:55:46,900 - src.scheduler - INFO - Next commit in 590.0 seconds (9.83 minutes)
 2026-05-18 18:55:46,900 - src.scheduler - INFO - Waiting until 18:55:46 + 590s
+2026-05-18 19:05:37,352 - src.git_operations - INFO - Staged all changes
+2026-05-18 19:05:37,368 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-18 19:05:37,368 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-18 19:05:37,368 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-18 19:05:37,368 - src.ollama_client - INFO - Sending request to Ollama: http://192.168.5.2:11434/api/generate
+2026-05-18 19:05:45,495 - src.ollama_client - INFO - Ollama generated: Based on the provided diff summary, I would suggest the following concise conventional commit message:
+
+`docs(feature/enhance): Enhance Scheduler Logging with Detailed Git Deployment Status Tracking`
+
+However, considering the context of a Kubernetes around Travelduty site and the fact that the commit adds detailed tracking of Git deployment status for the scheduler, but also fails to push changes to the remote repository, I would suggest an updated message:
+
+`docs(feature/enhance): Enhance Scheduler Logging with Detailed Git Deployment Status Tracking
+2026-05-18 19:05:45,496 - src.scheduler - INFO - Generated commit message: docs(feature/enhance): Enhance Scheduler Logging with Detailed Git De...
+2026-05-18 19:05:45,506 - src.git_operations - INFO - Created commit: docs(feature/enhance): Enhance Scheduler Logging w...
+2026-05-18 19:05:45,509 - src.scheduler - INFO - Pushing to remote...
+2026-05-18 19:05:45,511 - src.git_operations - WARNING - Push attempt 1/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-18 19:05:45,511 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-18 19:06:15,518 - src.git_operations - WARNING - Push attempt 2/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-18 19:06:15,518 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-18 19:06:45,523 - src.git_operations - WARNING - Push attempt 3/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-18 19:06:45,524 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-18 19:06:45,524 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-18 19:06:45,530 - src.database - INFO - Added commit to database: 92999cea5c29a3bfe9386a8c0e7d446ae09ff054
+2026-05-18 19:06:45,530 - src.scheduler - INFO - Next commit in 617.1 seconds (10.28 minutes)
+2026-05-18 19:06:45,530 - src.scheduler - INFO - Waiting until 19:06:45 + 617s
