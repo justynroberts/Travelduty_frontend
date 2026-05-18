@@ -403,3 +403,64 @@ error: failed to push some refs to 'origin'
 2026-05-18 17:01:24,955 - src.database - INFO - Added commit to database: d35ccc69468d1b56d884a188d945b7aa268ac2e2
 2026-05-18 17:01:24,955 - src.scheduler - INFO - Next commit in 613.0 seconds (10.22 minutes)
 2026-05-18 17:01:24,955 - src.scheduler - INFO - Waiting until 17:01:24 + 613s
+2026-05-18 17:11:38,360 - src.git_operations - INFO - Staged all changes
+2026-05-18 17:11:38,373 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-18 17:11:38,373 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-18 17:11:38,373 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-18 17:11:38,373 - src.ollama_client - INFO - Sending request to Ollama: http://192.168.5.2:11434/api/generate
+2026-05-18 17:11:45,586 - src.ollama_client - INFO - Ollama generated: Here is a concise conventional commit message:
+
+`feat(kubernetes): Implemented Git Deployment Logger for Scheduler`
+
+This commit follows Conventional Commit Guidelines, clearly indicating that it's a feature related to the Kubernetes component. The commit adds log entries to track Git deployment status for the Kubernetes scheduler, providing better visibility into the deployment process.
+2026-05-18 17:11:45,587 - src.scheduler - INFO - Generated commit message: feat(kubernetes): Implemented Git Deployment Logger for Scheduler
+2026-05-18 17:11:45,599 - src.git_operations - INFO - Created commit: feat(kubernetes): Implemented Git Deployment Logge...
+2026-05-18 17:11:45,603 - src.scheduler - INFO - Pushing to remote...
+2026-05-18 17:11:45,606 - src.git_operations - WARNING - Push attempt 1/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-18 17:11:45,606 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-18 17:12:15,615 - src.git_operations - WARNING - Push attempt 2/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-18 17:12:15,615 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-18 17:12:45,621 - src.git_operations - WARNING - Push attempt 3/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-18 17:12:45,621 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-18 17:12:45,621 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-18 17:12:45,627 - src.database - INFO - Added commit to database: 9924aa45db30dcab8d656d7dfa472e5b9144f67b
+2026-05-18 17:12:45,627 - src.scheduler - INFO - Next commit in 624.8 seconds (10.41 minutes)
+2026-05-18 17:12:45,628 - src.scheduler - INFO - Waiting until 17:12:45 + 625s
+2026-05-18 17:14:54,246 - src.scheduler - INFO - ============================================================
+2026-05-18 17:14:54,247 - src.scheduler - INFO - Git Deploy Scheduler Starting
+2026-05-18 17:14:54,247 - src.scheduler - INFO - ============================================================
+2026-05-18 17:14:54,247 - src.scheduler - INFO - Using repository: /repo
+2026-05-18 17:14:54,250 - src.git_operations - INFO - Initialized git repository at /repo
+2026-05-18 17:14:54,251 - src.scheduler - INFO - Git repository initialized on branch: master
+2026-05-18 17:14:54,256 - src.ollama_client - INFO - Ollama health check passed
+2026-05-18 17:14:54,256 - src.scheduler - INFO - Ollama client initialized: http://192.168.5.2:11434 (model: llama3.2:3b)
+2026-05-18 17:14:54,257 - src.scheduler - INFO - Message generator initialized
+2026-05-18 17:14:54,258 - src.database - INFO - Connected to database: database/scheduler.db
+2026-05-18 17:14:54,259 - src.database - INFO - Database tables initialized
+2026-05-18 17:14:54,259 - src.scheduler - INFO - Database initialized
+2026-05-18 17:14:54,260 - src.scheduler - INFO - Scheduler running in continuous mode
+2026-05-18 17:14:54,260 - src.scheduler - INFO - Press Ctrl+C to stop
+2026-05-18 17:14:54,262 - src.scheduler - INFO - Next commit in 603.1 seconds (10.05 minutes)
+2026-05-18 17:14:54,263 - src.scheduler - INFO - Waiting until 17:14:54 + 603s
+2026-05-18 17:15:05,642 - src.scheduler - INFO - ============================================================
+2026-05-18 17:15:05,644 - src.scheduler - INFO - Git Deploy Scheduler Starting
+2026-05-18 17:15:05,647 - src.scheduler - INFO - ============================================================
+2026-05-18 17:15:05,647 - src.scheduler - INFO - Using repository: /repo
+2026-05-18 17:15:05,650 - src.git_operations - INFO - Initialized git repository at /repo
+2026-05-18 17:15:05,653 - src.scheduler - INFO - Git repository initialized on branch: master
+2026-05-18 17:15:05,686 - src.ollama_client - INFO - Ollama health check passed
+2026-05-18 17:15:05,688 - src.scheduler - INFO - Ollama client initialized: http://192.168.5.2:11434 (model: llama3.2:3b)
+2026-05-18 17:15:05,688 - src.scheduler - INFO - Message generator initialized
+2026-05-18 17:15:05,688 - src.database - INFO - Connected to database: database/scheduler.db
+2026-05-18 17:15:05,693 - src.database - INFO - Database tables initialized
+2026-05-18 17:15:05,694 - src.scheduler - INFO - Database initialized
+2026-05-18 17:15:05,696 - src.scheduler - INFO - Scheduler running in continuous mode
+2026-05-18 17:15:05,696 - src.scheduler - INFO - Press Ctrl+C to stop
+2026-05-18 17:15:05,696 - src.scheduler - INFO - Next commit in 620.7 seconds (10.34 minutes)
+2026-05-18 17:15:05,696 - src.scheduler - INFO - Waiting until 17:15:05 + 621s
