@@ -1,0 +1,54 @@
+2026-05-18 15:09:42,208 - src.scheduler - INFO - ============================================================
+2026-05-18 15:09:42,208 - src.scheduler - INFO - Git Deploy Scheduler Starting
+2026-05-18 15:09:42,208 - src.scheduler - INFO - ============================================================
+2026-05-18 15:09:42,208 - src.scheduler - INFO - Using repository: /repo
+2026-05-18 15:09:42,209 - src.git_operations - ERROR - Not a git repository: /repo
+2026-05-18 15:09:42,209 - src.scheduler - ERROR - Failed to initialize git repository: /repo
+2026-05-18 15:09:42,584 - src.scheduler - INFO - ============================================================
+2026-05-18 15:09:42,584 - src.scheduler - INFO - Git Deploy Scheduler Starting
+2026-05-18 15:09:42,584 - src.scheduler - INFO - ============================================================
+2026-05-18 15:09:42,584 - src.scheduler - INFO - Using repository: /repo
+2026-05-18 15:09:42,585 - src.git_operations - ERROR - Not a git repository: /repo
+2026-05-18 15:09:42,585 - src.scheduler - ERROR - Failed to initialize git repository: /repo
+2026-05-18 15:09:43,067 - src.scheduler - INFO - ============================================================
+2026-05-18 15:09:43,067 - src.scheduler - INFO - Git Deploy Scheduler Starting
+2026-05-18 15:09:43,067 - src.scheduler - INFO - ============================================================
+2026-05-18 15:09:43,067 - src.scheduler - INFO - Using repository: /repo
+2026-05-18 15:09:43,068 - src.git_operations - ERROR - Not a git repository: /repo
+2026-05-18 15:09:43,068 - src.scheduler - ERROR - Failed to initialize git repository: /repo
+2026-05-18 15:09:43,754 - src.scheduler - INFO - ============================================================
+2026-05-18 15:09:43,754 - src.scheduler - INFO - Git Deploy Scheduler Starting
+2026-05-18 15:09:43,754 - src.scheduler - INFO - ============================================================
+2026-05-18 15:09:43,754 - src.scheduler - INFO - Using repository: /repo
+2026-05-18 15:09:43,755 - src.git_operations - ERROR - Not a git repository: /repo
+2026-05-18 15:09:43,755 - src.scheduler - ERROR - Failed to initialize git repository: /repo
+2026-05-18 15:09:44,837 - src.scheduler - INFO - ============================================================
+2026-05-18 15:09:44,837 - src.scheduler - INFO - Git Deploy Scheduler Starting
+2026-05-18 15:09:44,837 - src.scheduler - INFO - ============================================================
+2026-05-18 15:09:44,837 - src.scheduler - INFO - Using repository: /repo
+2026-05-18 15:09:44,838 - src.git_operations - ERROR - Not a git repository: /repo
+2026-05-18 15:09:44,838 - src.scheduler - ERROR - Failed to initialize git repository: /repo
+2026-05-18 15:09:46,690 - src.scheduler - INFO - ============================================================
+2026-05-18 15:09:46,690 - src.scheduler - INFO - Git Deploy Scheduler Starting
+2026-05-18 15:09:46,690 - src.scheduler - INFO - ============================================================
+2026-05-18 15:09:46,690 - src.scheduler - INFO - Using repository: /repo
+2026-05-18 15:09:46,691 - src.git_operations - ERROR - Not a git repository: /repo
+2026-05-18 15:09:46,691 - src.scheduler - ERROR - Failed to initialize git repository: /repo
+2026-05-18 15:09:50,172 - src.scheduler - INFO - ============================================================
+2026-05-18 15:09:50,172 - src.scheduler - INFO - Git Deploy Scheduler Starting
+2026-05-18 15:09:50,172 - src.scheduler - INFO - ============================================================
+2026-05-18 15:09:50,172 - src.scheduler - INFO - Using repository: /repo
+2026-05-18 15:09:50,173 - src.git_operations - ERROR - Not a git repository: /repo
+2026-05-18 15:09:50,173 - src.scheduler - ERROR - Failed to initialize git repository: /repo
+2026-05-18 15:09:56,859 - src.scheduler - INFO - ============================================================
+2026-05-18 15:09:56,859 - src.scheduler - INFO - Git Deploy Scheduler Starting
+2026-05-18 15:09:56,859 - src.scheduler - INFO - ============================================================
+2026-05-18 15:09:56,859 - src.scheduler - INFO - Using repository: /repo
+2026-05-18 15:09:56,860 - src.git_operations - ERROR - Not a git repository: /repo
+2026-05-18 15:09:56,860 - src.scheduler - ERROR - Failed to initialize git repository: /repo
+2026-05-18 15:10:09,951 - src.scheduler - INFO - ============================================================
+2026-05-18 15:10:09,951 - src.scheduler - INFO - Git Deploy Scheduler Starting
+2026-05-18 15:10:09,951 - src.scheduler - INFO - ============================================================
+2026-05-18 15:10:09,951 - src.scheduler - INFO - Using repository: /repo
+2026-05-18 15:10:09,952 - src.git_operations - ERROR - Not a git repository: /repo
+2026-05-18 15:10:09,952 - src.scheduler - ERROR - Failed to initialize git repository: /repo
