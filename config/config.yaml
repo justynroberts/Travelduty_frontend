@@ -1,5 +1,5 @@
 repositories:
-  - path: /Users/justynroberts/work/git-deploy-schedule
+  - path: /repo
     branch: main
     enabled: true
 
@@ -9,7 +9,7 @@ schedule:
 
 ollama:
   enabled: true
-  url: http://oracle.local:11434
+  url: http://192.168.5.2:11434
   model: llama3.2:3b
   timeout: 30
   max_tokens: 100
@@ -18,19 +18,3 @@ ollama:
 
 commit:
   use_ollama: true
-  message_template: "chore: automated update - {timestamp}"
-  author_name: "Auto Deploy Bot"
-  author_email: "bot@example.com"
-
-push:
-  enabled: true
-  retry_attempts: 3
-  retry_delay: 30
-
-logging:
-  level: INFO
-  file: logs/scheduler.log
-
-server:
-  host: 0.0.0.0
-  port: 3001
