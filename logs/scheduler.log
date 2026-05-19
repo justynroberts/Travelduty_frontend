@@ -3266,3 +3266,36 @@ error: failed to push some refs to 'origin'
 2026-05-19 10:05:50,626 - src.database - INFO - Added commit to database: 47e9805402fc629c8ae57052018cdcb990a9d878
 2026-05-19 10:05:50,626 - src.scheduler - INFO - Next commit in 580.6 seconds (9.68 minutes)
 2026-05-19 10:05:50,626 - src.scheduler - INFO - Waiting until 10:05:50 + 581s
+2026-05-19 10:15:31,657 - src.git_operations - INFO - Staged all changes
+2026-05-19 10:15:31,670 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-19 10:15:31,670 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-19 10:15:31,670 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-19 10:15:31,670 - src.ollama_client - INFO - Sending request to Ollama: http://192.168.5.2:11434/api/generate
+2026-05-19 10:15:38,206 - src.ollama_client - INFO - Ollama generated: Based on the provided diff summary, I would generate the following concise conventional commit message:
+
+`fix(schedule): Update scheduler to handle failed push attempts and display error messages`
+
+This commit message clearly indicates that it's a bug fix for an issue with pushing to the origin repository, which was caused by an invalid refspec. The `fix` type communicates that this is a bug fix.
+
+Alternatively, if you'd like to add more context:
+
+`feat(schedule): Improve scheduler reliability and display error messages for failed
+2026-05-19 10:15:38,207 - src.scheduler - INFO - Generated commit message: fix(schedule): Update scheduler to handle failed push attempts and di...
+2026-05-19 10:15:38,218 - src.git_operations - INFO - Created commit: fix(schedule): Update scheduler to handle failed p...
+2026-05-19 10:15:38,220 - src.scheduler - INFO - Pushing to remote...
+2026-05-19 10:15:38,222 - src.git_operations - WARNING - Push attempt 1/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-19 10:15:38,222 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-19 10:16:08,227 - src.git_operations - WARNING - Push attempt 2/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-19 10:16:08,227 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-19 10:16:38,237 - src.git_operations - WARNING - Push attempt 3/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-19 10:16:38,237 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-19 10:16:38,237 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-19 10:16:38,245 - src.database - INFO - Added commit to database: afddbb66669a61d34a5ce7375a10c0721691b332
+2026-05-19 10:16:38,246 - src.scheduler - INFO - Next commit in 568.4 seconds (9.47 minutes)
+2026-05-19 10:16:38,246 - src.scheduler - INFO - Waiting until 10:16:38 + 568s
