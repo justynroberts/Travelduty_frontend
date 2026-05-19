@@ -4085,3 +4085,38 @@ error: failed to push some refs to 'origin'
 2026-05-19 15:09:26,080 - src.database - INFO - Added commit to database: 4b234c6be2ca57d2fb91ef99b3073e1be19a7542
 2026-05-19 15:09:26,080 - src.scheduler - INFO - Next commit in 571.0 seconds (9.52 minutes)
 2026-05-19 15:09:26,081 - src.scheduler - INFO - Waiting until 15:09:26 + 571s
+2026-05-19 15:18:57,389 - src.git_operations - INFO - Staged all changes
+2026-05-19 15:18:57,405 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-19 15:18:57,405 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-19 15:18:57,405 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-19 15:18:57,405 - src.ollama_client - INFO - Sending request to Ollama: http://192.168.5.2:11434/api/generate
+2026-05-19 15:19:04,093 - src.ollama_client - INFO - Ollama generated: Here is a concise conventional commit message:
+
+`feat(logs): Introduce Ollama-generated commit messages for error handling`
+
+This message follows the conventional commit format, indicating a feature (`feat`) addition to the logs component. The subject line is concise and descriptive, making it easy to understand the changes made in this commit. 
+
+Alternatively, if you want to include more context about Kubernetes components:
+
+`fix(scheduler-deployment): Add Ollama-generated commit messages for better error handling`
+
+This message
+2026-05-19 15:19:04,094 - src.scheduler - INFO - Generated commit message: feat(logs): Introduce Ollama-generated commit messages for error hand...
+2026-05-19 15:19:04,108 - src.git_operations - INFO - Created commit: feat(logs): Introduce Ollama-generated commit mess...
+2026-05-19 15:19:04,111 - src.scheduler - INFO - Pushing to remote...
+2026-05-19 15:19:04,113 - src.git_operations - WARNING - Push attempt 1/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-19 15:19:04,113 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-19 15:19:34,121 - src.git_operations - WARNING - Push attempt 2/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-19 15:19:34,121 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-19 15:20:04,130 - src.git_operations - WARNING - Push attempt 3/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-19 15:20:04,130 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-19 15:20:04,130 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-19 15:20:04,139 - src.database - INFO - Added commit to database: 3bcbe745a4d356eb12c4942007c64d3910a723e2
+2026-05-19 15:20:04,140 - src.scheduler - INFO - Next commit in 629.0 seconds (10.48 minutes)
+2026-05-19 15:20:04,140 - src.scheduler - INFO - Waiting until 15:20:04 + 629s
