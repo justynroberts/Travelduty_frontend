@@ -2793,3 +2793,30 @@ error: failed to push some refs to 'origin'
 2026-05-19 07:16:50,939 - src.database - INFO - Added commit to database: 408155e36bbb052bfadfc7e52adfd4fca485c8a5
 2026-05-19 07:16:50,939 - src.scheduler - INFO - Next commit in 633.7 seconds (10.56 minutes)
 2026-05-19 07:16:50,939 - src.scheduler - INFO - Waiting until 07:16:50 + 634s
+2026-05-19 07:27:25,142 - src.git_operations - INFO - Staged all changes
+2026-05-19 07:27:25,157 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-19 07:27:25,158 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-19 07:27:25,158 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-19 07:27:25,158 - src.ollama_client - INFO - Sending request to Ollama: http://192.168.5.2:11434/api/generate
+2026-05-19 07:27:29,444 - src.ollama_client - INFO - Ollama generated: Here is a concise conventional commit message:
+
+`docs feat: Update scheduler logs to include Ollama request metadata (kubernetes)`
+2026-05-19 07:27:29,445 - src.scheduler - INFO - Generated commit message: docs feat: Update scheduler logs to include Ollama request metadata (...
+2026-05-19 07:27:29,457 - src.git_operations - INFO - Created commit: docs feat: Update scheduler logs to include Ollama...
+2026-05-19 07:27:29,461 - src.scheduler - INFO - Pushing to remote...
+2026-05-19 07:27:29,462 - src.git_operations - WARNING - Push attempt 1/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-19 07:27:29,463 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-19 07:27:59,465 - src.git_operations - WARNING - Push attempt 2/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-19 07:27:59,465 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-19 07:28:29,477 - src.git_operations - WARNING - Push attempt 3/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-19 07:28:29,478 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-19 07:28:29,478 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-19 07:28:29,485 - src.database - INFO - Added commit to database: a2d9b98dc974b2050fc279973e43c2137fdc48ac
+2026-05-19 07:28:29,485 - src.scheduler - INFO - Next commit in 571.3 seconds (9.52 minutes)
+2026-05-19 07:28:29,485 - src.scheduler - INFO - Waiting until 07:28:29 + 571s
