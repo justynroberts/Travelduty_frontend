@@ -8084,3 +8084,40 @@ error: failed to push some refs to 'origin'
 2026-05-20 16:26:12,603 - src.database - INFO - Added commit to database: a6e3e5718ab9d3ef57a6e456d0afd310ed25c5df
 2026-05-20 16:26:12,603 - src.scheduler - INFO - Next commit in 646.9 seconds (10.78 minutes)
 2026-05-20 16:26:12,603 - src.scheduler - INFO - Waiting until 16:26:12 + 647s
+2026-05-20 16:36:59,935 - src.git_operations - INFO - Staged all changes
+2026-05-20 16:36:59,951 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-20 16:36:59,952 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-20 16:36:59,952 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-20 16:36:59,952 - src.ollama_client - INFO - Sending request to Ollama: http://192.168.5.2:11434/api/generate
+2026-05-20 16:37:06,072 - src.ollama_client - INFO - Ollama generated: Here's a concise conventional commit message:
+
+`feat docs: Implement retry logic for failed Git push attempts to improve scheduler logs`
+
+Or, following more specific commit types:
+
+**docs**: feat/docs: Add more informative scheduler log entries with retry mechanism
+ 
+Alternatively, if you'd like to use the Kubernetes around Travelduty site context to create a shorter message:
+
+`fix(scheduler): Enhanced logging with retry logic for failed push attempts`
+
+Let me know which one works best for your case!
+2026-05-20 16:37:06,073 - src.scheduler - INFO - Generated commit message: feat docs: Implement retry logic for failed Git push attempts to impr...
+2026-05-20 16:37:06,095 - src.git_operations - INFO - Created commit: feat docs: Implement retry logic for failed Git pu...
+2026-05-20 16:37:06,097 - src.scheduler - INFO - Pushing to remote...
+2026-05-20 16:37:06,099 - src.git_operations - WARNING - Push attempt 1/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-20 16:37:06,099 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-20 16:37:36,106 - src.git_operations - WARNING - Push attempt 2/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-20 16:37:36,106 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-20 16:38:06,120 - src.git_operations - WARNING - Push attempt 3/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-20 16:38:06,120 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-20 16:38:06,120 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-20 16:38:06,130 - src.database - INFO - Added commit to database: c1dddcfdde33450fc15c505f685a2e94002046dd
+2026-05-20 16:38:06,130 - src.scheduler - INFO - Next commit in 588.8 seconds (9.81 minutes)
+2026-05-20 16:38:06,130 - src.scheduler - INFO - Waiting until 16:38:06 + 589s
