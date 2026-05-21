@@ -9850,3 +9850,32 @@ error: failed to push some refs to 'origin'
 2026-05-21 03:43:37,200 - src.database - INFO - Added commit to database: 06eda53fb37cecd2e96e60c843aa432445a08d8e
 2026-05-21 03:43:37,201 - src.scheduler - INFO - Next commit in 555.2 seconds (9.25 minutes)
 2026-05-21 03:43:37,201 - src.scheduler - INFO - Waiting until 03:43:37 + 555s
+2026-05-21 03:52:52,922 - src.git_operations - INFO - Staged all changes
+2026-05-21 03:52:52,938 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-21 03:52:52,938 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-21 03:52:52,938 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-21 03:52:52,938 - src.ollama_client - INFO - Sending request to Ollama: http://192.168.5.2:11434/api/generate
+2026-05-21 03:52:57,839 - src.ollama_client - INFO - Ollama generated: `docs(logs): Improve log output for failed push attempts with more detailed error messages`
+
+Or, if you'd like to follow Conventional Commits more closely:
+
+`feat(logs): Add detailed error message on failed push attempt`
+2026-05-21 03:52:57,839 - src.scheduler - INFO - Generated commit message: docs(logs): Improve log output for failed push attempts with more det...
+2026-05-21 03:52:57,859 - src.git_operations - INFO - Created commit: docs(logs): Improve log output for failed push att...
+2026-05-21 03:52:57,862 - src.scheduler - INFO - Pushing to remote...
+2026-05-21 03:52:57,863 - src.git_operations - WARNING - Push attempt 1/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 03:52:57,863 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-21 03:53:27,872 - src.git_operations - WARNING - Push attempt 2/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 03:53:27,872 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-21 03:53:57,888 - src.git_operations - WARNING - Push attempt 3/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 03:53:57,888 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-21 03:53:57,888 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-21 03:53:57,898 - src.database - INFO - Added commit to database: 2292e01f100ff7eb23f717971ae33926fcca56ef
+2026-05-21 03:53:57,898 - src.scheduler - INFO - Next commit in 556.4 seconds (9.27 minutes)
+2026-05-21 03:53:57,898 - src.scheduler - INFO - Waiting until 03:53:57 + 556s
