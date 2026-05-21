@@ -12221,3 +12221,34 @@ error: failed to push some refs to 'origin'
 2026-05-21 18:26:55,748 - src.database - INFO - Added commit to database: 86b10fee5aff59156dc920b7e51d20a96afd7d6a
 2026-05-21 18:26:55,749 - src.scheduler - INFO - Next commit in 593.6 seconds (9.89 minutes)
 2026-05-21 18:26:55,749 - src.scheduler - INFO - Waiting until 18:26:55 + 594s
+2026-05-21 18:36:49,756 - src.git_operations - INFO - Staged all changes
+2026-05-21 18:36:49,792 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-21 18:36:49,792 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-21 18:36:49,792 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-21 18:36:49,793 - src.ollama_client - INFO - Sending request to Ollama: http://192.168.5.2:11434/api/generate
+2026-05-21 18:36:57,151 - src.ollama_client - INFO - Ollama generated: Here's a concise conventional commit message:
+
+`docs(refactor): Enhance Scheduler Log Handling for Better Error Feedback and User Experience`
+
+Or, alternatively:
+
+`docs(refactor): Improve Scheduler Log Messages for Enhanced Error Feedback`
+2026-05-21 18:36:57,155 - src.scheduler - INFO - Generated commit message: docs(refactor): Enhance Scheduler Log Handling for Better Error Feedb...
+2026-05-21 18:36:57,196 - src.git_operations - INFO - Created commit: docs(refactor): Enhance Scheduler Log Handling for...
+2026-05-21 18:36:57,202 - src.scheduler - INFO - Pushing to remote...
+2026-05-21 18:36:57,206 - src.git_operations - WARNING - Push attempt 1/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 18:36:57,206 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-21 18:37:27,224 - src.git_operations - WARNING - Push attempt 2/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 18:37:27,225 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-21 18:37:57,241 - src.git_operations - WARNING - Push attempt 3/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 18:37:57,242 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-21 18:37:57,242 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-21 18:37:57,249 - src.database - INFO - Added commit to database: 9c2285ec4e13ef45da41ab87c1a2265a99b231a2
+2026-05-21 18:37:57,249 - src.scheduler - INFO - Next commit in 574.9 seconds (9.58 minutes)
+2026-05-21 18:37:57,250 - src.scheduler - INFO - Waiting until 18:37:57 + 575s
