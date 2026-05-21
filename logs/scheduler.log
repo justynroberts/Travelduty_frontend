@@ -9445,3 +9445,32 @@ error: failed to push some refs to 'origin'
 2026-05-21 01:07:21,524 - src.database - INFO - Added commit to database: 130a2042f59e51d4beea07db789635cc0d8c804b
 2026-05-21 01:07:21,524 - src.scheduler - INFO - Next commit in 636.4 seconds (10.61 minutes)
 2026-05-21 01:07:21,525 - src.scheduler - INFO - Waiting until 01:07:21 + 636s
+2026-05-21 01:17:58,441 - src.git_operations - INFO - Staged all changes
+2026-05-21 01:17:58,462 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-21 01:17:58,462 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-21 01:17:58,462 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-21 01:17:58,463 - src.ollama_client - INFO - Sending request to Ollama: http://192.168.5.2:11434/api/generate
+2026-05-21 01:18:05,181 - src.ollama_client - INFO - Ollama generated: Here's a concise conventional commit message based on the provided git diff:
+
+`docs(refactor travelduty-k8s-scheduler): Enhance log output for failed push attempts with more detailed error messages`
+
+This commit message follows the Conventional Commits specification, indicating that it is a documentation-related change (docs) and a refactor of the `travelduty-k8s-scheduler` project.
+2026-05-21 01:18:05,182 - src.scheduler - INFO - Generated commit message: docs(refactor travelduty-k8s-scheduler): Enhance log output for faile...
+2026-05-21 01:18:05,204 - src.git_operations - INFO - Created commit: docs(refactor travelduty-k8s-scheduler): Enhance l...
+2026-05-21 01:18:05,207 - src.scheduler - INFO - Pushing to remote...
+2026-05-21 01:18:05,209 - src.git_operations - WARNING - Push attempt 1/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 01:18:05,209 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-21 01:18:35,216 - src.git_operations - WARNING - Push attempt 2/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 01:18:35,217 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-21 01:19:05,221 - src.git_operations - WARNING - Push attempt 3/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 01:19:05,221 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-21 01:19:05,221 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-21 01:19:05,228 - src.database - INFO - Added commit to database: 69b1fa7b3da15fcf82b8f37b412704b46382bd88
+2026-05-21 01:19:05,228 - src.scheduler - INFO - Next commit in 618.8 seconds (10.31 minutes)
+2026-05-21 01:19:05,228 - src.scheduler - INFO - Waiting until 01:19:05 + 619s
