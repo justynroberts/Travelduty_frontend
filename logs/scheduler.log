@@ -12835,3 +12835,34 @@ error: failed to push some refs to 'origin'
 2026-05-21 22:10:48,129 - src.database - INFO - Added commit to database: 323e6f55584639a46a6aaa6ab6c85c6c6235ebe7
 2026-05-21 22:10:48,129 - src.scheduler - INFO - Next commit in 574.6 seconds (9.58 minutes)
 2026-05-21 22:10:48,130 - src.scheduler - INFO - Waiting until 22:10:48 + 575s
+2026-05-21 22:20:23,186 - src.git_operations - INFO - Staged all changes
+2026-05-21 22:20:23,206 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-21 22:20:23,206 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-21 22:20:23,206 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-21 22:20:23,206 - src.ollama_client - INFO - Sending request to Ollama: http://192.168.5.2:11434/api/generate
+2026-05-21 22:20:29,713 - src.ollama_client - INFO - Ollama generated: Here is a concise conventional commit message:
+
+`docs feat: Enhance Scheduler Logs with Improved Error Feedback and Ollama Integration`
+
+This commit message follows the Conventional Commits specification, where the type of change is specified first (`docs` indicates that this is a documentation-related commit), followed by a brief description of the changes made. The `feat` type indicates that this is a new feature being added to the scheduler logs.
+
+Alternatively, if you want to break down the message into smaller parts (
+2026-05-21 22:20:29,713 - src.scheduler - INFO - Generated commit message: docs feat: Enhance Scheduler Logs with Improved Error Feedback and Ol...
+2026-05-21 22:20:29,738 - src.git_operations - INFO - Created commit: docs feat: Enhance Scheduler Logs with Improved Er...
+2026-05-21 22:20:29,740 - src.scheduler - INFO - Pushing to remote...
+2026-05-21 22:20:29,742 - src.git_operations - WARNING - Push attempt 1/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 22:20:29,742 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-21 22:20:59,749 - src.git_operations - WARNING - Push attempt 2/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 22:20:59,749 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-21 22:21:29,756 - src.git_operations - WARNING - Push attempt 3/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 22:21:29,756 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-21 22:21:29,756 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-21 22:21:29,765 - src.database - INFO - Added commit to database: 00f22c017b282fa0c55e86e3be6fe02d85eb6106
+2026-05-21 22:21:29,765 - src.scheduler - INFO - Next commit in 622.3 seconds (10.37 minutes)
+2026-05-21 22:21:29,765 - src.scheduler - INFO - Waiting until 22:21:29 + 622s
