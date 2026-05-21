@@ -12157,3 +12157,32 @@ error: failed to push some refs to 'origin'
 2026-05-21 18:04:39,732 - src.database - INFO - Added commit to database: 0d5827d91acd5d135e86d8998936159e103f2e22
 2026-05-21 18:04:39,732 - src.scheduler - INFO - Next commit in 563.5 seconds (9.39 minutes)
 2026-05-21 18:04:39,732 - src.scheduler - INFO - Waiting until 18:04:39 + 563s
+2026-05-21 18:14:03,711 - src.git_operations - INFO - Staged all changes
+2026-05-21 18:14:03,735 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-21 18:14:03,736 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-21 18:14:03,736 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-21 18:14:03,736 - src.ollama_client - INFO - Sending request to Ollama: http://192.168.5.2:11434/api/generate
+2026-05-21 18:14:10,370 - src.ollama_client - INFO - Ollama generated: Here is a concise conventional commit message based on the provided git diff:
+
+`docs(refactor): Enhance Scheduler Log Handling for Better Error Feedback and User Experience`
+
+This commit message follows the conventional guidelines for commit messages in Kubernetes projects, which typically use type+short description format. The `docs(refactor)` indicates that it's a documentation refactoring change aimed at improving the scheduler log handling to provide better error feedback and user experience.
+2026-05-21 18:14:10,371 - src.scheduler - INFO - Generated commit message: docs(refactor): Enhance Scheduler Log Handling for Better Error Feedb...
+2026-05-21 18:14:10,396 - src.git_operations - INFO - Created commit: docs(refactor): Enhance Scheduler Log Handling for...
+2026-05-21 18:14:10,398 - src.scheduler - INFO - Pushing to remote...
+2026-05-21 18:14:10,400 - src.git_operations - WARNING - Push attempt 1/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 18:14:10,400 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-21 18:14:40,421 - src.git_operations - WARNING - Push attempt 2/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 18:14:40,422 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-21 18:15:10,430 - src.git_operations - WARNING - Push attempt 3/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 18:15:10,430 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-21 18:15:10,431 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-21 18:15:10,441 - src.database - INFO - Added commit to database: 74f3c316e7edfb9ca8d5f3510e6c69a39c1c4247
+2026-05-21 18:15:10,442 - src.scheduler - INFO - Next commit in 635.9 seconds (10.60 minutes)
+2026-05-21 18:15:10,442 - src.scheduler - INFO - Waiting until 18:15:10 + 636s
