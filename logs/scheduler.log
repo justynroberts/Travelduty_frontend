@@ -9816,3 +9816,37 @@ error: failed to push some refs to 'origin'
 2026-05-21 03:32:59,050 - src.database - INFO - Added commit to database: 9352bf94fb1c3be3913b5f6ee4ce879623ec161f
 2026-05-21 03:32:59,050 - src.scheduler - INFO - Next commit in 571.3 seconds (9.52 minutes)
 2026-05-21 03:32:59,050 - src.scheduler - INFO - Waiting until 03:32:59 + 571s
+2026-05-21 03:42:30,876 - src.git_operations - INFO - Staged all changes
+2026-05-21 03:42:30,894 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-21 03:42:30,894 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-21 03:42:30,894 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-21 03:42:30,894 - src.ollama_client - INFO - Sending request to Ollama: http://192.168.5.2:11434/api/generate
+2026-05-21 03:42:37,145 - src.ollama_client - INFO - Ollama generated: `docs(logs): Improve log output for failed push attempts with more detailed error messages`
+
+This commit message is concise, descriptive, and follows the Conventional Commits specification. It clearly indicates that this change enhances the log output to provide more detailed error messages when push attempts fail. 
+
+Alternatively, a longer description could be used if needed:
+
+`docs(logs): Enhance log output for failed push attempts with more detailed error messages
+
+Improved log output includes:
+- Detailed error message upon first failed push
+2026-05-21 03:42:37,145 - src.scheduler - INFO - Generated commit message: docs(logs): Improve log output for failed push attempts with more det...
+2026-05-21 03:42:37,163 - src.git_operations - INFO - Created commit: docs(logs): Improve log output for failed push att...
+2026-05-21 03:42:37,165 - src.scheduler - INFO - Pushing to remote...
+2026-05-21 03:42:37,166 - src.git_operations - WARNING - Push attempt 1/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 03:42:37,166 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-21 03:43:07,176 - src.git_operations - WARNING - Push attempt 2/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 03:43:07,176 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-21 03:43:37,191 - src.git_operations - WARNING - Push attempt 3/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-21 03:43:37,192 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-21 03:43:37,192 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-21 03:43:37,200 - src.database - INFO - Added commit to database: 06eda53fb37cecd2e96e60c843aa432445a08d8e
+2026-05-21 03:43:37,201 - src.scheduler - INFO - Next commit in 555.2 seconds (9.25 minutes)
+2026-05-21 03:43:37,201 - src.scheduler - INFO - Waiting until 03:43:37 + 555s
