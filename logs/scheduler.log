@@ -14762,3 +14762,66 @@ error: failed to push some refs to 'origin'
 2026-05-22 09:53:53,998 - src.database - INFO - Added commit to database: e83b6116044f7e5bee21c9176b8fde5133014559
 2026-05-22 09:53:53,998 - src.scheduler - INFO - Next commit in 611.5 seconds (10.19 minutes)
 2026-05-22 09:53:53,998 - src.scheduler - INFO - Waiting until 09:53:53 + 611s
+2026-05-22 10:04:06,009 - src.git_operations - INFO - Staged all changes
+2026-05-22 10:04:06,030 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-22 10:04:06,031 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-22 10:04:06,031 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-22 10:04:06,031 - src.ollama_client - INFO - Sending request to Ollama: http://192.168.5.2:11434/api/generate
+2026-05-22 10:04:13,454 - src.ollama_client - INFO - Ollama generated: Here is a concise conventional commit message based on the provided git diff:
+
+`docs feat: Add automated travel itinerary generation for Travelduty users, enhancing scheduler logs`
+
+This commit message follows the Conventional Commits specification, indicating that it's a documentation-related change (docs), and a new feature being added (feat) to the site. The description highlights the key changes made in this commit, which is related to the Travelduty user experience.
+
+Alternatively, if you'd like to make adjustments according
+2026-05-22 10:04:13,454 - src.scheduler - INFO - Generated commit message: docs feat: Add automated travel itinerary generation for Travelduty u...
+2026-05-22 10:04:13,475 - src.git_operations - INFO - Created commit: docs feat: Add automated travel itinerary generati...
+2026-05-22 10:04:13,477 - src.scheduler - INFO - Pushing to remote...
+2026-05-22 10:04:13,479 - src.git_operations - WARNING - Push attempt 1/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-22 10:04:13,479 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-22 10:04:43,483 - src.git_operations - WARNING - Push attempt 2/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-22 10:04:43,483 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-22 10:05:13,487 - src.git_operations - WARNING - Push attempt 3/3 failed: error: src refspec main does not match any
+error: failed to push some refs to 'origin'
+
+2026-05-22 10:05:13,487 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-22 10:05:13,487 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-22 10:05:13,492 - src.database - INFO - Added commit to database: 69999f0a5686cc333b856866efedade2d044b981
+2026-05-22 10:05:13,492 - src.scheduler - INFO - Next commit in 624.9 seconds (10.41 minutes)
+2026-05-22 10:05:13,493 - src.scheduler - INFO - Waiting until 10:05:13 + 625s
+2026-05-22 10:09:04,593 - src.scheduler - INFO - ============================================================
+2026-05-22 10:09:04,593 - src.scheduler - INFO - Git Deploy Scheduler Starting
+2026-05-22 10:09:04,593 - src.scheduler - INFO - ============================================================
+2026-05-22 10:09:04,593 - src.scheduler - INFO - Using repository: /repo
+2026-05-22 10:09:04,597 - src.git_operations - INFO - Initialized git repository at /repo
+2026-05-22 10:09:04,597 - src.scheduler - INFO - Git repository initialized on branch: master
+2026-05-22 10:09:04,602 - src.ollama_client - INFO - Ollama health check passed
+2026-05-22 10:09:04,602 - src.scheduler - INFO - Ollama client initialized: http://192.168.5.2:11434 (model: llama3.2:3b)
+2026-05-22 10:09:04,602 - src.scheduler - INFO - Message generator initialized
+2026-05-22 10:09:04,604 - src.database - INFO - Connected to database: database/scheduler.db
+2026-05-22 10:09:04,604 - src.database - INFO - Database tables initialized
+2026-05-22 10:09:04,605 - src.scheduler - INFO - Database initialized
+2026-05-22 10:09:04,605 - src.scheduler - INFO - Scheduler running in continuous mode
+2026-05-22 10:09:04,605 - src.scheduler - INFO - Press Ctrl+C to stop
+2026-05-22 10:09:04,606 - src.scheduler - INFO - Next commit in 555.7 seconds (9.26 minutes)
+2026-05-22 10:09:04,606 - src.scheduler - INFO - Waiting until 10:09:04 + 556s
+2026-05-22 10:14:57,160 - src.scheduler - INFO - ============================================================
+2026-05-22 10:14:57,160 - src.scheduler - INFO - Git Deploy Scheduler Starting
+2026-05-22 10:14:57,160 - src.scheduler - INFO - ============================================================
+2026-05-22 10:14:57,161 - src.scheduler - INFO - Using repository: /repo
+2026-05-22 10:14:57,162 - src.git_operations - INFO - Initialized git repository at /repo
+2026-05-22 10:14:57,163 - src.scheduler - INFO - Git repository initialized on branch: master
+2026-05-22 10:14:57,169 - src.ollama_client - INFO - Ollama health check passed
+2026-05-22 10:14:57,169 - src.scheduler - INFO - Ollama client initialized: http://host.docker.internal:11434 (model: llama3.2:3b)
+2026-05-22 10:14:57,169 - src.scheduler - INFO - Message generator initialized
+2026-05-22 10:14:57,169 - src.database - INFO - Connected to database: database/scheduler.db
+2026-05-22 10:14:57,170 - src.database - INFO - Database tables initialized
+2026-05-22 10:14:57,170 - src.scheduler - INFO - Database initialized
+2026-05-22 10:14:57,170 - src.scheduler - INFO - Scheduler running in continuous mode
+2026-05-22 10:14:57,170 - src.scheduler - INFO - Press Ctrl+C to stop
+2026-05-22 10:14:57,170 - src.scheduler - INFO - Next commit in 586.3 seconds (9.77 minutes)
+2026-05-22 10:14:57,170 - src.scheduler - INFO - Waiting until 10:14:57 + 586s
