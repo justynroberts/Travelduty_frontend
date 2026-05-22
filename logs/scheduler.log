@@ -17591,3 +17591,48 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 2026-05-22 20:54:55,634 - src.database - INFO - Added commit to database: a45e5ee6e78e42f5bc122fc86ac59d4e523b785f
 2026-05-22 20:54:55,636 - src.scheduler - INFO - Next commit in 583.2 seconds (9.72 minutes)
 2026-05-22 20:54:55,636 - src.scheduler - INFO - Waiting until 20:54:55 + 583s
+2026-05-22 21:04:39,241 - src.git_operations - INFO - Staged all changes
+2026-05-22 21:04:39,278 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-22 21:04:39,279 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-22 21:04:39,279 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-22 21:04:39,279 - src.ollama_client - INFO - Sending request to Ollama: http://host.docker.internal:11434/api/generate
+2026-05-22 21:04:47,315 - src.ollama_client - INFO - Ollama generated: `docs(travelduty): Improve scheduling logs to prevent failed GitHub pushes due to fast-forwards`
+
+This commit introduces a new feature that improves the scheduling logs for the Travelduty frontend, preventing failed GitHub pushes caused by fast-forwards. The changes are reflected in `logs/scheduler.log` and `database/scheduler.db`.
+2026-05-22 21:04:47,316 - src.scheduler - INFO - Generated commit message: docs(travelduty): Improve scheduling logs to prevent failed GitHub pu...
+2026-05-22 21:04:47,367 - src.git_operations - INFO - Created commit: docs(travelduty): Improve scheduling logs to preve...
+2026-05-22 21:04:47,373 - src.scheduler - INFO - Pushing to remote...
+2026-05-22 21:04:47,922 - src.git_operations - WARNING - Push attempt 1/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-22 21:04:47,923 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-22 21:05:18,360 - src.git_operations - WARNING - Push attempt 2/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-22 21:05:18,360 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-22 21:05:48,885 - src.git_operations - WARNING - Push attempt 3/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-22 21:05:48,885 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-22 21:05:48,885 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-22 21:05:48,891 - src.database - INFO - Added commit to database: b43d19567c56ac640acd38e73ce81cf61a1a7db5
+2026-05-22 21:05:48,892 - src.scheduler - INFO - Next commit in 587.2 seconds (9.79 minutes)
+2026-05-22 21:05:48,892 - src.scheduler - INFO - Waiting until 21:05:48 + 587s
