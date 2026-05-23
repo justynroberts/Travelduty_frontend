@@ -19653,3 +19653,48 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 2026-05-23 05:00:29,141 - src.database - INFO - Added commit to database: 524b713a1c210f8636da3310fd14adab0fac9984
 2026-05-23 05:00:29,141 - src.scheduler - INFO - Next commit in 598.2 seconds (9.97 minutes)
 2026-05-23 05:00:29,142 - src.scheduler - INFO - Waiting until 05:00:29 + 598s
+2026-05-23 05:10:27,858 - src.git_operations - INFO - Staged all changes
+2026-05-23 05:10:27,898 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-23 05:10:27,898 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-23 05:10:27,898 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-23 05:10:27,898 - src.ollama_client - INFO - Sending request to Ollama: http://host.docker.internal:11434/api/generate
+2026-05-23 05:10:34,931 - src.ollama_client - INFO - Ollama generated: `docs: Enhance scheduler logs to provide better error messages for failed GitHub pushes`
+
+This commit message follows the Conventional Commits specification, providing a brief description of the changes made. It enhances the scheduler logs with more informative error messages when attempting to push to the remote repository, making it easier for developers to diagnose and resolve issues related to the Travelduty frontend's Kubernetes deployment.
+2026-05-23 05:10:34,932 - src.scheduler - INFO - Generated commit message: docs: Enhance scheduler logs to provide better error messages for fai...
+2026-05-23 05:10:34,956 - src.git_operations - INFO - Created commit: docs: Enhance scheduler logs to provide better err...
+2026-05-23 05:10:34,961 - src.scheduler - INFO - Pushing to remote...
+2026-05-23 05:10:35,417 - src.git_operations - WARNING - Push attempt 1/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-23 05:10:35,417 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-23 05:11:05,858 - src.git_operations - WARNING - Push attempt 2/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-23 05:11:05,858 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-23 05:11:36,358 - src.git_operations - WARNING - Push attempt 3/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-23 05:11:36,359 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-23 05:11:36,359 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-23 05:11:36,366 - src.database - INFO - Added commit to database: f2e6f33ac21fbb1d427da5bfee7fd0884071e781
+2026-05-23 05:11:36,366 - src.scheduler - INFO - Next commit in 551.1 seconds (9.18 minutes)
+2026-05-23 05:11:36,367 - src.scheduler - INFO - Waiting until 05:11:36 + 551s
