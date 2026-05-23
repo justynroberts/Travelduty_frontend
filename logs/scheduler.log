@@ -20544,3 +20544,50 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 2026-05-23 08:30:35,008 - src.database - INFO - Added commit to database: 7dfbb36cdf346e84ce530aaccdf97c6f23e39520
 2026-05-23 08:30:35,009 - src.scheduler - INFO - Next commit in 609.9 seconds (10.16 minutes)
 2026-05-23 08:30:35,009 - src.scheduler - INFO - Waiting until 08:30:35 + 610s
+2026-05-23 08:40:45,352 - src.git_operations - INFO - Staged all changes
+2026-05-23 08:40:45,380 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-23 08:40:45,380 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-23 08:40:45,380 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-23 08:40:45,380 - src.ollama_client - INFO - Sending request to Ollama: http://host.docker.internal:11434/api/generate
+2026-05-23 08:40:51,297 - src.ollama_client - INFO - Ollama generated: Here is a concise conventional commit message based on the provided git diff:
+
+`feat: Enhance error handling for failed scheduler log pushes`
+
+This commit message follows the Conventional Commits specification using the `feat` type, providing a brief overview of the change that enhances the error handling for failed scheduler log pushes.
+2026-05-23 08:40:51,297 - src.scheduler - INFO - Generated commit message: feat: Enhance error handling for failed scheduler log pushes
+2026-05-23 08:40:51,329 - src.git_operations - INFO - Created commit: feat: Enhance error handling for failed scheduler ...
+2026-05-23 08:40:51,332 - src.scheduler - INFO - Pushing to remote...
+2026-05-23 08:40:51,773 - src.git_operations - WARNING - Push attempt 1/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-23 08:40:51,774 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-23 08:41:22,245 - src.git_operations - WARNING - Push attempt 2/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-23 08:41:22,246 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-23 08:41:52,704 - src.git_operations - WARNING - Push attempt 3/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-23 08:41:52,704 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-23 08:41:52,704 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-23 08:41:52,713 - src.database - INFO - Added commit to database: bb26a142058a8fd71f76968de4ee0f12eda619a1
+2026-05-23 08:41:52,714 - src.scheduler - INFO - Next commit in 571.6 seconds (9.53 minutes)
+2026-05-23 08:41:52,714 - src.scheduler - INFO - Waiting until 08:41:52 + 572s
