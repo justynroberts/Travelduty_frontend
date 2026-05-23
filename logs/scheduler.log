@@ -21655,3 +21655,48 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 2026-05-23 12:45:18,974 - src.database - INFO - Added commit to database: 1110c8775a9aca59cd796b767f5f6750c6138c01
 2026-05-23 12:45:18,974 - src.scheduler - INFO - Next commit in 614.6 seconds (10.24 minutes)
 2026-05-23 12:45:18,974 - src.scheduler - INFO - Waiting until 12:45:18 + 615s
+2026-05-23 12:55:34,083 - src.git_operations - INFO - Staged all changes
+2026-05-23 12:55:34,113 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-23 12:55:34,113 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-23 12:55:34,113 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-23 12:55:34,113 - src.ollama_client - INFO - Sending request to Ollama: http://host.docker.internal:11434/api/generate
+2026-05-23 12:55:40,231 - src.ollama_client - INFO - Ollama generated: `docs(refactor): Improve Ollama Integration with Kubernetes`
+
+This commit message follows the conventional format, indicating that it's a documentation-related change (docs), specifically a refactor (refactor). The description provides context about the updates made to improve integration between Ollama and Kubernetes for the Travelduty site.
+2026-05-23 12:55:40,233 - src.scheduler - INFO - Generated commit message: docs(refactor): Improve Ollama Integration with Kubernetes
+2026-05-23 12:55:40,266 - src.git_operations - INFO - Created commit: docs(refactor): Improve Ollama Integration with Ku...
+2026-05-23 12:55:40,269 - src.scheduler - INFO - Pushing to remote...
+2026-05-23 12:55:40,711 - src.git_operations - WARNING - Push attempt 1/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-23 12:55:40,712 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-23 12:56:11,128 - src.git_operations - WARNING - Push attempt 2/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-23 12:56:11,128 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-23 12:56:41,592 - src.git_operations - WARNING - Push attempt 3/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-23 12:56:41,593 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-23 12:56:41,593 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-23 12:56:41,605 - src.database - INFO - Added commit to database: 1f7b9e7571c1302dd89df1bd1881204de95c9098
+2026-05-23 12:56:41,605 - src.scheduler - INFO - Next commit in 610.9 seconds (10.18 minutes)
+2026-05-23 12:56:41,606 - src.scheduler - INFO - Waiting until 12:56:41 + 611s
