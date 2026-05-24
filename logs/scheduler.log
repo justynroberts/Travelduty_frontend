@@ -27990,3 +27990,48 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 2026-05-24 13:32:51,286 - src.database - INFO - Added commit to database: c8875f45bbe409b6c45d1a0bd1fdea6a96968539
 2026-05-24 13:32:51,287 - src.scheduler - INFO - Next commit in 605.1 seconds (10.09 minutes)
 2026-05-24 13:32:51,287 - src.scheduler - INFO - Waiting until 13:32:51 + 605s
+2026-05-24 13:42:56,796 - src.git_operations - INFO - Staged all changes
+2026-05-24 13:42:56,831 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-24 13:42:56,831 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-24 13:42:56,831 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-24 13:42:56,832 - src.ollama_client - INFO - Sending request to Ollama: http://host.docker.internal:11434/api/generate
+2026-05-24 13:43:04,192 - src.ollama_client - INFO - Ollama generated: feat(docs): Enhance scheduler logs to include Ollama API integration, improving Kubernetes management documentation for better database schema understanding. 
+
+This commit message follows the conventional commit message format of `type(scope): brief description`, indicating that this is a feature (feat) commit related to documentation (docs). The commit describes the changes made to enhance the scheduler logs with Ollama API integration, which improves Kubernetes management documentation and provides better insights into database schema understanding.
+2026-05-24 13:43:04,193 - src.scheduler - INFO - Generated commit message: feat(docs): Enhance scheduler logs to include Ollama API integration,...
+2026-05-24 13:43:04,233 - src.git_operations - INFO - Created commit: feat(docs): Enhance scheduler logs to include Olla...
+2026-05-24 13:43:04,237 - src.scheduler - INFO - Pushing to remote...
+2026-05-24 13:43:04,690 - src.git_operations - WARNING - Push attempt 1/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-24 13:43:04,690 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-24 13:43:35,144 - src.git_operations - WARNING - Push attempt 2/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-24 13:43:35,144 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-24 13:44:05,598 - src.git_operations - WARNING - Push attempt 3/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-24 13:44:05,599 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-24 13:44:05,599 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-24 13:44:05,604 - src.database - INFO - Added commit to database: 9ad3c85d209f1da1e9c89bfe1a4c1d6c7ff2c35b
+2026-05-24 13:44:05,605 - src.scheduler - INFO - Next commit in 564.4 seconds (9.41 minutes)
+2026-05-24 13:44:05,605 - src.scheduler - INFO - Waiting until 13:44:05 + 564s
