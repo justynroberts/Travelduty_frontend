@@ -25747,3 +25747,54 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 2026-05-24 04:47:35,488 - src.database - INFO - Added commit to database: 8a5df4e9334d0d5ac90647c19de59468a4b20550
 2026-05-24 04:47:35,489 - src.scheduler - INFO - Next commit in 559.8 seconds (9.33 minutes)
 2026-05-24 04:47:35,489 - src.scheduler - INFO - Waiting until 04:47:35 + 560s
+2026-05-24 04:56:55,587 - src.git_operations - INFO - Staged all changes
+2026-05-24 04:56:55,619 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-24 04:56:55,619 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-24 04:56:55,619 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-24 04:56:55,619 - src.ollama_client - INFO - Sending request to Ollama: http://host.docker.internal:11434/api/generate
+2026-05-24 04:57:02,625 - src.ollama_client - INFO - Ollama generated: Here is a concise conventional commit message:
+
+`docs(refactor): Update scheduler database schema to reflect Ollama API changes`
+
+This commit message follows Conventional Commits guidelines, indicating that it's a change to documentation (using `docs`) and clearly stating the purpose of the update.
+
+However, considering the context of a Kubernetes around Travelduty site, I would suggest a slightly more specific commit message:
+
+`docs(refactor): Update scheduler database schema to ensure compatibility with Ollama API in Trav
+2026-05-24 04:57:02,626 - src.scheduler - INFO - Generated commit message: docs(refactor): Update scheduler database schema to reflect Ollama AP...
+2026-05-24 04:57:02,656 - src.git_operations - INFO - Created commit: docs(refactor): Update scheduler database schema t...
+2026-05-24 04:57:02,659 - src.scheduler - INFO - Pushing to remote...
+2026-05-24 04:57:03,117 - src.git_operations - WARNING - Push attempt 1/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-24 04:57:03,117 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-24 04:57:33,532 - src.git_operations - WARNING - Push attempt 2/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-24 04:57:33,533 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-24 04:58:03,996 - src.git_operations - WARNING - Push attempt 3/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-24 04:58:03,996 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-24 04:58:03,996 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-24 04:58:04,004 - src.database - INFO - Added commit to database: 96c40c372f6b75663f0a60478784f44c473cea02
+2026-05-24 04:58:04,004 - src.scheduler - INFO - Next commit in 626.6 seconds (10.44 minutes)
+2026-05-24 04:58:04,005 - src.scheduler - INFO - Waiting until 04:58:04 + 627s
