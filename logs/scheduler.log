@@ -35258,3 +35258,50 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 2026-05-25 17:35:22,980 - src.database - INFO - Added commit to database: 107dedd61cdb69015e2372bf197446dec756e245
 2026-05-25 17:35:22,980 - src.scheduler - INFO - Next commit in 647.2 seconds (10.79 minutes)
 2026-05-25 17:35:22,980 - src.scheduler - INFO - Waiting until 17:35:22 + 647s
+2026-05-25 17:46:10,484 - src.git_operations - INFO - Staged all changes
+2026-05-25 17:46:10,514 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-25 17:46:10,514 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-25 17:46:10,514 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-25 17:46:10,514 - src.ollama_client - INFO - Sending request to Ollama: http://host.docker.internal:11434/api/generate
+2026-05-25 17:46:16,686 - src.ollama_client - INFO - Ollama generated: Here is a concise conventional commit message:
+
+`docs: Enhance cluster scheduler API documentation for seamless integration with Travelduty`
+
+This commit type (`docs`) indicates that this change affects the documentation of the project, which aligns with the Kubernetes around Travelduty site. The subject line clearly describes the purpose and scope of the changes made to improve the cluster scheduler API documentation.
+2026-05-25 17:46:16,687 - src.scheduler - INFO - Generated commit message: docs: Enhance cluster scheduler API documentation for seamless integr...
+2026-05-25 17:46:16,726 - src.git_operations - INFO - Created commit: docs: Enhance cluster scheduler API documentation ...
+2026-05-25 17:46:16,730 - src.scheduler - INFO - Pushing to remote...
+2026-05-25 17:46:17,186 - src.git_operations - WARNING - Push attempt 1/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-25 17:46:17,186 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-25 17:46:47,640 - src.git_operations - WARNING - Push attempt 2/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-25 17:46:47,640 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-25 17:47:18,082 - src.git_operations - WARNING - Push attempt 3/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-25 17:47:18,082 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-25 17:47:18,082 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-25 17:47:18,090 - src.database - INFO - Added commit to database: 738aefc1295c5ed067f1226bb386959d2c459f22
+2026-05-25 17:47:18,090 - src.scheduler - INFO - Next commit in 614.6 seconds (10.24 minutes)
+2026-05-25 17:47:18,091 - src.scheduler - INFO - Waiting until 17:47:18 + 615s
