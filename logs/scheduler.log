@@ -39369,3 +39369,48 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 2026-05-26 09:20:53,147 - src.database - INFO - Added commit to database: eeb8d05a847a9697887491329f64a6d9094414ee
 2026-05-26 09:20:53,147 - src.scheduler - INFO - Next commit in 552.8 seconds (9.21 minutes)
 2026-05-26 09:20:53,147 - src.scheduler - INFO - Waiting until 09:20:53 + 553s
+2026-05-26 09:30:06,420 - src.git_operations - INFO - Staged all changes
+2026-05-26 09:30:06,456 - src.scheduler - INFO - Changes detected in 2 file(s)
+2026-05-26 09:30:06,457 - src.scheduler - INFO -   - logs/scheduler.log
+2026-05-26 09:30:06,457 - src.scheduler - INFO -   - database/scheduler.db
+2026-05-26 09:30:06,457 - src.ollama_client - INFO - Sending request to Ollama: http://host.docker.internal:11434/api/generate
+2026-05-26 09:30:12,046 - src.ollama_client - INFO - Ollama generated: feat: Improve cluster scheduler logs with debug diagnostics for enhanced user experience
+
+This commit enhances the logging mechanism for the cluster scheduler component, providing more detailed information to help users diagnose issues and improve their experience.
+2026-05-26 09:30:12,049 - src.scheduler - INFO - Generated commit message: feat: Improve cluster scheduler logs with debug diagnostics for enhan...
+2026-05-26 09:30:12,110 - src.git_operations - INFO - Created commit: feat: Improve cluster scheduler logs with debug di...
+2026-05-26 09:30:12,117 - src.scheduler - INFO - Pushing to remote...
+2026-05-26 09:30:12,664 - src.git_operations - WARNING - Push attempt 1/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-26 09:30:12,665 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-26 09:30:43,135 - src.git_operations - WARNING - Push attempt 2/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-26 09:30:43,135 - src.git_operations - INFO - Retrying in 30 seconds...
+2026-05-26 09:31:13,639 - src.git_operations - WARNING - Push attempt 3/3 failed: To https://github.com/justynroberts/Travelduty_frontend.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/justynroberts/Travelduty_frontend.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2026-05-26 09:31:13,640 - src.git_operations - ERROR - Failed to push after 3 attempts
+2026-05-26 09:31:13,640 - src.scheduler - WARNING - Failed to push to remote (commit saved locally)
+2026-05-26 09:31:13,649 - src.database - INFO - Added commit to database: ac44b8bd04b6126e20a38cf942f4bc5426944e8b
+2026-05-26 09:31:13,650 - src.scheduler - INFO - Next commit in 594.8 seconds (9.91 minutes)
+2026-05-26 09:31:13,650 - src.scheduler - INFO - Waiting until 09:31:13 + 595s
