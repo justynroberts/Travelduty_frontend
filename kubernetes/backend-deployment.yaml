@@ -2,35 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
-  labels:
-    app: travelduty
-    component: backend
+  namespace: travelduty
 spec:
-  replicas: 1
+  replicas: 4
   selector:
     matchLabels:
-      app: travelduty
-      component: backend
+      app: backend
   template:
     metadata:
       labels:
-        app: travelduty
-        component: backend
+        app: backend
     spec:
       containers:
       - name: backend
-        image: travelduty/backend:yd2cr6
+        image: travelduty/backend:4.6.5
         ports:
-        - containerPort: 8238
-        env:
-        - name: NODE_ENV
-          value: production
-        - name: VERSION
-          value: "1.6.8"
+        - containerPort: 3932
         resources:
           requests:
             memory: "128Mi"
-            cpu: "300m"
-          limits:
-            memory: "256Mi"
-            cpu: "1500m"
+            cpu: "250m"
