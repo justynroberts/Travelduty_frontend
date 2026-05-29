@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: travelduty
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: travelduty/nginx:2.7.3
+        ports:
+        - containerPort: 6934
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
