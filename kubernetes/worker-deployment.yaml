@@ -1,23 +1,23 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
-  name: postgres
+  name: worker
   namespace: travelduty
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: postgres
+      app: worker
   template:
     metadata:
       labels:
-        app: postgres
+        app: worker
     spec:
       containers:
-      - name: postgres
-        image: travelduty/postgres:4.8.2
+      - name: worker
+        image: travelduty/worker:4.1.6
         ports:
-        - containerPort: 4409
+        - containerPort: 5890
         resources:
           requests:
             memory: "64Mi"
