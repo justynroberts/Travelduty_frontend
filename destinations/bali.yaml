@@ -1,24 +1,11 @@
-# Travel Destination Configuration
 name: Bali
 country: Indonesia
-description: Tropical paradise with rich culture
-rating: 3.4/5
-price_range: $
-best_season: Winter
-updated: 2025-11-25T14:15:15.709Z
-
-activities:
-  - Sightseeing tours
-  - Mountain hiking
-  - Night markets
-
+rating: 5.0/5
+price_range: $$$
+best_season: Fall
+flights_per_week: 34
+avg_stay_days: 11
 accommodations:
-  hotels: 34
-  hostels: 24
-  resorts: 13
-
-transportation:
-  airport: Bali International Airport
-  public_transport: true
-  taxi_available: true
-  rental_cars: true
+  hotels: 32
+  hostels: 17
+  resorts: 17
