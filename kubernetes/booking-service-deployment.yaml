@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: booking-service
+  namespace: travelduty
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: booking-service
+  template:
+    metadata:
+      labels:
+        app: booking-service
+    spec:
+      containers:
+      - name: booking-service
+        image: travelduty/booking-service:1.9.2
+        ports:
+        - containerPort: 4533
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "500m"
