@@ -1,27 +1,11 @@
-# Travel Destination Configuration
 name: Rome
 country: Italy
-description: Ancient ruins and Renaissance art
-rating: 5.0/5
-price_range: $$$
+rating: 4.0/5
+price_range: $$$$
 best_season: Spring
-updated: 2025-11-25T13:15:49.658Z
-
-activities:
-  - Cultural performances
-  - Sightseeing tours
-  - Local cuisine tasting
-  - Shopping districts
-  - Historical site tours
-  - Mountain hiking
-
+flights_per_week: 28
+avg_stay_days: 12
 accommodations:
-  hotels: 57
-  hostels: 16
-  resorts: 6
-
-transportation:
-  airport: Rome International Airport
-  public_transport: true
-  taxi_available: true
-  rental_cars: true
+  hotels: 10
+  hostels: 12
+  resorts: 8
