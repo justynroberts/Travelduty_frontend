@@ -1,24 +1,11 @@
-# Travel Destination Configuration
 name: Paris
 country: France
-description: City of lights and romance
-rating: 4.4/5
+rating: 4.2/5
 price_range: $$$$
-best_season: Fall
-updated: 2025-11-25T12:54:29.102Z
-
-activities:
-  - Shopping districts
-  - Sightseeing tours
-  - Historical site tours
-
+best_season: Spring
+flights_per_week: 34
+avg_stay_days: 7
 accommodations:
-  hotels: 51
-  hostels: 7
-  resorts: 14
-
-transportation:
-  airport: Paris International Airport
-  public_transport: true
-  taxi_available: true
-  rental_cars: true
+  hotels: 21
+  hostels: 15
+  resorts: 2
