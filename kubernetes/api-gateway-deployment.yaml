@@ -2,35 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api-gateway
-  labels:
-    app: travelduty
-    component: api-gateway
+  namespace: travelduty
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
-      app: travelduty
-      component: api-gateway
+      app: api-gateway
   template:
     metadata:
       labels:
-        app: travelduty
-        component: api-gateway
+        app: api-gateway
     spec:
       containers:
       - name: api-gateway
-        image: travelduty/api-gateway:j6a6gv
+        image: travelduty/api-gateway:3.7.8
         ports:
-        - containerPort: 8133
-        env:
-        - name: NODE_ENV
-          value: production
-        - name: VERSION
-          value: "1.4.0"
+        - containerPort: 8653
         resources:
           requests:
-            memory: "512Mi"
-            cpu: "200m"
-          limits:
-            memory: "1024Mi"
-            cpu: "500m"
+            memory: "128Mi"
+            cpu: "100m"
