@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: CronJob
+metadata:
+  name: scheduler
+  namespace: travelduty
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scheduler
+  template:
+    metadata:
+      labels:
+        app: scheduler
+    spec:
+      containers:
+      - name: scheduler
+        image: travelduty/scheduler:2.6.3
+        ports:
+        - containerPort: 6403
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "500m"
