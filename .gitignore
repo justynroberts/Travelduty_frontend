@@ -1,0 +1,7 @@
+# Scheduler app files - never commit these
+config/
+database/
+logs/
+*.db
+*.log
+.github_token
