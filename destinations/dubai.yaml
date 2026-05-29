@@ -1,24 +1,11 @@
-# Travel Destination Configuration
 name: Dubai
 country: UAE
-description: Futuristic skyline and luxury
-rating: 4.8/5
-price_range: $
-best_season: Winter
-updated: 2025-11-25T13:45:13.237Z
-
-activities:
-  - Sightseeing tours
-  - Shopping districts
-  - Night markets
-
+rating: 3.5/5
+price_range: $$
+best_season: Spring
+flights_per_week: 10
+avg_stay_days: 14
 accommodations:
-  hotels: 49
-  hostels: 18
-  resorts: 9
-
-transportation:
-  airport: Dubai International Airport
-  public_transport: true
-  taxi_available: true
-  rental_cars: true
+  hotels: 30
+  hostels: 7
+  resorts: 4
