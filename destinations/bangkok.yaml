@@ -1,27 +1,11 @@
-# Travel Destination Configuration
 name: Bangkok
 country: Thailand
-description: Vibrant street life and ornate shrines
-rating: 3.9/5
-price_range: $$$$
+rating: 4.2/5
+price_range: $$
 best_season: Spring
-updated: 2025-11-25T15:34:02.532Z
-
-activities:
-  - Water sports
-  - Sightseeing tours
-  - Historical site tours
-  - Cultural performances
-  - Night markets
-  - Beach activities
-
+flights_per_week: 16
+avg_stay_days: 13
 accommodations:
-  hotels: 38
-  hostels: 21
-  resorts: 14
-
-transportation:
-  airport: Bangkok International Airport
-  public_transport: true
-  taxi_available: true
-  rental_cars: true
+  hotels: 51
+  hostels: 14
+  resorts: 15
