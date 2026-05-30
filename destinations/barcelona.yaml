@@ -1,11 +1,11 @@
 name: Barcelona
 country: Spain
-rating: 4.9/5
+rating: 4.0/5
 price_range: $
 best_season: Fall
-flights_per_week: 40
-avg_stay_days: 10
+flights_per_week: 29
+avg_stay_days: 4
 accommodations:
-  hotels: 11
-  hostels: 13
-  resorts: 20
+  hotels: 36
+  hostels: 20
+  resorts: 2
