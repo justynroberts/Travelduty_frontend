@@ -17,8 +17,8 @@ spec:
       - name: backend
         image: travelduty/backend:3.3.8
         ports:
-        - containerPort: 8789
+        - containerPort: 3413
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "500m"
+            memory: "64Mi"
+            cpu: "100m"
