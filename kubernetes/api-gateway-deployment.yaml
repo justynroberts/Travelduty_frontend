@@ -17,8 +17,8 @@ spec:
       - name: api-gateway
         image: travelduty/api-gateway:4.2.7
         ports:
-        - containerPort: 4004
+        - containerPort: 5305
         resources:
           requests:
-            memory: "64Mi"
+            memory: "256Mi"
             cpu: "250m"
