@@ -4,7 +4,7 @@ metadata:
   name: backend
   namespace: travelduty
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: backend
@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: backend
-        image: travelduty/backend:5.0.2
+        image: travelduty/backend:3.0.4
         ports:
-        - containerPort: 7477
+        - containerPort: 5469
         resources:
           requests:
             memory: "64Mi"
-            cpu: "100m"
+            cpu: "500m"
