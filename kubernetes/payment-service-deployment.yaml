@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: payment-service
-        image: travelduty/payment-service:5.6.8
+        image: travelduty/payment-service:4.4.5
         ports:
-        - containerPort: 6563
+        - containerPort: 8007
         resources:
           requests:
-            memory: "64Mi"
+            memory: "256Mi"
             cpu: "500m"
