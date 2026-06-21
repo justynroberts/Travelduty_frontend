@@ -4,8 +4,8 @@ rating: 4.8/5
 price_range: $$$
 best_season: Spring
 flights_per_week: 29
-avg_stay_days: 10
+avg_stay_days: 4
 accommodations:
-  hotels: 20
-  hostels: 20
-  resorts: 16
+  hotels: 17
+  hostels: 6
+  resorts: 8
