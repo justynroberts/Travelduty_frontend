@@ -1,11 +1,11 @@
 name: Istanbul
 country: Turkey
-rating: 4.5/5
-price_range: $$$$
-best_season: Spring
-flights_per_week: 36
-avg_stay_days: 13
+rating: 4.3/5
+price_range: $
+best_season: Winter
+flights_per_week: 21
+avg_stay_days: 9
 accommodations:
-  hotels: 47
-  hostels: 19
-  resorts: 17
+  hotels: 11
+  hostels: 22
+  resorts: 7
