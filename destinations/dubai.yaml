@@ -1,11 +1,11 @@
 name: Dubai
 country: UAE
 rating: 4.6/5
-price_range: $
+price_range: $$$
 best_season: Spring
-flights_per_week: 24
-avg_stay_days: 4
+flights_per_week: 36
+avg_stay_days: 8
 accommodations:
-  hotels: 14
-  hostels: 12
-  resorts: 11
+  hotels: 45
+  hostels: 9
+  resorts: 14
