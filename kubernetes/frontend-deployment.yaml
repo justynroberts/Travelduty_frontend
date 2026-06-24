@@ -4,7 +4,7 @@ metadata:
   name: frontend
   namespace: travelduty
 spec:
-  replicas: 4
+  replicas: 5
   selector:
     matchLabels:
       app: frontend
@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: travelduty/frontend:3.4.5
+        image: travelduty/frontend:5.0.8
         ports:
-        - containerPort: 3855
+        - containerPort: 4672
         resources:
           requests:
             memory: "256Mi"
