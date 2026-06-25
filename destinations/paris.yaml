@@ -1,11 +1,11 @@
 name: Paris
 country: France
-rating: 4.4/5
+rating: 4.0/5
 price_range: $
-best_season: Fall
-flights_per_week: 32
-avg_stay_days: 8
+best_season: Winter
+flights_per_week: 17
+avg_stay_days: 9
 accommodations:
-  hotels: 42
-  hostels: 23
-  resorts: 13
+  hotels: 47
+  hostels: 8
+  resorts: 11
