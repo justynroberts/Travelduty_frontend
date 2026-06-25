@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
       - name: redis
-        image: travelduty/redis:2.5.9
+        image: travelduty/redis:2.8.3
         ports:
-        - containerPort: 4957
+        - containerPort: 6469
         resources:
           requests:
             memory: "256Mi"
