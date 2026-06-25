@@ -4,7 +4,7 @@ metadata:
   name: auth-service
   namespace: travelduty
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: auth-service
@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: auth-service
-        image: travelduty/auth-service:1.5.2
+        image: travelduty/auth-service:2.1.8
         ports:
-        - containerPort: 4443
+        - containerPort: 6727
         resources:
           requests:
-            memory: "256Mi"
+            memory: "128Mi"
             cpu: "100m"
