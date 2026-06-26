@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: scheduler
-        image: travelduty/scheduler:4.0.9
+        image: travelduty/scheduler:2.0.2
         ports:
-        - containerPort: 6347
+        - containerPort: 8202
         resources:
           requests:
-            memory: "128Mi"
+            memory: "64Mi"
             cpu: "250m"
