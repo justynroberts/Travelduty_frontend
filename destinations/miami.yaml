@@ -3,9 +3,9 @@ country: USA
 rating: 3.1/5
 price_range: $$
 best_season: Fall
-flights_per_week: 20
-avg_stay_days: 13
+flights_per_week: 27
+avg_stay_days: 3
 accommodations:
-  hotels: 11
-  hostels: 23
-  resorts: 9
+  hotels: 18
+  hostels: 10
+  resorts: 20
