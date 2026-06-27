@@ -1,11 +1,11 @@
 name: Sydney
 country: Australia
-rating: 4.4/5
+rating: 4.3/5
 price_range: $$$
-best_season: Winter
-flights_per_week: 34
-avg_stay_days: 6
+best_season: Spring
+flights_per_week: 27
+avg_stay_days: 14
 accommodations:
-  hotels: 58
-  hostels: 21
-  resorts: 18
+  hotels: 27
+  hostels: 20
+  resorts: 8
