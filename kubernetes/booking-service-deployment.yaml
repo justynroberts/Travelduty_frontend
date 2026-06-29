@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: booking-service
-        image: travelduty/booking-service:5.9.2
+        image: travelduty/booking-service:3.1.5
         ports:
-        - containerPort: 5288
+        - containerPort: 3010
         resources:
           requests:
             memory: "64Mi"
-            cpu: "250m"
+            cpu: "100m"
