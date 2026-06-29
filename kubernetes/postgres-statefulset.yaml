@@ -4,7 +4,7 @@ metadata:
   name: postgres
   namespace: travelduty
 spec:
-  replicas: 4
+  replicas: 5
   selector:
     matchLabels:
       app: postgres
@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: travelduty/postgres:3.2.1
+        image: travelduty/postgres:4.2.7
         ports:
-        - containerPort: 8558
+        - containerPort: 4896
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "250m"
+            memory: "256Mi"
+            cpu: "100m"
