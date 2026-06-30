@@ -4,7 +4,7 @@ metadata:
   name: booking-service
   namespace: travelduty
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: booking-service
@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: booking-service
-        image: travelduty/booking-service:3.4.6
+        image: travelduty/booking-service:1.0.4
         ports:
-        - containerPort: 5043
+        - containerPort: 6025
         resources:
           requests:
             memory: "256Mi"
-            cpu: "100m"
+            cpu: "250m"
