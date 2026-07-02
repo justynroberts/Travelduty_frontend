@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: travelduty/nginx:4.5.2
+        image: travelduty/nginx:1.4.5
         ports:
-        - containerPort: 7185
+        - containerPort: 7476
         resources:
           requests:
-            memory: "128Mi"
-            cpu: "100m"
+            memory: "64Mi"
+            cpu: "250m"
