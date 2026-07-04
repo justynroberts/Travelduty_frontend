@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
       - name: auth-service
-        image: travelduty/auth-service:4.2.1
+        image: travelduty/auth-service:3.6.5
         ports:
-        - containerPort: 8303
+        - containerPort: 3839
         resources:
           requests:
             memory: "64Mi"
