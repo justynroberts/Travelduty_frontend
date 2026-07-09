@@ -3,9 +3,9 @@ country: UK
 rating: 3.3/5
 price_range: $$$
 best_season: Fall
-flights_per_week: 30
-avg_stay_days: 6
+flights_per_week: 6
+avg_stay_days: 11
 accommodations:
-  hotels: 42
-  hostels: 19
-  resorts: 16
+  hotels: 52
+  hostels: 18
+  resorts: 18
