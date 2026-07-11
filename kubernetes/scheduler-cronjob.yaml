@@ -4,7 +4,7 @@ metadata:
   name: scheduler
   namespace: travelduty
 spec:
-  replicas: 1
+  replicas: 4
   selector:
     matchLabels:
       app: scheduler
@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: scheduler
-        image: travelduty/scheduler:5.3.6
+        image: travelduty/scheduler:4.1.6
         ports:
-        - containerPort: 7239
+        - containerPort: 6047
         resources:
           requests:
             memory: "256Mi"
-            cpu: "100m"
+            cpu: "250m"
