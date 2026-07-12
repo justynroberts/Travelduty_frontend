@@ -3,9 +3,9 @@ country: Japan
 rating: 3.5/5
 price_range: $
 best_season: Winter
-flights_per_week: 26
-avg_stay_days: 12
+flights_per_week: 37
+avg_stay_days: 11
 accommodations:
-  hotels: 28
-  hostels: 8
-  resorts: 20
+  hotels: 53
+  hostels: 5
+  resorts: 6
