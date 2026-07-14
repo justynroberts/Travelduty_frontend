@@ -1,11 +1,11 @@
 name: Rome
 country: Italy
-rating: 3.4/5
-price_range: $
-best_season: Fall
-flights_per_week: 33
-avg_stay_days: 13
+rating: 4.5/5
+price_range: $$
+best_season: Summer
+flights_per_week: 37
+avg_stay_days: 5
 accommodations:
-  hotels: 40
-  hostels: 20
-  resorts: 2
+  hotels: 55
+  hostels: 12
+  resorts: 10
