@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: backend
-        image: travelduty/backend:3.8.9
+        image: travelduty/backend:2.4.2
         ports:
-        - containerPort: 5695
+        - containerPort: 8138
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "100m"
+            memory: "64Mi"
+            cpu: "250m"
