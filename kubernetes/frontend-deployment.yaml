@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: travelduty/frontend:2.3.3
+        image: travelduty/frontend:4.5.9
         ports:
-        - containerPort: 6849
+        - containerPort: 8986
         resources:
           requests:
-            memory: "128Mi"
+            memory: "64Mi"
             cpu: "500m"
