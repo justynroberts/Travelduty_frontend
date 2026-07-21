@@ -4,7 +4,7 @@ metadata:
   name: api-gateway
   namespace: travelduty
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: api-gateway
@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: travelduty/api-gateway:1.1.6
+        image: travelduty/api-gateway:4.6.1
         ports:
-        - containerPort: 7831
+        - containerPort: 6213
         resources:
           requests:
             memory: "64Mi"
-            cpu: "100m"
+            cpu: "500m"
