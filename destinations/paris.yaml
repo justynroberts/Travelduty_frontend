@@ -3,9 +3,9 @@ country: France
 rating: 3.9/5
 price_range: $$$$
 best_season: Spring
-flights_per_week: 20
-avg_stay_days: 7
+flights_per_week: 25
+avg_stay_days: 5
 accommodations:
-  hotels: 53
-  hostels: 13
-  resorts: 16
+  hotels: 48
+  hostels: 15
+  resorts: 4
