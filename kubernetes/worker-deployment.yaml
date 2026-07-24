@@ -4,7 +4,7 @@ metadata:
   name: worker
   namespace: travelduty
 spec:
-  replicas: 3
+  replicas: 4
   selector:
     matchLabels:
       app: worker
@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
       - name: worker
-        image: travelduty/worker:4.7.8
+        image: travelduty/worker:2.6.2
         ports:
-        - containerPort: 7139
+        - containerPort: 7536
         resources:
           requests:
             memory: "256Mi"
