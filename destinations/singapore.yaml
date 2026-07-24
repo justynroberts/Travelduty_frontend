@@ -1,11 +1,11 @@
 name: Singapore
 country: Singapore
-rating: 3.2/5
-price_range: $$$$
-best_season: Winter
-flights_per_week: 24
-avg_stay_days: 4
+rating: 3.1/5
+price_range: $$
+best_season: Spring
+flights_per_week: 26
+avg_stay_days: 9
 accommodations:
-  hotels: 48
+  hotels: 58
   hostels: 22
-  resorts: 17
+  resorts: 16
