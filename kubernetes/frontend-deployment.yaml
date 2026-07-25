@@ -17,8 +17,8 @@ spec:
       - name: frontend
         image: travelduty/frontend:3.1.8
         ports:
-        - containerPort: 6023
+        - containerPort: 4986
         resources:
           requests:
             memory: "128Mi"
-            cpu: "100m"
+            cpu: "250m"
