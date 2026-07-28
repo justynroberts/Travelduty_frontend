@@ -3,9 +3,9 @@ country: Australia
 rating: 4.4/5
 price_range: $$$$
 best_season: Summer
-flights_per_week: 5
-avg_stay_days: 13
+flights_per_week: 34
+avg_stay_days: 14
 accommodations:
-  hotels: 33
-  hostels: 18
-  resorts: 5
+  hotels: 14
+  hostels: 12
+  resorts: 15
