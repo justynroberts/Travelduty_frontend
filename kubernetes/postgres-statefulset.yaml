@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: travelduty/postgres:5.4.3
+        image: travelduty/postgres:2.5.8
         ports:
-        - containerPort: 7244
+        - containerPort: 4704
         resources:
           requests:
             memory: "64Mi"
-            cpu: "500m"
+            cpu: "100m"
