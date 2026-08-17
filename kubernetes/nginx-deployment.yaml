@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: travelduty/nginx:2.4.1
+        image: travelduty/nginx:4.7.7
         ports:
-        - containerPort: 4749
+        - containerPort: 3166
         resources:
           requests:
             memory: "64Mi"
