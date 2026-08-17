@@ -4,7 +4,7 @@ metadata:
   name: payment-service
   namespace: travelduty
 spec:
-  replicas: 3
+  replicas: 4
   selector:
     matchLabels:
       app: payment-service
@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
       - name: payment-service
-        image: travelduty/payment-service:2.3.5
+        image: travelduty/payment-service:2.5.5
         ports:
-        - containerPort: 7810
+        - containerPort: 3912
         resources:
           requests:
             memory: "128Mi"
