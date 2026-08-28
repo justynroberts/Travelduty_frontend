@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
       - name: worker
-        image: travelduty/worker:4.2.9
+        image: travelduty/worker:5.5.4
         ports:
-        - containerPort: 3726
+        - containerPort: 6178
         resources:
           requests:
             memory: "64Mi"
