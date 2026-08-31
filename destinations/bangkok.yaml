@@ -2,10 +2,10 @@ name: Bangkok
 country: Thailand
 rating: 4.3/5
 price_range: $
-best_season: Spring
-flights_per_week: 24
-avg_stay_days: 12
+best_season: Winter
+flights_per_week: 13
+avg_stay_days: 7
 accommodations:
-  hotels: 49
-  hostels: 24
-  resorts: 20
+  hotels: 57
+  hostels: 21
+  resorts: 4
