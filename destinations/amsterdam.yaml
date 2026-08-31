@@ -1,11 +1,11 @@
 name: Amsterdam
 country: Netherlands
-rating: 4.3/5
+rating: 4.4/5
 price_range: $$$$
-best_season: Winter
-flights_per_week: 20
-avg_stay_days: 11
+best_season: Summer
+flights_per_week: 34
+avg_stay_days: 9
 accommodations:
-  hotels: 59
-  hostels: 8
-  resorts: 12
+  hotels: 42
+  hostels: 6
+  resorts: 16
