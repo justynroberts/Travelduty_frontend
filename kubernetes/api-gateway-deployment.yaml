@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: travelduty/api-gateway:5.3.1
+        image: travelduty/api-gateway:3.9.6
         ports:
-        - containerPort: 3694
+        - containerPort: 7011
         resources:
           requests:
             memory: "128Mi"
