@@ -1,11 +1,11 @@
 name: Miami
 country: USA
-rating: 4.8/5
+rating: 4.6/5
 price_range: $$$$
-best_season: Winter
-flights_per_week: 30
-avg_stay_days: 13
+best_season: Spring
+flights_per_week: 36
+avg_stay_days: 3
 accommodations:
-  hotels: 20
-  hostels: 21
-  resorts: 17
+  hotels: 53
+  hostels: 7
+  resorts: 6
