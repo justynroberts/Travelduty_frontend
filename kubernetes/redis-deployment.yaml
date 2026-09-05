@@ -4,7 +4,7 @@ metadata:
   name: redis
   namespace: travelduty
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: redis
@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: redis
-        image: travelduty/redis:2.0.8
+        image: travelduty/redis:1.5.5
         ports:
-        - containerPort: 5801
+        - containerPort: 4680
         resources:
           requests:
             memory: "256Mi"
-            cpu: "100m"
+            cpu: "250m"
