@@ -1,11 +1,11 @@
 name: Tokyo
 country: Japan
-rating: 3.5/5
-price_range: $$
-best_season: Winter
-flights_per_week: 40
-avg_stay_days: 12
+rating: 4.8/5
+price_range: $$$$
+best_season: Spring
+flights_per_week: 17
+avg_stay_days: 5
 accommodations:
-  hotels: 25
-  hostels: 25
-  resorts: 9
+  hotels: 38
+  hostels: 7
+  resorts: 10
