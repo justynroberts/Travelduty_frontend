@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: redis
-        image: travelduty/redis:2.7.5
+        image: travelduty/redis:5.8.8
         ports:
-        - containerPort: 5536
+        - containerPort: 8054
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "100m"
+            memory: "256Mi"
+            cpu: "250m"
