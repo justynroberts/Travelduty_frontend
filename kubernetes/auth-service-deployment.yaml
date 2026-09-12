@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: auth-service
-        image: travelduty/auth-service:1.9.9
+        image: travelduty/auth-service:5.9.0
         ports:
-        - containerPort: 3351
+        - containerPort: 8501
         resources:
           requests:
             memory: "128Mi"
-            cpu: "250m"
+            cpu: "100m"
