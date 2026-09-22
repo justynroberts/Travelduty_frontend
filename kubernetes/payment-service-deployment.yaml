@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
       - name: payment-service
-        image: travelduty/payment-service:4.4.7
+        image: travelduty/payment-service:5.6.8
         ports:
-        - containerPort: 6686
+        - containerPort: 6877
         resources:
           requests:
             memory: "128Mi"
