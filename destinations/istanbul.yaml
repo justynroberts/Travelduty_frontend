@@ -3,9 +3,9 @@ country: Turkey
 rating: 4.3/5
 price_range: $$$
 best_season: Winter
-flights_per_week: 32
-avg_stay_days: 4
+flights_per_week: 27
+avg_stay_days: 13
 accommodations:
-  hotels: 45
-  hostels: 8
+  hotels: 44
+  hostels: 5
   resorts: 5
