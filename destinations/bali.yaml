@@ -1,11 +1,11 @@
 name: Bali
 country: Indonesia
-rating: 3.2/5
-price_range: $$$$
-best_season: Spring
-flights_per_week: 14
-avg_stay_days: 5
+rating: 3.4/5
+price_range: $$$
+best_season: Winter
+flights_per_week: 16
+avg_stay_days: 10
 accommodations:
-  hotels: 53
-  hostels: 18
-  resorts: 17
+  hotels: 19
+  hostels: 19
+  resorts: 10
