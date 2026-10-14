@@ -13,7 +13,8 @@ export interface ChaosState {
 
 export const NO_CHAOS: ChaosState = { latencyMs: 0, jitterMs: 0, errorRate: 0, errorStatus: 503 };
 
-const EXEMPT = /^\/(health|ready|metrics|admin)(\/|\?|$)/;
+// `/api/admin` is the gateway's admin door: without it, gateway chaos would block its own reset.
+const EXEMPT = /^\/(health|ready|metrics|admin|api\/admin)(\/|\?|$)/;
 
 /**
  * Fault injection for incident-response demos. Every service exposes `/admin/chaos` so latency

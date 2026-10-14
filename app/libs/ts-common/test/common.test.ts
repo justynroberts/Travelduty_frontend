@@ -64,6 +64,7 @@ describe('createService', () => {
   const build = (chaos = {}) => {
     const app = createService({ name: 'svc', logger: false, chaos, random: () => 0 });
     app.get('/hello', async () => ({ hi: true }));
+    app.get('/api/admin/ping', async () => ({ ok: true }));
     return app;
   };
 
@@ -79,6 +80,7 @@ describe('createService', () => {
     expect(res.statusCode).toBe(503);
     expect(res.json().error.code).toBe('CHAOS_INJECTED');
     expect((await app.inject({ url: '/health' })).statusCode).toBe(200);
+    expect((await app.inject({ url: '/api/admin/ping' })).statusCode).toBe(200);
     await app.inject({ method: 'DELETE', url: '/admin/chaos' });
     expect((await app.inject({ url: '/hello' })).statusCode).toBe(200);
   });
