@@ -1,0 +1,51 @@
+# Every TravelDuty alert goes to PagerDuty (Events API v2), one incident per alert + service.
+# Timings favour speed: a new alert is sent 5s after it fires.
+templates:
+  - /etc/alertmanager/templates/*.tmpl
+
+route:
+  receiver: pagerduty
+  group_by: [alertname, service]
+  group_wait: 5s
+  group_interval: 30s
+  repeat_interval: 1h
+
+inhibit_rules:
+  # A service that is down shouldn't also page for its errors or latency.
+  - source_matchers: [alertname="TravelDutyServiceDown"]
+    target_matchers: [alertname=~"TravelDutyHighErrorRate|TravelDutyHighLatency"]
+    equal: [service]
+  # The critical form of an alert replaces its warning form.
+  - source_matchers: [severity="critical"]
+    target_matchers: [severity="warning"]
+    equal: [alertname, service]
+
+receivers:
+  - name: pagerduty
+    pagerduty_configs:
+      - routing_key_file: /tmp/pagerduty_routing_key
+        send_resolved: true
+        client: TravelDuty Alertmanager
+        client_url: https://travelduty.apps.fintonlabs.com
+        severity: '{{ template "travelduty.pd.severity" . }}'
+        description: '{{ template "travelduty.pd.description" . }}'
+        component: '{{ .CommonLabels.service }}'
+        group: travelduty
+        class: '{{ .CommonLabels.alertname }}'
+        links:
+          - href: https://travelduty.apps.fintonlabs.com
+            text: TravelDuty (Operations tab)
+          - href: '{{ template "travelduty.pd.runbook" . }}'
+            text: Runbook
+        details:
+          service: '{{ .CommonLabels.service }}'
+          alert: '{{ .CommonLabels.alertname }}'
+          severity: '{{ .CommonLabels.severity }}'
+          status: '{{ .Status }}'
+          summary: '{{ .CommonAnnotations.summary }}'
+          description: '{{ .CommonAnnotations.description }}'
+          current_value: '{{ .CommonAnnotations.value }}'
+          started_at: '{{ template "travelduty.pd.started" . }}'
+          instance: '{{ template "travelduty.pd.instances" . }}'
+          environment: production (Coolify)
+          firing_alerts: '{{ .Alerts.Firing | len }}'

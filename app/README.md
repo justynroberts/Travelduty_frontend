@@ -74,7 +74,9 @@ curl localhost:8080/api/status        # every service's health
 node scripts/e2e.mjs                  # or: make e2e — 22 end-to-end checks
 ```
 
-Add Prometheus (http://localhost:9090), already configured to scrape every service:
+Add Prometheus (http://localhost:9090) and Alertmanager (http://localhost:9093). Prometheus scrapes every
+service every 5s; the rules in `ops/prometheus/alerts.yml` page PagerDuty within ~30s when a service is down,
+fails over 5% / 20% of requests, or its p95 latency passes 1s / 3s. Set `PAGERDUTY_ROUTING_KEY` in `.env` first:
 
 ```bash
 docker compose --profile observability up --build -d
@@ -86,6 +88,8 @@ Optional environment (see `.env.example`):
 |---|---|
 | `WEBHOOK_URL` | notification-service also POSTs `{"text": …}` here, e.g. a Slack incoming webhook or webhook.site |
 | `ADMIN_TOKEN` | Protects every `/admin/*` endpoint; send it as `x-admin-token` |
+| `ADMIN_USERNAME`, `ADMIN_PASSWORD` | Sign-in for the Operations tab's chaos controls (an 8-hour HttpOnly session cookie). 5 failed sign-ins lock an IP out for 15 min; 20 across all IPs lock sign-in for 5 min |
+| `PAGERDUTY_ROUTING_KEY` | Events API v2 key Alertmanager pages (observability profile) |
 | `CHAOS_ERROR_RATE`, `CHAOS_LATENCY_MS`, … | Start services already degraded |
 
 ### Sample cards
@@ -102,7 +106,8 @@ Optional environment (see `.env.example`):
 ## Break it (chaos)
 
 Every service accepts `GET/PUT/DELETE /admin/chaos`. The gateway exposes all of them under one door, and
-the **Operations** tab in the web app has sliders for them.
+the **Operations** tab in the web app has sliders for them. When `ADMIN_USERNAME`/`ADMIN_PASSWORD` are set
+the tab asks you to sign in first; with `ADMIN_TOKEN` set, curl calls need `-H "x-admin-token: …"`.
 
 ```bash
 # 30% of payment-service requests fail with 503
@@ -165,7 +170,8 @@ data/airports.json        reference data shared by every language
 docs/contract.md          the cross-language service contract
 scripts/e2e.mjs           end-to-end checks against a running stack
 k8s/                      Kubernetes manifests
-ops/prometheus/           Prometheus scrape config
+ops/prometheus/           Prometheus scrape config and alert rules
+ops/alertmanager/         Alertmanager routing and the PagerDuty incident template
 ```
 
 ## Data sources

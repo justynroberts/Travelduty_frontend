@@ -1,6 +1,7 @@
 # TravelDuty: the whole platform on one machine.
 #   docker compose up --build           # web on http://localhost:3000, API on http://localhost:8080
-#   docker compose --profile observability up --build   # adds Prometheus on http://localhost:9090
+#   docker compose --profile observability up --build   # adds Prometheus (:9090) and Alertmanager (:9093);
+#                                                         # set PAGERDUTY_ROUTING_KEY in .env first
 name: travelduty
 
 x-service: &service
@@ -25,6 +26,9 @@ services:
       BOOKING_SERVICE_URL: http://booking-service:8085
       PAYMENT_SERVICE_URL: http://payment-service:8086
       NOTIFICATION_SERVICE_URL: http://notification-service:8087
+      # Optional: password sign-in for the Operations tab's chaos controls (both must be set).
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
     depends_on: [destination-service, flight-service, hotel-service, pricing-service, booking-service, payment-service, notification-service]
 
   destination-service:
@@ -99,9 +103,25 @@ services:
 
   prometheus:
     profiles: [observability]
-    image: prom/prometheus:v2.55.1
+    restart: unless-stopped
+    build: { context: ., dockerfile: ops/prometheus/Dockerfile }
+    image: travelduty/prometheus
     ports: ["9090:9090"]
-    volumes: ["./ops/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro"]
+    volumes: [promdata:/prometheus]
+    depends_on: [alertmanager]
+
+  alertmanager:
+    profiles: [observability]
+    restart: unless-stopped
+    build: { context: ., dockerfile: ops/alertmanager/Dockerfile }
+    image: travelduty/alertmanager
+    ports: ["9093:9093"]
+    environment:
+      # Events API v2 routing key of the PagerDuty service to page. Required: Alertmanager won't start without it.
+      PAGERDUTY_ROUTING_KEY: ${PAGERDUTY_ROUTING_KEY:-}
+    volumes: [amdata:/alertmanager]
 
 volumes:
   pgdata:
+  promdata:
+  amdata:

@@ -1,0 +1,76 @@
+# Alert rules for every TravelDuty service. Windows are short (30s) and `for` durations small
+# because these alerts drive near-real-time incident demos. Probe routes are excluded so health
+# checks and scrapes don't dilute the error ratio.
+groups:
+  - name: travelduty
+    rules:
+      - alert: TravelDutyServiceDown
+        expr: up{job="travelduty"} == 0
+        for: 10s
+        labels: { severity: critical }
+        annotations:
+          summary: "Service is down"
+          description: "Prometheus cannot scrape {{ $labels.service }} at {{ $labels.instance }}. The container is stopped, crashing or not answering /metrics."
+          value: "unreachable"
+          runbook_url: https://github.com/justynroberts/Travelduty_frontend/blob/master/app/README.md
+
+      - alert: TravelDutyHighErrorRate
+        expr: |
+          sum by (service) (rate(http_requests_total{job="travelduty", status=~"5..", route!~"/health|/ready|/metrics|.*/admin/.*"}[30s]))
+            / sum by (service) (rate(http_requests_total{job="travelduty", route!~"/health|/ready|/metrics|.*/admin/.*"}[30s]))
+            > 0.20
+        for: 10s
+        labels: { severity: critical }
+        annotations:
+          summary: "Failing {{ $value | humanizePercentage }} of requests"
+          description: "More than 20% of {{ $labels.service }} requests returned 5xx over the last 30s."
+          value: "{{ $value | humanizePercentage }} 5xx"
+          runbook_url: https://github.com/justynroberts/Travelduty_frontend/blob/master/app/README.md#break-it-chaos
+
+      - alert: TravelDutyHighErrorRate
+        expr: |
+          sum by (service) (rate(http_requests_total{job="travelduty", status=~"5..", route!~"/health|/ready|/metrics|.*/admin/.*"}[30s]))
+            / sum by (service) (rate(http_requests_total{job="travelduty", route!~"/health|/ready|/metrics|.*/admin/.*"}[30s]))
+            > 0.05
+        for: 15s
+        labels: { severity: warning }
+        annotations:
+          summary: "Failing {{ $value | humanizePercentage }} of requests"
+          description: "More than 5% of {{ $labels.service }} requests returned 5xx over the last 30s."
+          value: "{{ $value | humanizePercentage }} 5xx"
+          runbook_url: https://github.com/justynroberts/Travelduty_frontend/blob/master/app/README.md#break-it-chaos
+
+      - alert: TravelDutyHighLatency
+        expr: |
+          histogram_quantile(0.95, sum by (service, le) (rate(http_request_duration_seconds_bucket{job="travelduty", route!~"/health|/ready|/metrics|.*/admin/.*"}[30s])))
+            > 3
+        for: 15s
+        labels: { severity: critical }
+        annotations:
+          summary: "p95 latency is {{ $value | humanizeDuration }}"
+          description: "95th percentile response time for {{ $labels.service }} has been above 3s for 15s."
+          value: "p95 {{ $value | humanizeDuration }}"
+          runbook_url: https://github.com/justynroberts/Travelduty_frontend/blob/master/app/README.md#break-it-chaos
+
+      - alert: TravelDutyHighLatency
+        expr: |
+          histogram_quantile(0.95, sum by (service, le) (rate(http_request_duration_seconds_bucket{job="travelduty", route!~"/health|/ready|/metrics|.*/admin/.*"}[30s])))
+            > 1
+        for: 15s
+        labels: { severity: warning }
+        annotations:
+          summary: "p95 latency is {{ $value | humanizeDuration }}"
+          description: "95th percentile response time for {{ $labels.service }} has been above 1s for 15s."
+          value: "p95 {{ $value | humanizeDuration }}"
+          runbook_url: https://github.com/justynroberts/Travelduty_frontend/blob/master/app/README.md#break-it-chaos
+
+  - name: monitoring
+    rules:
+      - alert: TravelDutyAlertmanagerDown
+        expr: up{job="alertmanager"} == 0
+        for: 30s
+        labels: { severity: critical }
+        annotations:
+          summary: "Alertmanager is down"
+          description: "Prometheus cannot reach Alertmanager, so no further TravelDuty alerts will page."
+          value: "unreachable"

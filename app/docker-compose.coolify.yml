@@ -1,7 +1,8 @@
 # TravelDuty on Coolify (travelduty.apps.fintonlabs.com).
-# Same stack as docker-compose.yml, minus host port bindings and Prometheus: Traefik routes the
-# public domain to web:80, and nginx in web proxies /api to the gateway on the internal network.
-# Set ADMIN_TOKEN in Coolify to protect /admin/* (chaos).
+# Same stack as docker-compose.yml with no public host ports: Traefik routes the public domain to
+# web:80, and nginx in web proxies /api to the gateway on the internal network. Prometheus and
+# Alertmanager always run here and page PagerDuty.
+# Set ADMIN_TOKEN (protects /admin/*, i.e. chaos) and PAGERDUTY_ROUTING_KEY in Coolify.
 name: travelduty
 
 x-service: &service
@@ -26,6 +27,11 @@ services:
       BOOKING_SERVICE_URL: http://booking-service:8085
       PAYMENT_SERVICE_URL: http://payment-service:8086
       NOTIFICATION_SERVICE_URL: http://notification-service:8087
+      # Password sign-in for the Operations tab's chaos controls; set both in Coolify.
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      # Traefik and nginx sit in front, so the client IP (for the sign-in rate limit) is two hops back.
+      TRUST_PROXY_HOPS: 2
     depends_on: [destination-service, flight-service, hotel-service, pricing-service, booking-service, payment-service, notification-service]
 
   destination-service:
@@ -98,5 +104,37 @@ services:
       timeout: 3s
       retries: 20
 
+  # Monitoring. Bound to the server's loopback only, never public: reach them over an SSH tunnel,
+  #   ssh -L 9090:127.0.0.1:19090 -L 9093:127.0.0.1:19093 <server>
+  prometheus:
+    restart: unless-stopped
+    build: { context: ., dockerfile: ops/prometheus/Dockerfile }
+    image: travelduty/prometheus
+    ports: ["127.0.0.1:19090:9090"]
+    volumes: [promdata:/prometheus]
+    depends_on: [alertmanager]
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:9090/-/ready"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  alertmanager:
+    restart: unless-stopped
+    build: { context: ., dockerfile: ops/alertmanager/Dockerfile }
+    image: travelduty/alertmanager
+    ports: ["127.0.0.1:19093:9093"]
+    environment:
+      # Events API v2 routing key, set in Coolify. Alertmanager refuses to start without it.
+      PAGERDUTY_ROUTING_KEY: ${PAGERDUTY_ROUTING_KEY:-}
+    volumes: [amdata:/alertmanager]
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:9093/-/ready"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
 volumes:
   pgdata:
+  promdata:
+  amdata:

@@ -1,0 +1,21 @@
+{{/* PagerDuty incident fields for TravelDuty alerts. Each group is one alert on one service. */}}
+
+{{ define "travelduty.pd.description" -}}
+[{{ if eq .Status "firing" }}{{ .CommonLabels.severity | toUpper }}{{ else }}RESOLVED{{ end }}] TravelDuty {{ .CommonLabels.service }}: {{ with .CommonAnnotations.summary }}{{ . }}{{ else }}{{ .CommonLabels.alertname }}{{ end }}
+{{- end }}
+
+{{ define "travelduty.pd.severity" -}}
+{{ if eq .CommonLabels.severity "critical" }}critical{{ else if eq .CommonLabels.severity "warning" }}warning{{ else }}info{{ end }}
+{{- end }}
+
+{{ define "travelduty.pd.started" -}}
+{{ with index .Alerts 0 }}{{ .StartsAt.UTC.Format "2006-01-02 15:04:05 UTC" }}{{ end }}
+{{- end }}
+
+{{ define "travelduty.pd.instances" -}}
+{{ range $i, $a := .Alerts }}{{ if $i }}, {{ end }}{{ $a.Labels.instance }}{{ end }}
+{{- end }}
+
+{{ define "travelduty.pd.runbook" -}}
+{{ with .CommonAnnotations.runbook_url }}{{ . }}{{ else }}https://github.com/justynroberts/Travelduty_frontend/blob/master/app/README.md{{ end }}
+{{- end }}
