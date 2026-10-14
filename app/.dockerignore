@@ -1,0 +1,11 @@
+**/node_modules
+**/dist
+**/*.tsbuildinfo
+.git
+coverage
+k8s
+**/target
+**/.venv
+**/__pycache__
+**/.pytest_cache
+**/.ruff_cache

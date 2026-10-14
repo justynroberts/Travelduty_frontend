@@ -1,0 +1,15 @@
+global:
+  scrape_interval: 10s
+
+scrape_configs:
+  - job_name: travelduty
+    static_configs:
+      - targets:
+          - gateway:8080
+          - destination-service:8081
+          - flight-service:8082
+          - hotel-service:8083
+          - pricing-service:8084
+          - booking-service:8085
+          - payment-service:8086
+          - notification-service:8087

@@ -1,0 +1,44 @@
+# uv workspace for the Python services. Run `uv sync` at the repo root.
+[project]
+name = "travelduty-python"
+version = "0.1.0"
+description = "TravelDuty Python services (uv workspace root)"
+requires-python = ">=3.12"
+dependencies = [
+  "travelduty-common",
+  "travelduty-destination-service",
+  "travelduty-pricing-service",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.3,<9", "ruff>=0.7,<1"]
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = ["libs/py-common", "services/destination-service", "services/pricing-service"]
+
+[tool.uv.sources]
+travelduty-common = { workspace = true }
+travelduty-destination-service = { workspace = true }
+travelduty-pricing-service = { workspace = true }
+
+[tool.pytest.ini_options]
+testpaths = ["libs/py-common/tests", "services/destination-service/tests", "services/pricing-service/tests"]
+addopts = "--import-mode=importlib"
+markers = ["live: hits real external APIs; only runs with LIVE=1"]
+filterwarnings = ["ignore:Using `httpx` with `starlette.testclient` is deprecated"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+src = ["libs/py-common/src", "services/destination-service/src", "services/pricing-service/src"]
+extend-exclude = ["node_modules", "apps", "dist"]
+include = ["libs/py-common/**/*.py", "services/destination-service/**/*.py", "services/pricing-service/**/*.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["travelduty_common", "destination_service", "pricing_service"]

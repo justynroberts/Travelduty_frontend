@@ -1,0 +1,18 @@
+[project]
+name = "travelduty-common"
+version = "0.1.0"
+description = "Shared platform conventions for TravelDuty Python services (see docs/contract.md)"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "httpx>=0.27,<1",
+  "prometheus-client>=0.21,<1",
+  "pydantic>=2.9,<3",
+]
+
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/travelduty_common"]

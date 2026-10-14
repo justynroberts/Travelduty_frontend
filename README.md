@@ -14,3 +14,8 @@ This repository contains auto-generated fake data for the Travelduty travel book
 
 Random-code-scheduler automated builder
 
+
+## TravelDuty app
+
+`app/` holds the TravelDuty platform: eight polyglot microservices and a React front end.
+See [app/README.md](app/README.md). Run it with `cd app && docker compose up --build -d`.

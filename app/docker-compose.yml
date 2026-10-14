@@ -1,0 +1,107 @@
+# TravelDuty: the whole platform on one machine.
+#   docker compose up --build           # web on http://localhost:3000, API on http://localhost:8080
+#   docker compose --profile observability up --build   # adds Prometheus on http://localhost:9090
+name: travelduty
+
+x-service: &service
+  restart: unless-stopped
+  environment: &common-env
+    LOG_LEVEL: ${LOG_LEVEL:-info}
+    APP_VERSION: ${APP_VERSION:-compose}
+    ADMIN_TOKEN: ${ADMIN_TOKEN:-}
+
+services:
+  gateway:
+    <<: *service
+    build: { context: ., dockerfile: services/gateway/Dockerfile }
+    image: travelduty/gateway
+    ports: ["8080:8080"]
+    environment:
+      <<: *common-env
+      DESTINATION_SERVICE_URL: http://destination-service:8081
+      FLIGHT_SERVICE_URL: http://flight-service:8082
+      HOTEL_SERVICE_URL: http://hotel-service:8083
+      PRICING_SERVICE_URL: http://pricing-service:8084
+      BOOKING_SERVICE_URL: http://booking-service:8085
+      PAYMENT_SERVICE_URL: http://payment-service:8086
+      NOTIFICATION_SERVICE_URL: http://notification-service:8087
+    depends_on: [destination-service, flight-service, hotel-service, pricing-service, booking-service, payment-service, notification-service]
+
+  destination-service:
+    <<: *service
+    build: { context: ., dockerfile: services/destination-service/Dockerfile }
+    image: travelduty/destination-service
+
+  flight-service:
+    <<: *service
+    build: { context: ., dockerfile: services/flight-service/Dockerfile }
+    image: travelduty/flight-service
+
+  hotel-service:
+    <<: *service
+    build: { context: ., dockerfile: services/hotel-service/Dockerfile }
+    image: travelduty/hotel-service
+
+  pricing-service:
+    <<: *service
+    build: { context: ., dockerfile: services/pricing-service/Dockerfile }
+    image: travelduty/pricing-service
+
+  booking-service:
+    <<: *service
+    build: { context: ., dockerfile: services/booking-service/Dockerfile }
+    image: travelduty/booking-service
+    environment:
+      <<: *common-env
+      DATABASE_URL: postgres://travelduty:travelduty@postgres:5432/travelduty
+      FLIGHT_SERVICE_URL: http://flight-service:8082
+      HOTEL_SERVICE_URL: http://hotel-service:8083
+      PRICING_SERVICE_URL: http://pricing-service:8084
+      PAYMENT_SERVICE_URL: http://payment-service:8086
+      NOTIFICATION_SERVICE_URL: http://notification-service:8087
+    depends_on:
+      postgres: { condition: service_healthy }
+
+  payment-service:
+    <<: *service
+    build: { context: ., dockerfile: services/payment-service/Dockerfile }
+    image: travelduty/payment-service
+
+  notification-service:
+    <<: *service
+    build: { context: ., dockerfile: services/notification-service/Dockerfile }
+    image: travelduty/notification-service
+    environment:
+      <<: *common-env
+      # Set to a Slack incoming webhook (or https://webhook.site/...) to deliver notifications for real.
+      WEBHOOK_URL: ${WEBHOOK_URL:-}
+
+  web:
+    restart: unless-stopped
+    build: { context: ., dockerfile: apps/web/Dockerfile }
+    image: travelduty/web
+    ports: ["3000:80"]
+    depends_on: [gateway]
+
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: travelduty
+      POSTGRES_PASSWORD: travelduty
+      POSTGRES_DB: travelduty
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U travelduty"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  prometheus:
+    profiles: [observability]
+    image: prom/prometheus:v2.55.1
+    ports: ["9090:9090"]
+    volumes: ["./ops/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro"]
+
+volumes:
+  pgdata:

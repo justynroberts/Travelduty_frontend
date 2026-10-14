@@ -1,0 +1,7 @@
+go 1.23
+
+use (
+	./libs/go-platform
+	./services/flight-service
+	./services/notification-service
+)

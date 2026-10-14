@@ -1,0 +1,233 @@
+[
+  {
+    "code": "LHR",
+    "city": "London",
+    "country": "United Kingdom",
+    "countryCode": "GB",
+    "currency": "GBP",
+    "timezone": "Europe/London",
+    "lat": 51.5074,
+    "lon": -0.1278,
+    "costIndex": 1.35,
+    "tags": [
+      "city",
+      "culture"
+    ],
+    "blurb": "Royal palaces, world-class museums and a pub on every corner."
+  },
+  {
+    "code": "CDG",
+    "city": "Paris",
+    "country": "France",
+    "countryCode": "FR",
+    "currency": "EUR",
+    "timezone": "Europe/Paris",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "costIndex": 1.3,
+    "tags": [
+      "city",
+      "culture",
+      "food"
+    ],
+    "blurb": "Boulevards, bistros and the Louvre."
+  },
+  {
+    "code": "LIS",
+    "city": "Lisbon",
+    "country": "Portugal",
+    "countryCode": "PT",
+    "currency": "EUR",
+    "timezone": "Europe/Lisbon",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "costIndex": 0.9,
+    "tags": [
+      "beach",
+      "culture",
+      "food"
+    ],
+    "blurb": "Seven hills, yellow trams and pastéis de nata."
+  },
+  {
+    "code": "BCN",
+    "city": "Barcelona",
+    "country": "Spain",
+    "countryCode": "ES",
+    "currency": "EUR",
+    "timezone": "Europe/Madrid",
+    "lat": 41.3874,
+    "lon": 2.1686,
+    "costIndex": 1,
+    "tags": [
+      "beach",
+      "city",
+      "food"
+    ],
+    "blurb": "Gaudí, tapas and a city beach."
+  },
+  {
+    "code": "FCO",
+    "city": "Rome",
+    "country": "Italy",
+    "countryCode": "IT",
+    "currency": "EUR",
+    "timezone": "Europe/Rome",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "costIndex": 1.05,
+    "tags": [
+      "culture",
+      "food"
+    ],
+    "blurb": "Three thousand years of history and the best espresso in the world."
+  },
+  {
+    "code": "AMS",
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "countryCode": "NL",
+    "currency": "EUR",
+    "timezone": "Europe/Amsterdam",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "costIndex": 1.25,
+    "tags": [
+      "city",
+      "culture"
+    ],
+    "blurb": "Canals, bicycles and the Rijksmuseum."
+  },
+  {
+    "code": "KEF",
+    "city": "Reykjavik",
+    "country": "Iceland",
+    "countryCode": "IS",
+    "currency": "ISK",
+    "timezone": "Atlantic/Reykjavik",
+    "lat": 64.1466,
+    "lon": -21.9426,
+    "costIndex": 1.5,
+    "tags": [
+      "nature",
+      "adventure"
+    ],
+    "blurb": "Gateway to glaciers, geysers and the northern lights."
+  },
+  {
+    "code": "JFK",
+    "city": "New York",
+    "country": "United States",
+    "countryCode": "US",
+    "currency": "USD",
+    "timezone": "America/New_York",
+    "lat": 40.7128,
+    "lon": -74.006,
+    "costIndex": 1.6,
+    "tags": [
+      "city",
+      "culture",
+      "food"
+    ],
+    "blurb": "The city that never sleeps."
+  },
+  {
+    "code": "MEX",
+    "city": "Mexico City",
+    "country": "Mexico",
+    "countryCode": "MX",
+    "currency": "MXN",
+    "timezone": "America/Mexico_City",
+    "lat": 19.4326,
+    "lon": -99.1332,
+    "costIndex": 0.7,
+    "tags": [
+      "culture",
+      "food"
+    ],
+    "blurb": "Aztec ruins, murals and street tacos."
+  },
+  {
+    "code": "NRT",
+    "city": "Tokyo",
+    "country": "Japan",
+    "countryCode": "JP",
+    "currency": "JPY",
+    "timezone": "Asia/Tokyo",
+    "lat": 35.6762,
+    "lon": 139.6503,
+    "costIndex": 1.2,
+    "tags": [
+      "city",
+      "food",
+      "culture"
+    ],
+    "blurb": "Neon, temples and the world’s best sushi."
+  },
+  {
+    "code": "SIN",
+    "city": "Singapore",
+    "country": "Singapore",
+    "countryCode": "SG",
+    "currency": "SGD",
+    "timezone": "Asia/Singapore",
+    "lat": 1.3521,
+    "lon": 103.8198,
+    "costIndex": 1.3,
+    "tags": [
+      "city",
+      "food"
+    ],
+    "blurb": "Hawker centres and gardens in the sky."
+  },
+  {
+    "code": "BKK",
+    "city": "Bangkok",
+    "country": "Thailand",
+    "countryCode": "TH",
+    "currency": "THB",
+    "timezone": "Asia/Bangkok",
+    "lat": 13.7563,
+    "lon": 100.5018,
+    "costIndex": 0.6,
+    "tags": [
+      "city",
+      "food",
+      "beach"
+    ],
+    "blurb": "Golden temples, floating markets and legendary street food."
+  },
+  {
+    "code": "SYD",
+    "city": "Sydney",
+    "country": "Australia",
+    "countryCode": "AU",
+    "currency": "AUD",
+    "timezone": "Australia/Sydney",
+    "lat": -33.8688,
+    "lon": 151.2093,
+    "costIndex": 1.25,
+    "tags": [
+      "beach",
+      "city"
+    ],
+    "blurb": "Harbour views, Bondi and the Opera House."
+  },
+  {
+    "code": "CPT",
+    "city": "Cape Town",
+    "country": "South Africa",
+    "countryCode": "ZA",
+    "currency": "ZAR",
+    "timezone": "Africa/Johannesburg",
+    "lat": -33.9249,
+    "lon": 18.4241,
+    "costIndex": 0.65,
+    "tags": [
+      "nature",
+      "beach",
+      "adventure"
+    ],
+    "blurb": "Table Mountain, penguins and the winelands."
+  }
+]

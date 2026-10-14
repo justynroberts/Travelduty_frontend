@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pricing-service
+  labels: { app.kubernetes.io/name: pricing-service, app.kubernetes.io/part-of: travelduty }
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app.kubernetes.io/name: pricing-service }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: pricing-service, app.kubernetes.io/part-of: travelduty }
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8084"
+        prometheus.io/path: /metrics
+    spec:
+      securityContext: { runAsNonRoot: true }
+      containers:
+        - name: pricing-service
+          image: travelduty/pricing-service:latest
+          ports: [{ name: http, containerPort: 8084 }]
+          env:
+            - name: PORT
+              value: "8084"
+            - name: LOG_LEVEL
+              value: "info"
+            - name: ADMIN_TOKEN
+              valueFrom:
+                secretKeyRef: { name: travelduty-admin, key: token, optional: true }
+          readinessProbe:
+            httpGet: { path: /ready, port: http }
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /health, port: http }
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            requests: { cpu: 50m, memory: 64Mi }
+            limits: { memory: 256Mi }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pricing-service
+  labels: { app.kubernetes.io/part-of: travelduty }
+spec:
+  selector: { app.kubernetes.io/name: pricing-service }
+  ports: [{ name: http, port: 8084, targetPort: http }]

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flight-service
+  labels: { app.kubernetes.io/name: flight-service, app.kubernetes.io/part-of: travelduty }
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app.kubernetes.io/name: flight-service }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: flight-service, app.kubernetes.io/part-of: travelduty }
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8082"
+        prometheus.io/path: /metrics
+    spec:
+      securityContext: { runAsNonRoot: true }
+      containers:
+        - name: flight-service
+          image: travelduty/flight-service:latest
+          ports: [{ name: http, containerPort: 8082 }]
+          env:
+            - name: PORT
+              value: "8082"
+            - name: LOG_LEVEL
+              value: "info"
+            - name: ADMIN_TOKEN
+              valueFrom:
+                secretKeyRef: { name: travelduty-admin, key: token, optional: true }
+          readinessProbe:
+            httpGet: { path: /ready, port: http }
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /health, port: http }
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            requests: { cpu: 50m, memory: 64Mi }
+            limits: { memory: 256Mi }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flight-service
+  labels: { app.kubernetes.io/part-of: travelduty }
+spec:
+  selector: { app.kubernetes.io/name: flight-service }
+  ports: [{ name: http, port: 8082, targetPort: http }]

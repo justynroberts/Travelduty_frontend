@@ -1,0 +1,30 @@
+{
+  "name": "travelduty",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TravelDuty - a sample multi-microservice travel booking platform",
+  "type": "module",
+  "license": "MIT",
+  "workspaces": [
+    "libs/ts-common",
+    "services/gateway",
+    "services/booking-service",
+    "apps/web"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -b && npm run build -w @travelduty/web",
+    "typecheck": "tsc -b && npm run typecheck -w @travelduty/web",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "tsc -b --clean && rm -rf apps/web/dist"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^3.0.0"
+  }
+}

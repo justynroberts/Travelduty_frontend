@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: travelduty
+resources:
+  - namespace.yaml
+  - gateway.yaml
+  - destination-service.yaml
+  - flight-service.yaml
+  - hotel-service.yaml
+  - pricing-service.yaml
+  - booking-service.yaml
+  - payment-service.yaml
+  - notification-service.yaml
+  - web.yaml
