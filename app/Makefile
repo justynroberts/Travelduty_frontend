@@ -13,7 +13,7 @@ install: ## Install dependencies for every language
 
 test: test-ts test-go test-py test-java test-rust ## Run every unit/integration test suite
 
-test-ts: ## TypeScript: gateway, booking-service, libs/ts-common
+test-ts: ## TypeScript: gateway, booking-service, synthetics, libs/ts-common
 	npx tsc -b
 	npx vitest run
 

@@ -131,6 +131,30 @@ Useful metrics: `http_requests_total`, `http_request_duration_seconds`, `upstrea
 and `bookings_total{status}`. Every log line is JSON and carries `requestId`, so you can follow one request
 across all eight services with `docker compose logs | grep <request-id>`.
 
+## Synthetics
+
+`services/synthetics` runs simulated users (3 by default, `SYNTHETICS_USERS`) through the gateway around
+the clock, so every service always has traffic and the error and latency alerts always have something to
+measure. Each user loops through a weighted mix of journeys with a 1-4s pause between them:
+
+| Journey | Weight | Calls | Services exercised |
+|---|---|---|---|
+| `browse` | 4 | destinations, one destination, currencies | destination, pricing |
+| `search` | 4 | destinations, trip search | destination, flight, hotel, pricing |
+| `book` | 1 | search, book (card 4242), fetch booking, notifications, cancel | all eight |
+| `my-trips` | 1 | bookings by email | booking |
+
+Bookings are cancelled straight away, which releases the seats and room and refunds the charge, so
+synthetic traffic never uses up inventory. A cancellation that fails (say, under chaos) is retried before
+the next booking. Synthetic requests carry `x-request-id: syn-<journey>-…` and the user agent
+`TravelDuty-Synthetics`; their bookings use `synthetic.user<N>@travelduty.test`.
+
+It exports `synthetic_journeys_total{journey,outcome,step}` (outcome `ok`, `degraded`, `sold_out` or
+`failed`, with the failing step) and `synthetic_journey_duration_seconds`. `TravelDutySyntheticJourneyFailing`
+pages when more than half of a journey's runs fail, and `TravelDutySyntheticsDown` warns when synthetic
+traffic stops. `GET :8088/status` shows the last result and failure per journey;
+`POST :8088/admin/synthetics/pause` and `/resume` (with `x-admin-token`) stop and start it.
+
 ## Develop
 
 Toolchains: Node 20, Go 1.23+, Python 3.12 via [uv](https://docs.astral.sh/uv/), Java 17 (the Maven wrapper
@@ -163,6 +187,7 @@ Kubernetes manifests live in [`k8s/`](k8s/README.md) (`kubectl apply -k k8s/`).
 ```
 apps/web/                 React front end (served by nginx in Docker)
 services/<name>/          one directory per service, each with its own Dockerfile
+services/synthetics/      simulated users that keep traffic flowing for the alerts
 libs/ts-common/           TS platform: service bootstrap, resilient HTTP client, chaos, metrics, cache
 libs/go-platform/         Go platform: same contract for the Go services, plus generic hold store
 libs/py-common/           Python platform: same contract for the FastAPI services

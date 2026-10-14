@@ -6,6 +6,7 @@ COPY package.json package-lock.json tsconfig.base.json tsconfig.json ./
 COPY libs/ts-common/package.json libs/ts-common/
 COPY services/gateway/package.json services/gateway/
 COPY services/booking-service/package.json services/booking-service/
+COPY services/synthetics/package.json services/synthetics/
 COPY apps/web/package.json apps/web/
 RUN npm ci --ignore-scripts --workspace @travelduty/booking-service --include-workspace-root
 COPY libs/ts-common libs/ts-common

@@ -26,6 +26,11 @@ scrape_configs:
       - { targets: [payment-service:8086], labels: { service: payment-service } }
       - { targets: [notification-service:8087], labels: { service: notification-service } }
 
+  # Synthetic users. Kept out of the `travelduty` job so the per-service alerts only see real services.
+  - job_name: synthetics
+    static_configs:
+      - { targets: [synthetics:8088], labels: { service: synthetics } }
+
   - job_name: prometheus
     static_configs:
       - { targets: [localhost:9090], labels: { service: prometheus } }

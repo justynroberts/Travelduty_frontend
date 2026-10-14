@@ -9,6 +9,7 @@
     "libs/ts-common",
     "services/gateway",
     "services/booking-service",
+    "services/synthetics",
     "apps/web"
   ],
   "engines": {

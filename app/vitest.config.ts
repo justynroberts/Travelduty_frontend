@@ -11,7 +11,7 @@ export default defineConfig({
     ],
   },
   test: {
-    include: ['libs/ts-common/test/**/*.test.ts', 'services/gateway/test/**/*.test.ts', 'services/booking-service/test/**/*.test.ts'],
+    include: ['libs/ts-common/test/**/*.test.ts', 'services/gateway/test/**/*.test.ts', 'services/booking-service/test/**/*.test.ts', 'services/synthetics/test/**/*.test.ts'],
     testTimeout: 20_000,
   },
 });

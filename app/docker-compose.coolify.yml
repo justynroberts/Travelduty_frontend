@@ -90,6 +90,19 @@ services:
     expose: ["80"]
     depends_on: [gateway]
 
+  # TravelDuty Synthetics: simulated users browsing, searching and booking through the gateway
+  # around the clock, so alerts always have traffic to measure.
+  synthetics:
+    <<: *service
+    build: { context: ., dockerfile: services/synthetics/Dockerfile }
+    image: travelduty/synthetics
+    environment:
+      <<: *common-env
+      GATEWAY_URL: http://gateway:8080
+      SYNTHETICS_USERS: ${SYNTHETICS_USERS:-3}
+      SYNTHETICS_ENABLED: ${SYNTHETICS_ENABLED:-true}
+    depends_on: [gateway]
+
   postgres:
     image: postgres:16-alpine
     restart: unless-stopped

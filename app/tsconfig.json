@@ -3,6 +3,7 @@
   "references": [
     { "path": "libs/ts-common" },
     { "path": "services/gateway" },
-    { "path": "services/booking-service" }
+    { "path": "services/booking-service" },
+    { "path": "services/synthetics" }
   ]
 }
