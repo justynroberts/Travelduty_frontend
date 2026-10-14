@@ -1,0 +1,1232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SRE Agent Memories</title>
+
+<script>
+  /* Set the theme before first paint so there is no flash. */
+  (function(){
+    var t = null;
+    try { t = localStorage.getItem("pd_theme"); } catch (e) {}   // blocked on file:// in Safari
+    if (!t){
+      try { t = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"; }
+      catch (e) { t = "dark"; }
+    }
+    document.documentElement.setAttribute("data-theme", t);
+  })();
+  // Any script failure must be visible, not silent.
+  window.addEventListener("error", function(ev){
+    try { navigator.sendBeacon("/diag", new Blob([JSON.stringify(
+      { t:new Date().toISOString(), fatal:String(ev.message), src:String(ev.filename)+":"+ev.lineno })],
+      {type:"application/json"})); } catch(e){}
+    var box = document.getElementById("gateErr");
+    if (box) box.innerHTML = '<div class="err">Script error: ' +
+      String(ev.message || ev.error).slice(0, 300) + '</div>';
+  });
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Loaded non-blockingly: a stalled Google Fonts request must never hold up the
+     parser-executed script below, which would leave the login button inert. -->
+<link rel="stylesheet" media="print" onload="this.media='all'"
+  href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap">
+<link rel="stylesheet" media="print" onload="this.media='all'"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap">
+
+<style>
+  /* ---------- tokens ---------- */
+  [data-theme="dark"]{
+    --bg:#0b0d10; --panel:#121519; --panel-2:#171b21; --sunk:#0e1216;
+    --line:#242a32; --line-2:#2e3540;
+    --text:#e6e9ee; --dim:#8b94a3; --faint:#5b6472;
+    --accent:#4ade80; --accent-ink:#062012; --accent-hover:#5eeb95;
+    --amber:#fbbf24; --blue:#60a5fa; --violet:#a78bfa; --rose:#fb7185;
+    --tag-playbook-bg:rgba(96,165,250,.15); --tag-playbook-fg:#60a5fa;
+    --tag-runbook-bg:rgba(167,139,250,.15); --tag-runbook-fg:#a78bfa;
+    --tag-summary-bg:rgba(251,191,36,.14); --tag-summary-fg:#fbbf24;
+    --tag-profile-bg:rgba(74,222,128,.14); --tag-profile-fg:#4ade80;
+    --code-fg:#a5d6ff;
+    --warn-bg:rgba(251,191,36,.08); --warn-line:rgba(251,191,36,.28); --warn-fg:#fcd34d;
+    --err-bg:rgba(251,113,133,.09); --err-line:rgba(251,113,133,.3); --err-fg:#fda4b4;
+    --gate-bg:radial-gradient(1200px 600px at 50% -10%,#16202b,#0b0d10);
+    --shadow:0 18px 50px rgba(0,0,0,.55);
+    --scroll:#232a33;
+  }
+  [data-theme="light"]{
+    --bg:#f6f7f9; --panel:#ffffff; --panel-2:#f0f2f5; --sunk:#f4f6f8;
+    --line:#e2e6ec; --line-2:#cfd6e0;
+    --text:#111826; --dim:#5c6675; --faint:#8b94a3;
+    --accent:#16a34a; --accent-ink:#ffffff; --accent-hover:#15803d;
+    --amber:#b45309; --blue:#2563eb; --violet:#7c3aed; --rose:#e11d48;
+    --tag-playbook-bg:#e5edff; --tag-playbook-fg:#1d4ed8;
+    --tag-runbook-bg:#efe8ff; --tag-runbook-fg:#6d28d9;
+    --tag-summary-bg:#fdf0d5; --tag-summary-fg:#92400e;
+    --tag-profile-bg:#dcfce7; --tag-profile-fg:#15803d;
+    --code-fg:#0b4a8f;
+    --warn-bg:#fef7e6; --warn-line:#f2d69a; --warn-fg:#8a5a06;
+    --err-bg:#fdecef; --err-line:#f3bcc6; --err-fg:#b02135;
+    --gate-bg:radial-gradient(1200px 600px at 50% -10%,#e6edf6,#f6f7f9);
+    --shadow:0 18px 50px rgba(16,24,40,.16);
+    --scroll:#d3dae3;
+  }
+  :root{ --radius:10px; }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Bricolage Grotesque",ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:14px; line-height:1.5; font-optical-sizing:auto;
+    -webkit-font-smoothing:antialiased;
+  }
+  button{font:inherit;color:inherit;cursor:pointer;font-family:inherit}
+  input,textarea{font-family:inherit}
+  code,pre,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+  .material-symbols-rounded{
+    font-family:"Material Symbols Rounded"; font-weight:normal; font-style:normal;
+    line-height:1; letter-spacing:normal; text-transform:none; display:inline-block;
+    white-space:nowrap; word-wrap:normal; direction:ltr;
+    -webkit-font-feature-settings:"liga"; -webkit-font-smoothing:antialiased;
+    font-variation-settings:"FILL" 0,"wght" 400,"GRAD" 0,"opsz" 20;
+    font-size:18px; vertical-align:-4px; flex:none;
+  }
+  .ico-sm{font-size:16px; vertical-align:-3px}
+
+  /* ---------- gate ---------- */
+  #gate{position:fixed; inset:0; display:grid; place-items:center; background:var(--gate-bg); z-index:50; padding:24px}
+  .card{width:100%; max-width:452px; background:var(--panel); border:1px solid var(--line);
+        border-radius:16px; padding:30px; box-shadow:var(--shadow)}
+  .card h1{margin:0 0 6px; font-size:21px; font-weight:700; letter-spacing:-.02em; display:flex; align-items:center; gap:9px}
+  .card h1 .material-symbols-rounded{font-size:24px; color:var(--accent); vertical-align:-5px}
+  .card p.sub{margin:0 0 22px; color:var(--dim); font-size:13px}
+  label{display:block; font-size:12px; color:var(--dim); margin-bottom:7px; font-weight:500}
+  .field{width:100%; background:var(--sunk); border:1px solid var(--line); color:var(--text);
+         border-radius:8px; padding:11px 12px; outline:none}
+  .field:focus{border-color:var(--accent); box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent)}
+  .btn{background:var(--accent); color:var(--accent-ink); border:0; border-radius:8px;
+       padding:11px 16px; font-weight:600; width:100%; margin-top:16px;
+       display:inline-flex; align-items:center; justify-content:center; gap:7px}
+  .btn:hover:not([disabled]){background:var(--accent-hover)}
+  .btn[disabled]{opacity:.5; cursor:not-allowed}
+  .btn.ghost{background:transparent; border:1px solid var(--line); color:var(--dim); width:auto;
+             padding:6px 11px; font-weight:500; margin:0; border-radius:7px; font-size:12.5px}
+  .btn.ghost:hover:not([disabled]){border-color:var(--line-2); color:var(--text); background:var(--panel-2)}
+  .btn.danger{background:var(--rose); color:#fff}
+  .btn.danger:hover:not([disabled]){filter:brightness(1.08)}
+  .btn.icon{width:34px; height:30px; padding:0; justify-content:center}
+  .chk{display:flex; align-items:center; gap:8px; margin-top:14px; color:var(--dim); font-size:12.5px}
+  .chk input{accent-color:var(--accent)}
+  .err{margin-top:14px; padding:10px 12px; border-radius:8px; font-size:12.5px;
+       background:var(--err-bg); border:1px solid var(--err-line); color:var(--err-fg)}
+  .hint{margin-top:18px; font-size:11.5px; color:var(--faint); line-height:1.65}
+  .hint code{background:var(--panel-2); padding:1px 4px; border-radius:4px}
+
+  /* ---------- shell ---------- */
+  #app{display:none; height:100%; grid-template-rows:auto 1fr}
+  header{display:flex; align-items:center; gap:12px; padding:11px 18px;
+         border-bottom:1px solid var(--line); background:var(--panel)}
+  .brand{font-weight:700; letter-spacing:-.02em; white-space:nowrap; display:flex; align-items:center; gap:8px; font-size:15px}
+  .brand .material-symbols-rounded{color:var(--accent); font-size:21px}
+  .spacer{flex:1}
+  .meta{color:var(--faint); font-size:12px; white-space:nowrap}
+  main{display:grid; grid-template-columns:312px 1fr; min-height:0}
+  aside{border-right:1px solid var(--line); display:flex; flex-direction:column; min-height:0; background:var(--panel)}
+  .aside-top{padding:12px; border-bottom:1px solid var(--line); display:flex; flex-direction:column; gap:9px}
+  .search{position:relative}
+  .search .material-symbols-rounded{position:absolute; left:10px; top:9px; color:var(--faint); font-size:18px}
+  .search .field{padding-left:34px}
+  .segmented{display:flex; background:var(--panel-2); border:1px solid var(--line); border-radius:8px; padding:2px; gap:2px}
+  .segmented button{flex:1; border:0; background:transparent; color:var(--dim); font-size:11.5px;
+                    padding:5px 4px; border-radius:6px; font-weight:500; white-space:nowrap}
+  .segmented button:hover{color:var(--text)}
+  .segmented button.on{background:var(--panel); color:var(--text); box-shadow:0 1px 2px rgba(0,0,0,.14)}
+  .aside-foot{padding:9px 12px; border-top:1px solid var(--line); display:flex; gap:8px; align-items:center}
+  .list{overflow-y:auto; flex:1; padding:6px}
+  .pill{font-size:10px; padding:1px 6px; border-radius:99px; border:1px solid var(--line);
+        color:var(--faint); margin-left:6px; font-weight:600}
+  .svc{width:100%; text-align:left; background:transparent; border:1px solid transparent; border-radius:8px;
+       padding:9px 10px; display:flex; align-items:center; gap:9px; margin-bottom:2px}
+  .svc:hover{background:var(--panel-2)}
+  .svc.on{background:var(--panel-2); border-color:var(--line-2)}
+  .svc .nm{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:500}
+  .svc .id{font-size:10.5px; color:var(--faint); font-weight:400}
+  .count{font-size:11px; padding:1px 7px; border-radius:99px; background:var(--panel-2); color:var(--dim);
+         border:1px solid var(--line); min-width:24px; text-align:center; font-weight:600}
+  .count.has{background:var(--tag-profile-bg); color:var(--tag-profile-fg); border-color:transparent}
+  .count.zero{opacity:.4}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--faint);flex:none}
+  .dot.active{background:var(--accent)}
+
+  section.pane{overflow-y:auto; min-height:0; padding:20px 24px 80px; transition:padding-right .22s ease}
+  body.drawer-open section.pane{padding-right:calc(min(560px,92vw) + 24px)}
+  .pane-head{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:4px}
+  .pane-head h2{margin:0; font-size:19px; font-weight:700; letter-spacing:-.02em}
+  .pane-sub{color:var(--faint); font-size:12px; margin-bottom:16px}
+  .toolbar{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:16px}
+  .chips{display:flex; gap:7px; flex-wrap:wrap}
+  .chip{background:var(--panel-2); border:1px solid var(--line); color:var(--dim);
+        border-radius:99px; padding:4px 12px; font-size:12px; font-weight:500}
+  .chip:hover{color:var(--text)}
+  .chip.on{color:var(--text); border-color:var(--line-2); background:var(--panel)}
+
+  .mem{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); margin-bottom:12px; overflow:hidden}
+  .mem.editing{border-color:var(--accent)}
+  .mem-head{display:flex; align-items:center; gap:10px; padding:9px 10px 9px 14px; background:var(--panel-2); flex-wrap:wrap}
+  .tag{font-size:11px; padding:2px 9px; border-radius:5px; font-weight:600}
+  .t-playbook{background:var(--tag-playbook-bg); color:var(--tag-playbook-fg)}
+  .t-runbook{background:var(--tag-runbook-bg); color:var(--tag-runbook-fg)}
+  .t-incident_summary{background:var(--tag-summary-bg); color:var(--tag-summary-fg)}
+  .t-service_profile{background:var(--tag-profile-bg); color:var(--tag-profile-fg)}
+  .t-other{background:var(--panel); color:var(--dim)}
+  .mem-head .ts{color:var(--faint); font-size:11.5px}
+  .mem-body{padding:14px 16px; font-size:13.2px; color:var(--text); opacity:.92; overflow-wrap:anywhere}
+  .mem-body h3{font-size:14px; margin:16px 0 6px; opacity:1; font-weight:700}
+  .mem-body h3:first-child{margin-top:0}
+  .mem-body p{margin:0 0 10px}
+  .mem-body ul{margin:0 0 10px; padding-left:20px}
+  .mem-body li{margin-bottom:3px}
+  .mem-body code{background:var(--panel-2); padding:1px 5px; border-radius:4px; font-size:12px; color:var(--code-fg)}
+  .mem-body pre{background:var(--sunk); border:1px solid var(--line); border-radius:7px; padding:11px 13px;
+                margin:0 0 11px; overflow-x:auto; font-size:12px; line-height:1.55; color:var(--code-fg); white-space:pre}
+  .mem-body strong{font-weight:700}
+  .mem-body.clip{max-height:250px; overflow:hidden; position:relative}
+  .mem-body.clip::after{content:""; position:absolute; left:0; right:0; bottom:0; height:70px;
+                        background:linear-gradient(transparent,var(--panel))}
+  .mem-foot{padding:8px 12px; border-top:1px solid var(--line); display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+  .mem-foot .mono{font-size:11px; color:var(--faint)}
+  .editor{width:100%; min-height:320px; resize:vertical; background:var(--sunk); border:1px solid var(--line);
+          color:var(--text); border-radius:8px; padding:12px 14px; outline:none;
+          font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12.5px; line-height:1.6}
+  .editor:focus{border-color:var(--accent)}
+  a{color:var(--blue); text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .empty{color:var(--faint); text-align:center; padding:80px 20px; font-size:13.5px; line-height:1.8}
+  .empty .material-symbols-rounded{font-size:34px; opacity:.5; display:block; margin:0 auto 10px}
+  .bar{height:2px; background:var(--accent); width:0; transition:width .25s; position:fixed; top:0; left:0; z-index:60}
+  .warn{background:var(--warn-bg); border:1px solid var(--warn-line); color:var(--warn-fg);
+        border-radius:8px; padding:9px 12px; font-size:12.5px; margin-bottom:16px;
+        display:flex; align-items:flex-start; gap:8px}
+
+  /* ---------- modal + toast ---------- */
+  #modal{position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; place-items:center; z-index:70; padding:24px}
+  #modal.show{display:grid}
+  .modal-card{width:100%; max-width:480px; background:var(--panel); border:1px solid var(--line);
+              border-radius:14px; padding:24px; box-shadow:var(--shadow)}
+  .modal-card h3{margin:0 0 8px; font-size:17px; font-weight:700; display:flex; align-items:center; gap:9px; letter-spacing:-.01em}
+  .modal-card h3 .material-symbols-rounded{color:var(--rose); font-size:22px}
+  .modal-card p{margin:0 0 12px; color:var(--dim); font-size:13px; line-height:1.6}
+  .preview{background:var(--sunk); border:1px solid var(--line); border-radius:8px; padding:10px 12px;
+           font-size:12px; color:var(--dim); max-height:110px; overflow:hidden; margin-bottom:16px}
+  .modal-actions{display:flex; gap:9px; justify-content:flex-end}
+  .modal-actions .btn{width:auto; margin:0}
+
+  /* ---------- map ---------- */
+  #mapWrap{position:relative; height:calc(100vh - 210px); min-height:420px; border:1px solid var(--line);
+           border-radius:var(--radius); background:var(--sunk); overflow:hidden; cursor:grab}
+  #mapWrap.drag{cursor:grabbing}
+  #mapWrap svg{display:block; width:100%; height:100%; touch-action:none}
+  .lnk{fill:none; stroke:var(--line-2); stroke-width:1.4; opacity:.75}
+  .lnk.hub{stroke-width:2.2; opacity:.9}
+  .hub circle{stroke:var(--line-2); stroke-width:1.5}
+  .hub text, .core text{paint-order:stroke; stroke:var(--sunk); stroke-width:3px; stroke-linejoin:round}
+  .core circle{fill:var(--accent); opacity:.14; stroke:var(--accent); stroke-width:2}
+  .core .t1{fill:var(--text); font-weight:700; font-size:15px}
+  .core .t2{fill:var(--faint); font-size:11px}
+  .hub text{fill:var(--text); font-size:12px; font-weight:600}
+  .hub .n{fill:var(--faint); font-size:10.5px; font-weight:500}
+  .leaf{cursor:pointer}
+  .leaf circle{stroke:var(--sunk); stroke-width:2; transition:r .12s, stroke .12s}
+  .leaf:hover circle{stroke:var(--text); stroke-width:2.5}
+  .leaf.sel circle{stroke:var(--accent); stroke-width:3}
+  .more{cursor:pointer}
+  .more circle{fill:var(--panel-2); stroke:var(--line-2); stroke-width:1.5; stroke-dasharray:3 3}
+  .more text{fill:var(--dim); font-size:10.5px; font-weight:600}
+  .map-hint{position:absolute; left:12px; bottom:10px; color:var(--faint); font-size:11px;
+            background:color-mix(in srgb,var(--panel) 82%,transparent); padding:4px 9px; border-radius:6px}
+  .zoomers{position:absolute; right:12px; bottom:10px; display:flex; gap:6px}
+
+  #tip{position:fixed; z-index:75; pointer-events:none; max-width:380px; display:none;
+       background:var(--panel); border:1px solid var(--line-2); border-radius:10px; padding:11px 13px;
+       box-shadow:var(--shadow); font-size:12.5px; line-height:1.55}
+  #tip.show{display:block}
+  #tip .th{display:flex; align-items:center; gap:8px; margin-bottom:6px}
+  #tip .tb{color:var(--dim); max-height:120px; overflow:hidden}
+  #tip .tf{color:var(--faint); font-size:11px; margin-top:7px}
+
+  #drawer{position:fixed; top:0; right:0; bottom:0; width:min(560px,92vw); background:var(--bg);
+          border-left:1px solid var(--line); box-shadow:var(--shadow); z-index:72;
+          transform:translateX(102%); transition:transform .22s ease; display:flex; flex-direction:column}
+  #drawer.show{transform:none}
+  .dr-top{display:flex; align-items:center; gap:10px; padding:12px 14px; border-bottom:1px solid var(--line);
+          background:var(--panel)}
+  .dr-top b{font-size:14px; font-weight:700}
+  .dr-body{overflow-y:auto; padding:14px; flex:1}
+  .dr-body .mem{margin:0}
+
+  #toasts{position:fixed; right:18px; bottom:18px; display:flex; flex-direction:column; gap:9px; z-index:80}
+  .toast{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--accent);
+         border-radius:9px; padding:11px 15px; font-size:13px; box-shadow:var(--shadow);
+         display:flex; align-items:center; gap:9px; max-width:400px; animation:pop .18s ease-out}
+  .toast.bad{border-left-color:var(--rose); color:var(--err-fg)}
+  .toast .material-symbols-rounded{font-size:19px}
+  @keyframes pop{from{opacity:0; transform:translateY(6px)}to{opacity:1; transform:none}}
+
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-thumb{background:var(--scroll); border-radius:99px; border:2px solid var(--panel)}
+  ::-webkit-scrollbar-track{background:transparent}
+  @media (max-width:760px){ main{grid-template-columns:1fr} aside{display:none} }
+</style>
+</head>
+<body>
+
+<div class="bar" id="bar"></div>
+
+<div id="gate">
+  <form class="card" id="gateForm" action="javascript:void(0)" novalidate>
+    <h1><span class="material-symbols-rounded">neurology</span> SRE Agent Memories</h1>
+    <p class="sub">Browse, edit and delete what the PagerDuty SRE Agent has learned, per service.</p>
+    <label for="key">PagerDuty API key</label>
+    <input class="field mono" id="key" type="password" autocomplete="off" spellcheck="false"
+           required placeholder="u+xxxxxxxxxxxxxxxxxx">
+    <label class="chk"><input type="checkbox" id="remember"> Keep for this tab <span style="color:var(--faint)">(lost when the tab closes)</span></label>
+    <button class="btn" id="go" type="button"><span class="material-symbols-rounded">login</span> Connect</button>
+    <div id="gateErr"></div>
+    <div id="gateLog" class="hint" style="white-space:pre-line"></div>
+    <p class="hint" id="stamp" style="color:var(--accent)">build 12:54:47-020da7</p>
+    <p class="hint">
+      Reading needs <code>incident.read</code>. Editing and deleting need
+      <code>sre_agent.write</code>. Both need a PagerDuty Advance subscription. The key goes
+      straight from your browser to <code>api.pagerduty.com</code> &mdash; there is no server
+      in between, and nothing is written to disk unless you tick the box.
+    </p>
+  </form>
+</div>
+
+<div id="app">
+  <header>
+    <div class="brand"><span class="material-symbols-rounded">neurology</span> SRE Memories</div>
+    <div class="meta" id="acct"></div>
+    <div class="spacer"></div>
+    <button class="btn ghost" id="scan"><span class="material-symbols-rounded ico-sm">manage_search</span> Count all</button>
+    <button class="btn ghost icon" id="theme" title="Toggle light / dark"><span class="material-symbols-rounded" id="themeIcon">light_mode</span></button>
+    <button class="btn ghost" id="logout"><span class="material-symbols-rounded ico-sm">logout</span> Sign out</button>
+  </header>
+  <main>
+    <aside>
+      <div class="aside-top">
+        <div class="search">
+          <span class="material-symbols-rounded">search</span>
+          <input class="field" id="filter" placeholder="Filter services…" autocomplete="off">
+        </div>
+        <div class="segmented" id="modes">
+          <button data-m="all" class="on">All</button>
+          <button data-m="seeded">Seeded</button>
+          <button data-m="unseeded">Needs seed</button>
+          <button data-m="norunbook">No runbook</button>
+        </div>
+        <div class="meta" id="svcMeta"></div>
+      </div>
+      <div class="list" id="svcList"></div>
+      <div class="aside-foot">
+        <div class="meta" id="tally" style="flex:1"></div>
+        <button class="btn ghost" id="copyList" title="Copy the visible services as a worklist">
+          <span class="material-symbols-rounded ico-sm">content_copy</span> Copy list</button>
+      </div>
+    </aside>
+    <section class="pane" id="pane">
+      <div class="empty"><span class="material-symbols-rounded">dns</span>Pick a service to load its memories.</div>
+    </section>
+  </main>
+</div>
+
+<div id="modal"><div class="modal-card" id="modalCard"></div></div>
+<div id="tip"></div>
+<div id="drawer">
+  <div class="dr-top">
+    <span class="material-symbols-rounded" style="color:var(--accent)">hub</span>
+    <b id="drTitle">Memory</b>
+    <div style="flex:1"></div>
+    <button class="btn ghost icon" id="drClose" title="Close (Esc)">
+      <span class="material-symbols-rounded ico-sm">close</span></button>
+  </div>
+  <div class="dr-body" id="drBody"></div>
+</div>
+<div id="toasts"></div>
+
+<script>
+const API = "https://api.pagerduty.com";
+const TYPES = ["playbook", "runbook", "incident_summary", "service_profile"];
+const LABEL = {
+  playbook: "Playbook", runbook: "Runbook",
+  incident_summary: "Incident summary", service_profile: "Service profile"
+};
+const ICON = {
+  playbook: "menu_book", runbook: "developer_guide",
+  incident_summary: "summarize", service_profile: "dns"
+};
+
+let KEY = "";
+let services = [];
+let counts = {};
+let breakdown = {};         // serviceId -> { type: n }
+let mode = "all";           // all | seeded | unseeded | norunbook
+let current = null;
+let memCache = {};
+let sortDesc = true;        // latest first
+let editing = null;         // memory id currently open in the editor
+let subdomain = null;
+let viewType = "all";       // which type the open service is showing
+let view = "list";          // list | map
+let typedCache = {};        // "serviceId|type" -> memories[]
+
+/* ---------------- helpers ---------------- */
+
+const $ = id => document.getElementById(id);
+const store = {
+  get(k, s){ try { return (s ? sessionStorage : localStorage).getItem(k); } catch { return null; } },
+  set(k, v, s){ try { (s ? sessionStorage : localStorage).setItem(k, v); } catch {} },
+  del(k, s){ try { (s ? sessionStorage : localStorage).removeItem(k); } catch {} }
+};
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c =>
+  ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+
+function progress(pct){
+  const b = $("bar");
+  b.style.width = pct + "%";
+  if (pct >= 100) setTimeout(() => { b.style.width = "0"; }, 350);
+}
+
+function toast(msg, bad){
+  const el = document.createElement("div");
+  el.className = "toast" + (bad ? " bad" : "");
+  el.innerHTML = `<span class="material-symbols-rounded">${bad ? "error" : "check_circle"}</span>${esc(msg)}`;
+  $("toasts").appendChild(el);
+  setTimeout(() => el.remove(), 4200);
+}
+
+async function pd(path, { method = "GET", body, retry = true } = {}){
+  const ac = new AbortController();
+  const timer = setTimeout(() => ac.abort(), 20000);
+  let res;
+  try {
+    res = await fetch(API + path, {
+      method,
+      signal: ac.signal,
+      headers: {
+        "Authorization": "Token token=" + KEY,
+        "Accept": "application/json",
+        ...(body ? { "Content-Type": "application/json" } : {})
+      },
+      ...(body ? { body: JSON.stringify(body) } : {})
+    });
+  } catch (e){
+    throw new Error(e.name === "AbortError"
+      ? "PagerDuty did not respond within 20s. Check your connection and try again."
+      : "Could not reach api.pagerduty.com. Check your connection.");
+  } finally { clearTimeout(timer); }
+  if (res.status === 429 && retry){
+    await new Promise(r => setTimeout(r, 2500));
+    return pd(path, { method, body, retry:false });
+  }
+  if (!res.ok){
+    const write = method !== "GET";
+    const err = new Error(
+      res.status === 401 ? "Invalid API key." :
+      res.status === 403 ? (write
+        ? "This key cannot write. Editing and deleting need the sre_agent.write scope."
+        : "This key lacks permission (needs incident.read, and PagerDuty Advance).") :
+      res.status === 404 ? "That memory no longer exists." :
+      res.status === 429 ? "Rate limited by PagerDuty. Wait a moment and retry." :
+      "PagerDuty returned " + res.status + "."
+    );
+    err.status = res.status;
+    throw err;
+  }
+  return res.status === 204 ? null : res.json();
+}
+
+/* Tiny markdown subset — input is escaped first, so output is safe. */
+function md(src){
+  const lines = esc(src).split(/\r?\n/);
+  let out = "", list = false, fence = false, buf = [];
+  const inline = t => t
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/`([^`]+)`/g, "<code>$1</code>");
+  const closeList = () => { if (list){ out += "</ul>"; list = false; } };
+
+  for (const raw of lines){
+    const line = raw.trim();
+    if (line.startsWith("```")){
+      if (fence){ out += "<pre>" + buf.join("\n") + "</pre>"; buf = []; fence = false; }
+      else { closeList(); fence = true; }
+      continue;
+    }
+    if (fence){ buf.push(raw); continue; }
+    const li = line.match(/^[-*]\s+(.*)$/);
+    if (li){
+      if (!list){ out += "<ul>"; list = true; }
+      out += "<li>" + inline(li[1]) + "</li>";
+      continue;
+    }
+    closeList();
+    const h = line.match(/^#{1,6}\s+(.*)$/);
+    if (h) out += "<h3>" + inline(h[1]) + "</h3>";
+    else if (line) out += "<p>" + inline(line) + "</p>";
+  }
+  closeList();
+  if (fence && buf.length) out += "<pre>" + buf.join("\n") + "</pre>";
+  return out || "<p style='color:var(--faint)'>(empty)</p>";
+}
+
+const when = iso => {
+  if (!iso) return "";
+  const d = new Date(iso);
+  return isNaN(d) ? "" : d.toLocaleString(undefined,
+    { year:"numeric", month:"short", day:"numeric", hour:"2-digit", minute:"2-digit" });
+};
+
+const stamp = m => m.updated_at || m.created_at || "";
+const sortMems = list => list.slice().sort((a, b) =>
+  sortDesc ? stamp(b).localeCompare(stamp(a)) : stamp(a).localeCompare(stamp(b)));
+
+/* ---------------- data ---------------- */
+
+async function loadServices(){
+  const all = [];
+  let offset = 0, more = true;
+  while (more && offset < 2000){
+    const d = await pd(`/services?limit=100&offset=${offset}`);
+    all.push(...(d.services || []));
+    more = d.more;
+    offset += 100;
+    progress(Math.min(90, all.length / 2));
+  }
+  services = all.sort((a, b) => a.name.localeCompare(b.name));
+  const withUrl = services.find(s => s.html_url);
+  if (withUrl){
+    const m = withUrl.html_url.match(/^https:\/\/([^.]+)\.pagerduty\.com/);
+    if (m) subdomain = m[1];
+  }
+  $("acct").textContent = subdomain ? subdomain + ".pagerduty.com" : "";
+}
+
+async function loadMemories(id){
+  if (memCache[id]) return memCache[id];
+  const d = await pd(`/sre_agent/memories?service_id=${encodeURIComponent(id)}&limit=100`);
+  const list = d.memories || [];
+  memCache[id] = list;
+  counts[id] = list.length;
+  breakdown[id] = list.reduce((acc, m) => {
+    const t = m.attributes?.type || "unknown";
+    acc[t] = (acc[t] || 0) + 1;
+    return acc;
+  }, {});
+  return list;
+}
+
+/* ---------------- render ---------------- */
+
+/* A service is only classifiable once its memories have been fetched. */
+const known = s => counts[s.id] !== undefined;
+const matchesMode = s => {
+  if (mode === "all") return true;
+  if (!known(s)) return false;                       // unknown ≠ empty
+  if (mode === "seeded")    return counts[s.id] > 0;
+  if (mode === "unseeded")  return counts[s.id] === 0;
+  if (mode === "norunbook") return !(breakdown[s.id]?.runbook > 0);
+  return true;
+};
+
+const renderSidebar = () => renderServices();
+
+function renderServices(){
+  const q = $("filter").value.trim().toLowerCase();
+  const shown = services
+    .filter(s => !q || s.name.toLowerCase().includes(q) || s.id.toLowerCase().includes(q))
+    .filter(matchesMode);
+
+  const unknown = services.filter(s => !known(s)).length;
+  const capped = shown.filter(s => counts[s.id] === 100).length;
+  $("svcMeta").innerHTML =
+    `${shown.length} of ${services.length} service${services.length === 1 ? "" : "s"}` +
+    (mode !== "all" && unknown ? ` <span class="pill">${unknown} uncounted</span>` : "") +
+    (mode === "norunbook" && capped
+      ? `<br><span style="color:var(--warn-fg)">${capped} capped at 100 — a runbook may exist
+         beyond the page</span>` : "");
+
+  const seeded = services.filter(s => counts[s.id] > 0).length;
+  const empty  = services.filter(s => counts[s.id] === 0).length;
+  $("tally").textContent = unknown === services.length
+    ? "Run “Count all” to classify"
+    : `${seeded} seeded · ${empty} empty${unknown ? ` · ${unknown} unknown` : ""}`;
+
+  $("svcList").innerHTML = shown.map(s => {
+    const n = counts[s.id];
+    const cls = n === undefined ? "" : (n > 0 ? "has" : "zero");
+    const rb = breakdown[s.id]?.runbook;
+    return `<button class="svc ${s.id === current ? "on" : ""}" data-id="${esc(s.id)}">
+      <span class="dot ${s.status === "active" ? "active" : ""}"></span>
+      <span class="nm">${esc(s.name)}<br><span class="id mono">${esc(s.id)}</span>${
+        rb ? `<span class="pill">${rb} runbook${rb === 1 ? "" : "s"}</span>` : ""}${
+        n === 100 ? `<span class="pill" title="Page capped at 100 — counts are a floor"
+          style="color:var(--warn-fg)">capped</span>` : ""}</span>
+      <span class="count ${cls}">${n === undefined ? "·" : n}</span>
+    </button>`;
+  }).join("") || `<div class="empty" style="padding:40px 12px">${
+    mode === "all" ? "No match."
+      : unknown ? "Nothing classified yet.<br>Run “Count all” first." : "Nothing in this group."}</div>`;
+
+  $("svcList").querySelectorAll(".svc").forEach(el =>
+    el.onclick = () => select(el.dataset.id));
+}
+
+const svcName = id => services.find(s => s.id === id)?.name || id;
+
+/* Fetch one type for one service.
+   The unfiltered page is capped at 100 with no pagination, so deriving a type from it is
+   only safe when the page came back short. At the cap we must ask the API for the type
+   directly, or memories are silently invisible. */
+async function loadTyped(sid, type){
+  const k = sid + "|" + type;
+  if (typedCache[k]) return typedCache[k];
+
+  const all = await loadMemories(sid);          // cached; also feeds the sidebar counts
+  if (type === "all") return all;
+
+  if (all.length < 100){
+    typedCache[k] = all.filter(m => m.attributes?.type === type);
+    return typedCache[k];
+  }
+  const d = await pd(
+    `/sre_agent/memories?service_id=${encodeURIComponent(sid)}&type=${encodeURIComponent(type)}&limit=100`);
+  typedCache[k] = d.memories || [];
+  breakdown[sid] = { ...(breakdown[sid] || {}), [type]: typedCache[k].length };  // correct the capped count
+  return typedCache[k];
+}
+
+async function showType(type){
+  viewType = type;
+  editing = null; expanded = {}; closeDrawer();
+  $("pane").innerHTML = `<div class="empty"><span class="material-symbols-rounded">hourglass_top</span>Loading…</div>`;
+  progress(40);
+  try {
+    await loadTyped(current, type);
+    progress(100);
+    renderServices();
+    renderPane();
+  } catch (e){
+    progress(100);
+    $("pane").innerHTML = `<div class="empty" style="color:var(--err-fg)">
+      <span class="material-symbols-rounded">error</span>${esc(e.message)}</div>`;
+  }
+}
+
+function renderPane(){
+  const svc = services.find(s => s.id === current);
+  if (!svc) return;
+  const all = activeList();
+  const list = sortMems(all);
+  const capped = all.length === 100;
+
+  const tabs = [...TYPES, "all"].map(t => {
+    const c = typedCache[current + "|" + t];
+    const n = t === "all" ? counts[current] : (c ? c.length : undefined);
+    return `<button class="chip ${viewType === t ? "on" : ""}" data-type="${esc(t)}">${
+      t === "all" ? "All types" : esc(LABEL[t])}${n === undefined ? "" : ` · ${n}`}</button>`;
+  }).join("");
+
+  $("pane").innerHTML = `
+    <div class="pane-head">
+      <h2>${esc(svc.name)}</h2>
+      ${svc.html_url ? `<a href="${esc(svc.html_url)}" target="_blank" rel="noopener">
+        open in PagerDuty <span class="material-symbols-rounded ico-sm">open_in_new</span></a>` : ""}
+    </div>
+    <div class="pane-sub mono">${esc(svc.id)}</div>
+    ${capped ? `<div class="warn"><span class="material-symbols-rounded ico-sm">info</span>
+      <span>Exactly 100 returned &mdash; the API caps a page at 100 and offers no pagination,
+      so there are probably more than shown.${viewType === "all"
+        ? " Pick a specific type above to reach memories this page is hiding." : ""}</span></div>` : ""}
+    <div class="toolbar">
+      <div class="chips">${tabs}</div>
+      <div style="flex:1"></div>
+      ${all.length > 1 ? `<button class="btn ghost" id="sortBtn">
+        <span class="material-symbols-rounded ico-sm">${sortDesc ? "arrow_downward" : "arrow_upward"}</span>
+        ${sortDesc ? "Latest first" : "Oldest first"}</button>` : ""}
+      <button class="btn ghost" id="viewBtn">
+        <span class="material-symbols-rounded ico-sm">${view === "map" ? "view_list" : "hub"}</span>
+        ${view === "map" ? "List" : "Map"}</button>
+    </div>
+    ${view === "map" && list.length ? buildMap(list, svc) : list.length ? list.map(m => card(m)).join("")
+      : `<div class="empty"><span class="material-symbols-rounded">psychology_alt</span>
+         No ${viewType === "all" ? "memories" : esc((LABEL[viewType] || viewType).toLowerCase() + "s")}
+         for this service.${viewType === "runbook"
+           ? `<br>Seed one in PagerDuty under AI &rsaquo; AI Settings &rsaquo; SRE Agent &rsaquo; Configure.`
+           : `<br>The agent writes these during and after incidents.`}</div>`}`;
+
+  wirePane();
+}
+
+function wirePane(){
+  const sortBtn = $("sortBtn");
+  if (sortBtn) sortBtn.onclick = () => { sortDesc = !sortDesc; renderPane(); };
+  const viewBtn = $("viewBtn");
+  if (viewBtn) viewBtn.onclick = () => {
+    view = view === "map" ? "list" : "map";
+    if (view === "list") closeDrawer();
+    renderPane();
+  };
+  $("pane").querySelectorAll(".chip").forEach(el => el.onclick = () => showType(el.dataset.type));
+  wireCards($("pane"));
+  if (view === "map") wireMap();
+}
+
+/* Card interactions — used by the list pane and by the drawer. */
+function wireCards(root){
+  const redraw = () => { renderPane(); if (selected) openDrawer(selected); };
+  root.querySelectorAll("[data-expand]").forEach(el => el.onclick = () => {
+    const body = document.getElementById("b" + el.dataset.expand);
+    const clipped = body.classList.toggle("clip");
+    el.innerHTML = clipped
+      ? `<span class="material-symbols-rounded ico-sm">expand_more</span> Show more`
+      : `<span class="material-symbols-rounded ico-sm">expand_less</span> Show less`;
+  });
+  root.querySelectorAll("[data-copy]").forEach(el => el.onclick = async () => {
+    try { await navigator.clipboard.writeText(el.dataset.copy); toast("Memory ID copied"); }
+    catch { toast("Could not copy", true); }
+  });
+  root.querySelectorAll("[data-edit]").forEach(el => el.onclick = () => {
+    editing = el.dataset.edit; redraw();
+  });
+  root.querySelectorAll("[data-cancel]").forEach(el => el.onclick = () => {
+    editing = null; redraw();
+  });
+  root.querySelectorAll("[data-save]").forEach(el => el.onclick = () => save(el.dataset.save));
+  root.querySelectorAll("[data-del]").forEach(el => el.onclick = () => confirmDelete(el.dataset.del));
+}
+
+/* ---------------- map ---------------- */
+
+const TAGCOL = {
+  playbook:"--tag-playbook-fg", runbook:"--tag-runbook-fg",
+  incident_summary:"--tag-summary-fg", service_profile:"--tag-profile-fg"
+};
+const PER_RING = 7, RING_GAP = 88, HUB_R = 205, LEAF_R = 330;
+let expanded = {};          // type -> showing all leaves?
+let selected = null;        // memory id highlighted in the map
+let mapT = { x:0, y:0, k:1 };
+
+const firstLine = s => (s || "").split(/\r?\n/).find(l => l.trim())?.replace(/^#+\s*/, "").trim() || "(empty)";
+const nodeR = m => 9 + Math.min(7, Math.round((m.content || "").length / 500));
+
+/* Radial layout: service at 0,0 → one hub per type → leaves fanned latest-first. */
+function layout(list){
+  const byType = {};
+  for (const m of sortMems(list)){
+    const t = m.attributes?.type || "unknown";
+    (byType[t] = byType[t] || []).push(m);
+  }
+  const types = Object.keys(byType);
+  const step = 360 / types.length;
+  const nodes = [], links = [];
+
+  types.forEach((t, i) => {
+    const hubA = (-90 + i * step) * Math.PI / 180;
+    const hub = { x:Math.cos(hubA)*HUB_R, y:Math.sin(hubA)*HUB_R, t, n:byType[t].length };
+    nodes.push({ kind:"hub", ...hub });
+    links.push({ x1:0, y1:0, x2:hub.x, y2:hub.y, hub:true });
+
+    const all = byType[t];
+    const cap = expanded[t] ? all.length : Math.min(all.length, 14);
+    const shown = all.slice(0, cap);
+    const sector = (step * 0.88) * Math.PI / 180;
+    const per = Math.min(PER_RING, Math.max(3, Math.ceil(shown.length / 3)));
+
+    shown.forEach((m, j) => {
+      const ring = Math.floor(j / per), idx = j % per;
+      const inRing = Math.min(per, shown.length - ring * per);
+      const a = hubA - sector/2 + (inRing === 1 ? sector/2 : (idx/(inRing - 1)) * sector);
+      const r = LEAF_R + ring * RING_GAP;
+      const x = Math.cos(a)*r, y = Math.sin(a)*r;
+      nodes.push({ kind:"leaf", x, y, m, t });
+      links.push({ x1:hub.x, y1:hub.y, x2:x, y2:y });
+    });
+
+    if (cap < all.length){
+      const a = hubA + sector/2 + 0.13;
+      const r = LEAF_R + Math.floor((cap - 1)/per) * RING_GAP;
+      const x = Math.cos(a)*r, y = Math.sin(a)*r;
+      nodes.push({ kind:"more", x, y, t, n:all.length - cap });
+      links.push({ x1:hub.x, y1:hub.y, x2:x, y2:y });
+    }
+  });
+  return { nodes, links };
+}
+
+function buildMap(list, svc){
+  if (!list.length) return `<div class="empty"><span class="material-symbols-rounded">hub</span>
+    Nothing to map for this view.</div>`;
+  const { nodes, links } = layout(list);
+
+  const curve = l => {
+    const mx = (l.x1 + l.x2)/2, my = (l.y1 + l.y2)/2;
+    const dx = l.x2 - l.x1, dy = l.y2 - l.y1;
+    return `M${l.x1} ${l.y1} Q${mx - dy*0.12} ${my + dx*0.12} ${l.x2} ${l.y2}`;
+  };
+
+  const svg = `
+    <svg viewBox="-620 -520 1240 1040" preserveAspectRatio="xMidYMid meet">
+      <g id="mapRoot">
+        ${links.map(l => `<path class="lnk ${l.hub ? "hub" : ""}" d="${curve(l)}"/>`).join("")}
+        <g class="core">
+          <circle r="62"/>
+          <text class="t1" text-anchor="middle" y="-2">${esc(svc.name.slice(0, 22))}</text>
+          <text class="t2" text-anchor="middle" y="16">${esc(svc.id)}</text>
+        </g>
+        ${nodes.filter(n => n.kind === "hub").map(n => `
+          <g class="hub" transform="translate(${n.x},${n.y})">
+            <circle r="34" fill="var(${TAGCOL[n.t] || "--dim"})" fill-opacity=".16"/>
+            <text text-anchor="middle" y="-2">${esc((LABEL[n.t] || n.t).split(" ")[0])}</text>
+            <text class="n" text-anchor="middle" y="14">${n.n}</text>
+          </g>`).join("")}
+        ${nodes.filter(n => n.kind === "more").map(n => `
+          <g class="more" data-more="${esc(n.t)}" transform="translate(${n.x},${n.y})">
+            <circle r="17"/><text text-anchor="middle" y="4">+${n.n}</text>
+          </g>`).join("")}
+        ${nodes.filter(n => n.kind === "leaf").map(n => `
+          <g class="leaf ${selected === n.m.id ? "sel" : ""}" data-id="${esc(n.m.id)}"
+             transform="translate(${n.x},${n.y})">
+            <circle r="${nodeR(n.m)}" fill="var(${TAGCOL[n.t] || "--dim"})"/>
+          </g>`).join("")}
+      </g>
+    </svg>`;
+
+  return `<div id="mapWrap">${svg}
+    <div class="map-hint">Drag to pan · scroll to zoom · hover a node for detail · click to edit</div>
+    <div class="zoomers">
+      <button class="btn ghost icon" data-zoom="-1"><span class="material-symbols-rounded ico-sm">remove</span></button>
+      <button class="btn ghost icon" data-zoom="0"><span class="material-symbols-rounded ico-sm">recenter</span></button>
+      <button class="btn ghost icon" data-zoom="1"><span class="material-symbols-rounded ico-sm">add</span></button>
+    </div></div>`;
+}
+
+function applyT(){
+  const root = document.getElementById("mapRoot");
+  if (root) root.setAttribute("transform", `translate(${mapT.x},${mapT.y}) scale(${mapT.k})`);
+}
+
+function wireMap(){
+  const wrap = $("mapWrap");
+  if (!wrap) return;
+  applyT();
+
+  /* Pointer capture retargets the follow-up click to the wrapper, which would swallow
+     clicks on nodes. So capture only once a drag genuinely starts. */
+  let down = false, sx = 0, sy = 0, ox = 0, oy = 0, moved = false, pid = null;
+  wrap.addEventListener("pointerdown", e => {
+    if (e.target.closest(".zoomers")) return;
+    down = true; moved = false; sx = e.clientX; sy = e.clientY; ox = mapT.x; oy = mapT.y;
+  });
+  wrap.addEventListener("pointermove", e => {
+    if (!down) return;
+    const dx = e.clientX - sx, dy = e.clientY - sy;
+    if (!moved){
+      if (Math.abs(dx) + Math.abs(dy) < 9) return;          // tolerate a shaky click
+      moved = true; pid = e.pointerId;
+      wrap.classList.add("drag");
+      try { wrap.setPointerCapture(pid); } catch {}
+    }
+    mapT.x = ox + dx * (1240 / wrap.clientWidth);
+    mapT.y = oy + dy * (1040 / wrap.clientHeight);
+    applyT();
+  });
+  const up = () => {
+    down = false;
+    wrap.classList.remove("drag");
+    if (pid !== null){ try { wrap.releasePointerCapture(pid); } catch {} pid = null; }
+    setTimeout(() => { moved = false; }, 0);                // clear after the click resolves
+  };
+  wrap.addEventListener("pointerup", up);
+  wrap.addEventListener("pointercancel", up);
+  wrap.addEventListener("wheel", e => {
+    e.preventDefault();
+    mapT.k = Math.min(3, Math.max(0.35, mapT.k * (e.deltaY < 0 ? 1.12 : 0.89)));
+    applyT();
+  }, { passive:false });
+
+  wrap.querySelectorAll("[data-zoom]").forEach(b => b.onclick = () => {
+    const z = +b.dataset.zoom;
+    if (z === 0) mapT = { x:0, y:0, k:1 };
+    else mapT.k = Math.min(3, Math.max(0.35, mapT.k * (z > 0 ? 1.25 : 0.8)));
+    applyT();
+  });
+
+  const tip = $("tip");
+  wrap.querySelectorAll(".leaf").forEach(g => {
+    const m = activeList().find(x => x.id === g.dataset.id);
+    if (!m) return;
+    g.addEventListener("pointerenter", e => {
+      const t = m.attributes?.type || "unknown";
+      tip.innerHTML = `<div class="th"><span class="tag ${TYPES.includes(t) ? "t-" + t : "t-other"}">${
+        esc(LABEL[t] || t)}</span><b>${esc(firstLine(m.content).slice(0, 46))}</b></div>
+        <div class="tb">${esc((m.content || "").slice(0, 320))}…</div>
+        <div class="tf">updated ${esc(when(m.updated_at))} · click to edit</div>`;
+      tip.classList.add("show");
+    });
+    g.addEventListener("pointermove", e => {
+      const r = tip.getBoundingClientRect();
+      tip.style.left = Math.min(e.clientX + 16, innerWidth - r.width - 12) + "px";
+      tip.style.top  = Math.min(e.clientY + 16, innerHeight - r.height - 12) + "px";
+    });
+    g.addEventListener("pointerleave", () => tip.classList.remove("show"));
+    g.addEventListener("click", () => { if (!moved) openDrawer(m.id); });
+  });
+
+  wrap.querySelectorAll("[data-more]").forEach(g => g.onclick = () => {
+    if (moved) return;
+    expanded[g.dataset.more] = true;
+    renderPane();
+  });
+}
+
+/* ---------------- drawer ---------------- */
+
+function openDrawer(id){
+  const m = activeList().find(x => x.id === id);
+  if (!m) return;
+  selected = id;
+  $("tip").classList.remove("show");
+  $("drTitle").textContent = LABEL[m.attributes?.type] || "Memory";
+  $("drBody").innerHTML = card(m);
+  $("drawer").classList.add("show");
+  document.body.classList.add("drawer-open");
+  wireCards($("drBody"));
+  document.querySelectorAll(".leaf").forEach(g =>
+    g.classList.toggle("sel", g.dataset.id === id));
+}
+
+function closeDrawer(){
+  $("drawer").classList.remove("show");
+  document.body.classList.remove("drawer-open");
+  selected = null; editing = null;
+  document.querySelectorAll(".leaf.sel").forEach(g => g.classList.remove("sel"));
+}
+
+/* The list currently on screen. */
+const activeList = () =>
+  (viewType === "all" ? memCache[current] : typedCache[current + "|" + viewType]) || [];
+
+/* A memory can sit in both the unfiltered page and a typed page as separate objects.
+   After a write, drop the copies we did not touch so they refetch. */
+function dropTwin(m){
+  const t = m.attributes?.type;
+  if (viewType === "all"){ if (t) delete typedCache[current + "|" + t]; }
+  else delete memCache[current];
+}
+
+function card(m, showService){
+  const t = m.attributes?.type || "unknown";
+  const sid = m.attributes?.service_id;
+  const cls = TYPES.includes(t) ? "t-" + t : "t-other";
+  const inc = m.attributes?.incident_id;
+  const isEditing = editing === m.id;
+  const long = !isEditing && (m.content || "").length > 900;
+
+  const body = isEditing
+    ? `<div class="mem-body"><textarea class="editor" id="e${esc(m.id)}">${esc(m.content || "")}</textarea></div>`
+    : `<div class="mem-body ${long ? "clip" : ""}" id="b${esc(m.id)}">${md(m.content)}</div>`;
+
+  const foot = isEditing
+    ? `<div class="mem-foot">
+         <button class="btn ghost" data-save="${esc(m.id)}">
+           <span class="material-symbols-rounded ico-sm">save</span> Save changes</button>
+         <button class="btn ghost" data-cancel="${esc(m.id)}">
+           <span class="material-symbols-rounded ico-sm">close</span> Cancel</button>
+         <div style="flex:1"></div>
+         <span class="mono">Replaces content in full · PUT /sre_agent/memories/${esc(m.id)}</span>
+       </div>`
+    : `<div class="mem-foot">
+         ${long ? `<button class="btn ghost" data-expand="${esc(m.id)}">
+             <span class="material-symbols-rounded ico-sm">expand_more</span> Show more</button>` : ""}
+         ${inc && subdomain
+           ? `<a href="https://${esc(subdomain)}.pagerduty.com/incidents/${esc(inc)}" target="_blank"
+                rel="noopener" class="mono" style="font-size:11px">incident ${esc(inc)}
+                <span class="material-symbols-rounded ico-sm">open_in_new</span></a>`
+           : inc ? `<span class="mono">incident ${esc(inc)}</span>` : ""}
+         <div style="flex:1"></div>
+         <button class="btn ghost mono" data-copy="${esc(m.id)}" style="font-size:11px">
+           <span class="material-symbols-rounded ico-sm">content_copy</span> ${esc(m.id)}</button>
+       </div>`;
+
+  return `<div class="mem ${isEditing ? "editing" : ""}">
+    <div class="mem-head">
+      <span class="tag ${cls}">
+        <span class="material-symbols-rounded ico-sm" style="vertical-align:-3px">${ICON[t] || "note"}</span>
+        ${esc(LABEL[t] || t)}</span>
+      ${showService && sid ? `<button class="btn ghost" data-goto="${esc(sid)}"
+        style="font-size:11.5px; padding:3px 9px">
+        <span class="material-symbols-rounded ico-sm">dns</span> ${esc(svcName(sid))}</button>` : ""}
+      <span class="ts">updated ${esc(when(m.updated_at))}</span>
+      ${m.created_at && m.created_at !== m.updated_at
+        ? `<span class="ts">· created ${esc(when(m.created_at))}</span>` : ""}
+      <div style="flex:1"></div>
+      ${isEditing ? "" : `
+        <button class="btn ghost icon" data-edit="${esc(m.id)}" title="Edit">
+          <span class="material-symbols-rounded ico-sm">edit</span></button>
+        <button class="btn ghost icon" data-del="${esc(m.id)}" title="Delete">
+          <span class="material-symbols-rounded ico-sm">delete</span></button>`}
+    </div>
+    ${body}
+    ${foot}
+  </div>`;
+}
+
+/* ---------------- mutations ---------------- */
+
+async function save(id){
+  const box = document.getElementById("e" + id);
+  if (!box) return;
+  const content = box.value;
+  const m = activeList().find(x => x.id === id);
+  if (!m) return;
+  if (content === m.content){ editing = null; renderPane(); return; }
+
+  progress(40);
+  try {
+    const res = await pd(`/sre_agent/memories/${encodeURIComponent(id)}`,
+      { method:"PUT", body:{ memory:{ content } } });
+    const updated = res?.memory || {};
+    m.content = updated.content ?? content;
+    m.updated_at = updated.updated_at || new Date().toISOString();
+    dropTwin(m);
+    editing = null;
+    progress(100);
+    renderPane();
+    if (selected) openDrawer(selected);
+    toast("Memory updated");
+  } catch (e){
+    progress(100);
+    toast(e.message, true);
+  }
+}
+
+function confirmDelete(id){
+  const m = activeList().find(x => x.id === id);
+  if (!m) return;
+  const t = m.attributes?.type || "unknown";
+  $("modalCard").innerHTML = `
+    <h3><span class="material-symbols-rounded">warning</span> Delete this memory?</h3>
+    <p>This is permanent. PagerDuty keeps no archive and there is no create endpoint, so it
+       cannot be restored through the API. The agent may keep using it in a conversation that
+       is already running.</p>
+    <div class="preview"><strong>${esc(LABEL[t] || t)}</strong><br>${esc((m.content || "").slice(0, 220))}…</div>
+    <div class="modal-actions">
+      <button class="btn ghost" id="mCancel">Cancel</button>
+      <button class="btn danger" id="mOk">
+        <span class="material-symbols-rounded ico-sm">delete_forever</span> Delete permanently</button>
+    </div>`;
+  $("modal").classList.add("show");
+  $("mCancel").onclick = closeModal;
+  $("mOk").onclick = () => doDelete(id);
+  $("mOk").focus();
+}
+
+const closeModal = () => $("modal").classList.remove("show");
+
+async function doDelete(id){
+  $("mOk").disabled = true;
+  progress(40);
+  try {
+    const m = activeList().find(x => x.id === id);
+    await pd(`/sre_agent/memories/${encodeURIComponent(id)}`, { method:"DELETE" });
+    const t = m?.attributes?.type;
+    if (memCache[current]){
+      memCache[current] = memCache[current].filter(x => x.id !== id);
+      counts[current] = memCache[current].length;
+    }
+    const tk = current + "|" + t;
+    if (t && typedCache[tk]){
+      typedCache[tk] = typedCache[tk].filter(x => x.id !== id);
+      breakdown[current] = { ...(breakdown[current] || {}), [t]: typedCache[tk].length };
+    }
+    if (editing === id) editing = null;
+    if (selected === id) closeDrawer();
+    closeModal();
+    progress(100);
+    renderSidebar();
+    renderPane();
+    toast("Memory deleted");
+  } catch (e){
+    progress(100);
+    closeModal();
+    toast(e.message, true);
+  }
+}
+
+/* ---------------- actions ---------------- */
+
+async function select(id){
+  current = id;
+  viewType = "all";
+  editing = null; expanded = {}; mapT = { x:0, y:0, k:1 }; closeDrawer();
+  renderServices();
+  $("pane").innerHTML = `<div class="empty"><span class="material-symbols-rounded">hourglass_top</span>Loading memories…</div>`;
+  progress(40);
+  try {
+    await loadMemories(id);
+    progress(100);
+    renderServices();
+    renderPane();
+  } catch (e){
+    progress(100);
+    $("pane").innerHTML = `<div class="empty" style="color:var(--err-fg)">
+      <span class="material-symbols-rounded">error</span>${esc(e.message)}</div>`;
+  }
+}
+
+async function scanAll(){
+  const btn = $("scan");
+  btn.disabled = true;
+  const todo = services.filter(s => counts[s.id] === undefined);
+  for (let i = 0; i < todo.length; i++){
+    btn.textContent = `Counting ${i + 1}/${todo.length}…`;
+    progress(((i + 1) / todo.length) * 100);
+    try { await loadMemories(todo[i].id); }
+    catch (e){
+      if (e.status === 429){ await new Promise(r => setTimeout(r, 4000)); i--; continue; }
+      counts[todo[i].id] = 0;
+    }
+    renderServices();
+    await new Promise(r => setTimeout(r, 180));
+  }
+  btn.innerHTML = `<span class="material-symbols-rounded ico-sm">manage_search</span> Count all`;
+  btn.disabled = false;
+}
+
+const report = o => {
+  try {
+    navigator.sendBeacon("/diag", new Blob(
+      [JSON.stringify({ t:new Date().toISOString(), ua:navigator.userAgent.slice(0,90), ...o })],
+      { type:"application/json" }));
+  } catch (e) {}
+};
+const glog = m => {
+  const el = $("gateLog");
+  if (el) el.textContent += (el.textContent ? "\n" : "") + m;
+  console.log("[sre-memories]", m);
+  report({ step:m });
+};
+
+let connecting = false;
+async function connect(e){
+  if (e && e.preventDefault) e.preventDefault();
+  if (connecting) return;
+  connecting = true;
+  $("gateLog").textContent = "";
+  const k = $("key").value.trim();
+  glog(`submit fired · key length ${k.length}`);
+  if (!k){
+    $("gateErr").innerHTML = `<div class="err">Enter a PagerDuty API key to continue.</div>`;
+    $("key").focus();
+    return;
+  }
+  KEY = k;
+  $("go").disabled = true;
+  $("go").textContent = "Connecting…";
+  $("gateErr").innerHTML = "";
+  progress(15);
+  try {
+    glog("calling api.pagerduty.com/services …");
+    await loadServices();
+    glog(`received ${services.length} services`);
+    if ($("remember").checked) store.set("pd_key", KEY, true);
+    progress(100);
+    $("gate").style.display = "none";
+    $("app").style.display = "grid";
+    renderSidebar();
+  } catch (err){
+    progress(100);
+    KEY = "";
+    glog("failed: " + err.message);
+    $("gateErr").innerHTML = `<div class="err">${esc(err.message)}</div>`;
+  } finally {
+    connecting = false;
+    $("go").disabled = false;
+    $("go").innerHTML = `<span class="material-symbols-rounded">login</span> Connect`;
+  }
+}
+
+function syncThemeIcon(){
+  const dark = document.documentElement.getAttribute("data-theme") === "dark";
+  $("themeIcon").textContent = dark ? "light_mode" : "dark_mode";
+}
+
+$("go").addEventListener("click", e => { report({ step:"connect clicked" }); connect(e); });
+$("gateForm").addEventListener("submit", e => {   // capture: nothing may navigate this page
+  e.preventDefault();
+  report({ step:"native submit intercepted" });
+  connect(e);
+}, true);
+$("key").addEventListener("keydown", e => {
+  if (e.key === "Enter"){ e.preventDefault(); connect(e); }
+});
+$("key").oninput = () => { $("gateErr").innerHTML = ""; };
+$("filter").oninput = renderServices;
+$("scan").onclick = scanAll;
+$("modes").onclick = e => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  mode = b.dataset.m;
+  $("modes").querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b));
+  renderServices();
+};
+$("copyList").onclick = async () => {
+  const q = $("filter").value.trim().toLowerCase();
+  const rows = services
+    .filter(s => !q || s.name.toLowerCase().includes(q) || s.id.toLowerCase().includes(q))
+    .filter(matchesMode)
+    .map(s => `${s.id}\t${s.name}\t${counts[s.id] ?? "?"} memories\t${
+      breakdown[s.id]?.runbook || 0} runbook`);
+  if (!rows.length) return toast("Nothing to copy", true);
+  try {
+    await navigator.clipboard.writeText(rows.join("\n"));
+    toast(`Copied ${rows.length} service${rows.length === 1 ? "" : "s"}`);
+  } catch { toast("Could not copy", true); }
+};
+$("theme").onclick = () => {
+  const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  store.set("pd_theme", next);
+  syncThemeIcon();
+};
+$("logout").onclick = () => { store.del("pd_key", true); location.reload(); };
+$("modal").onclick = e => { if (e.target.id === "modal") closeModal(); };
+$("drClose").onclick = closeDrawer;
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape"){
+    if ($("modal").classList.contains("show")) closeModal();
+    else if (editing){ editing = null; renderPane(); if (selected) openDrawer(selected); }
+    else if ($("drawer").classList.contains("show")) closeDrawer();
+  }
+});
+
+report({ step:"handlers bound", href:location.href });
+try { syncThemeIcon(); } catch (e){ report({ step:"syncThemeIcon failed: " + e.message }); }
+
+let saved = null;
+try { saved = store.get("pd_key", true); } catch (e){}
+if (saved){
+  try {
+    $("key").value = saved;
+    $("remember").checked = true;
+    connect(null);
+  } catch (e){ report({ step:"autosubmit failed: " + e.message }); }
+}
+report({ step:"boot complete · button enabled=" + !$("go").disabled });
+</script>
+</body>
+</html>
