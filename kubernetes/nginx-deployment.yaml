@@ -4,7 +4,7 @@ metadata:
   name: nginx
   namespace: travelduty
 spec:
-  replicas: 1
+  replicas: 4
   selector:
     matchLabels:
       app: nginx
@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: travelduty/nginx:4.1.3
+        image: travelduty/nginx:1.0.6
         ports:
-        - containerPort: 5403
+        - containerPort: 3756
         resources:
           requests:
             memory: "64Mi"
