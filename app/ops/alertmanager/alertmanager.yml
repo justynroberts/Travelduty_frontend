@@ -5,7 +5,7 @@ templates:
 
 route:
   receiver: pagerduty
-  group_by: [alertname, service]
+  group_by: [alertname, service, journey]
   group_wait: 5s
   group_interval: 30s
   repeat_interval: 1h
@@ -45,6 +45,7 @@ receivers:
           summary: '{{ .CommonAnnotations.summary }}'
           description: '{{ .CommonAnnotations.description }}'
           current_value: '{{ .CommonAnnotations.value }}'
+          journey: '{{ with .CommonLabels.journey }}{{ . }}{{ else }}n/a{{ end }}'
           started_at: '{{ template "travelduty.pd.started" . }}'
           instance: '{{ template "travelduty.pd.instances" . }}'
           environment: production (Coolify)

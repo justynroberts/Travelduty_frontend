@@ -1,6 +1,7 @@
 # Alert rules for every TravelDuty service. Windows are short (30s) and `for` durations small
 # because these alerts drive near-real-time incident demos. Probe routes are excluded so health
-# checks and scrapes don't dilute the error ratio.
+# checks and scrapes don't dilute the error ratio. Synthetics keeps traffic flowing so the ratios
+# always have data; `keep_firing_for` stops a brief lull from resolving an incident that's still real.
 groups:
   - name: travelduty
     rules:
@@ -20,6 +21,7 @@ groups:
             / sum by (service) (rate(http_requests_total{job="travelduty", route!~"/health|/ready|/metrics|.*/admin/.*"}[30s]))
             > 0.20
         for: 10s
+        keep_firing_for: 30s
         labels: { severity: critical }
         annotations:
           summary: "Failing {{ $value | humanizePercentage }} of requests"
@@ -33,6 +35,7 @@ groups:
             / sum by (service) (rate(http_requests_total{job="travelduty", route!~"/health|/ready|/metrics|.*/admin/.*"}[30s]))
             > 0.05
         for: 15s
+        keep_firing_for: 30s
         labels: { severity: warning }
         annotations:
           summary: "Failing {{ $value | humanizePercentage }} of requests"
@@ -45,6 +48,7 @@ groups:
           histogram_quantile(0.95, sum by (service, le) (rate(http_request_duration_seconds_bucket{job="travelduty", route!~"/health|/ready|/metrics|.*/admin/.*"}[30s])))
             > 3
         for: 15s
+        keep_firing_for: 30s
         labels: { severity: critical }
         annotations:
           summary: "p95 latency is {{ $value | humanizeDuration }}"
@@ -57,12 +61,39 @@ groups:
           histogram_quantile(0.95, sum by (service, le) (rate(http_request_duration_seconds_bucket{job="travelduty", route!~"/health|/ready|/metrics|.*/admin/.*"}[30s])))
             > 1
         for: 15s
+        keep_firing_for: 30s
         labels: { severity: warning }
         annotations:
           summary: "p95 latency is {{ $value | humanizeDuration }}"
           description: "95th percentile response time for {{ $labels.service }} has been above 1s for 15s."
           value: "p95 {{ $value | humanizeDuration }}"
           runbook_url: https://github.com/justynroberts/Travelduty_frontend/blob/master/app/README.md#break-it-chaos
+
+  - name: synthetics
+    rules:
+      - alert: TravelDutySyntheticJourneyFailing
+        expr: |
+          sum by (journey) (rate(synthetic_journeys_total{outcome="failed"}[1m]))
+            / sum by (journey) (rate(synthetic_journeys_total[1m]))
+            > 0.5
+        for: 20s
+        keep_firing_for: 30s
+        labels: { severity: critical, service: synthetics }
+        annotations:
+          summary: "Customers can't complete the {{ $labels.journey }} journey ({{ $value | humanizePercentage }} failing)"
+          description: "More than half of synthetic {{ $labels.journey }} journeys failed over the last minute. Failing steps: see synthetic_journeys_total{journey=\"{{ $labels.journey }}\",outcome=\"failed\"} by step, or GET /status on synthetics."
+          value: "{{ $value | humanizePercentage }} of {{ $labels.journey }} journeys failing"
+          runbook_url: https://github.com/justynroberts/Travelduty_frontend/blob/master/app/README.md#synthetics
+
+      - alert: TravelDutySyntheticsDown
+        expr: up{job="synthetics"} == 0 or sum(synthetic_users_active) == 0
+        for: 1m
+        labels: { severity: warning, service: synthetics }
+        annotations:
+          summary: "Synthetic traffic has stopped"
+          description: "Synthetics is down or paused, so error-rate and latency alerts have no traffic to measure and may stay silent during an outage."
+          value: "no synthetic users running"
+          runbook_url: https://github.com/justynroberts/Travelduty_frontend/blob/master/app/README.md#synthetics
 
   - name: monitoring
     rules:
