@@ -1,7 +1,7 @@
 import { ServiceClient } from '@travelduty/common';
 import { fakeFetch, type FakeHandler } from '@travelduty/common/testing';
 import { describe, expect, it } from 'vitest';
-import { buildGateway, type Clients, type ServiceName } from '../src/app.js';
+import { buildGateway, type Clients, type GatewayDeps, type ServiceName } from '../src/app.js';
 
 const offers = (prefix: string) => ({ items: [{ id: `${prefix}.0`, totalEur: 100 }, { id: `${prefix}.1`, totalEur: 150 }] });
 
@@ -16,7 +16,7 @@ const upstreams: Record<ServiceName, FakeHandler> = {
   notification: () => ({ body: { items: [] } }),
 };
 
-function gateway(overrides: Partial<Record<ServiceName, FakeHandler>> = {}, adminToken?: string) {
+function gateway(overrides: Partial<Record<ServiceName, FakeHandler>> = {}, adminToken?: string, extra: Partial<GatewayDeps> = {}) {
   const seen: Record<string, string[]> = {};
   const clients = Object.fromEntries(
     (Object.keys(upstreams) as ServiceName[]).map((name) => {
@@ -28,7 +28,7 @@ function gateway(overrides: Partial<Record<ServiceName, FakeHandler>> = {}, admi
       return [name, new ServiceClient({ name: `${name}-service`, baseUrl: `http://${name}`, retries: 0, fetchImpl })];
     }),
   ) as Clients;
-  return { app: buildGateway({ makeClients: () => clients, adminToken, service: { logger: false } }), seen };
+  return { app: buildGateway({ makeClients: () => clients, adminToken, service: { logger: false }, ...extra }), seen };
 }
 
 const trip = '/api/trips/search?from=lhr&to=LIS&depart=2026-11-02&return=2026-11-06&adults=2&currency=GBP';
@@ -125,5 +125,90 @@ describe('ops endpoints', () => {
     expect(seen.payment?.[0]).toMatch(/^PUT \/admin\/chaos/);
     const unknown = await app.inject({ url: '/api/admin/chaos/nope', headers: { 'x-admin-token': 'tok' } });
     expect(unknown.statusCode).toBe(404);
+  });
+});
+
+describe('admin sign-in', () => {
+  const build = (now = () => 1_000_000, trustProxy?: number) =>
+    gateway({}, 'tok', { auth: { username: 'ops', password: 'correct horse', failureDelayMs: 0, now }, service: { logger: false, trustProxy } }).app;
+  const login = (app: ReturnType<typeof build>, password: string, ip = '10.0.0.1') =>
+    app.inject({ method: 'POST', url: '/api/admin/login', payload: { username: 'ops', password }, remoteAddress: ip });
+  const sessionCookie = (res: { headers: Record<string, unknown> }) => String(res.headers['set-cookie']).split(';')[0];
+
+  it('issues an HttpOnly session cookie that unlocks chaos control', async () => {
+    const app = build();
+    expect((await app.inject({ url: '/api/admin/session' })).json()).toEqual({ required: true, passwordLogin: true, authenticated: false });
+    expect((await app.inject({ url: '/api/admin/chaos' })).statusCode).toBe(401);
+
+    const res = await login(app, 'correct horse');
+    expect(res.statusCode).toBe(200);
+    expect(String(res.headers['set-cookie'])).toMatch(/^td_admin=.+; Path=\/api\/admin; HttpOnly; SameSite=Strict; Max-Age=28800$/);
+
+    const cookie = sessionCookie(res);
+    expect((await app.inject({ url: '/api/admin/chaos', headers: { cookie } })).statusCode).toBe(200);
+    expect((await app.inject({ url: '/api/admin/session', headers: { cookie } })).json().authenticated).toBe(true);
+    expect((await app.inject({ url: '/api/admin/chaos', headers: { cookie: cookie.slice(0, -2) + 'xx' } })).statusCode).toBe(401);
+  });
+
+  it('marks the cookie Secure behind HTTPS and clears it on sign-out', async () => {
+    const app = build();
+    const res = await app.inject({ method: 'POST', url: '/api/admin/login', payload: { username: 'ops', password: 'correct horse' }, headers: { 'x-forwarded-proto': 'https' } });
+    expect(String(res.headers['set-cookie'])).toMatch(/; Secure$/);
+    const out = await app.inject({ method: 'POST', url: '/api/admin/logout' });
+    expect(String(out.headers['set-cookie'])).toMatch(/^td_admin=; .*Max-Age=0/);
+  });
+
+  it('expires sessions', async () => {
+    let t = 1_000_000;
+    const app = build(() => t);
+    const cookie = sessionCookie(await login(app, 'correct horse'));
+    t += 8 * 60 * 60_000 + 1;
+    expect((await app.inject({ url: '/api/admin/chaos', headers: { cookie } })).statusCode).toBe(401);
+  });
+
+  it('locks an IP out after five failures, even for the right password', async () => {
+    let t = 1_000_000;
+    const app = build(() => t);
+    for (let i = 0; i < 5; i++) expect((await login(app, 'guess')).statusCode).toBe(401);
+    const locked = await login(app, 'correct horse');
+    expect(locked.statusCode).toBe(429);
+    expect(locked.json().error.code).toBe('TOO_MANY_ATTEMPTS');
+    expect(Number(locked.headers['retry-after'])).toBe(900);
+    expect((await login(app, 'correct horse', '10.0.0.2')).statusCode).toBe(200);
+    t += 15 * 60_000 + 1;
+    expect((await login(app, 'correct horse')).statusCode).toBe(200);
+  });
+
+  it('locks sign-in for everyone when failures come from many IPs', async () => {
+    const app = build();
+    for (let i = 0; i < 20; i++) await login(app, 'guess', `10.1.0.${i}`);
+    expect((await login(app, 'correct horse', '10.2.0.1')).statusCode).toBe(429);
+  });
+
+  it('keys the limit on the proxied client IP, which a spoofed X-Forwarded-For cannot change', async () => {
+    const app = build(() => 1_000_000, 2);
+    // Traefik appends the real client (203.0.113.9), nginx appends Traefik; the first entry is attacker-controlled.
+    const attempt = (spoof: string, password = 'guess') =>
+      app.inject({
+        method: 'POST',
+        url: '/api/admin/login',
+        payload: { username: 'ops', password },
+        remoteAddress: '172.18.0.5',
+        headers: { 'x-forwarded-for': `${spoof}, 203.0.113.9, 172.18.0.4` },
+      });
+    for (let i = 0; i < 5; i++) await attempt(`198.51.100.${i}`);
+    expect((await attempt('198.51.100.99', 'correct horse')).statusCode).toBe(429);
+  });
+
+  it('still accepts the x-admin-token header', async () => {
+    const app = build();
+    expect((await app.inject({ url: '/api/admin/chaos', headers: { 'x-admin-token': 'tok' } })).statusCode).toBe(200);
+    expect((await app.inject({ url: '/api/admin/chaos', headers: { 'x-admin-token': 'nope' } })).statusCode).toBe(401);
+  });
+
+  it('leaves admin routes open when nothing is configured', async () => {
+    const { app } = gateway();
+    expect((await app.inject({ url: '/api/admin/session' })).json()).toEqual({ required: false, passwordLogin: false, authenticated: true });
+    expect((await app.inject({ url: '/api/admin/chaos' })).statusCode).toBe(200);
   });
 });

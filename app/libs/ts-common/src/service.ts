@@ -19,6 +19,8 @@ export interface ServiceOptions {
   readiness?: Record<string, () => Promise<boolean>>;
   /** Used by chaos injection; override for deterministic tests. */
   random?: () => number;
+  /** Reverse-proxy hops to trust for the client IP (`req.ip`). Off by default. */
+  trustProxy?: number;
 }
 
 export interface ServiceMetrics {
@@ -57,6 +59,8 @@ export function createService(opts: ServiceOptions): FastifyInstance {
     },
     logController: new LogController({ requestIdLogLabel: 'requestId' }),
     ajv: { customOptions: { coerceTypes: true, removeAdditional: true, allErrors: false } },
+    // Trust the nearest `trustProxy` hops' X-Forwarded-For entries, and no further.
+    trustProxy: (_addr: string, hop: number) => hop < (opts.trustProxy ?? 0),
   });
 
   // Accept an empty body with a JSON content-type (common for POST/DELETE actions such as

@@ -5,6 +5,9 @@ const timeoutMs = envNumber('UPSTREAM_TIMEOUT_MS', 8_000);
 
 const app = buildGateway({
   adminToken: envOptional('ADMIN_TOKEN'),
+  auth: { username: envOptional('ADMIN_USERNAME'), password: envOptional('ADMIN_PASSWORD') },
+  // Traefik + nginx in front on Coolify (2), nginx alone locally (1); the login rate limit keys on req.ip.
+  service: { trustProxy: envNumber('TRUST_PROXY_HOPS', 1) },
   makeClients: (app) => ({
     destination: app.client({ name: 'destination-service', baseUrl: serviceUrl('destination'), timeoutMs }),
     flight: app.client({ name: 'flight-service', baseUrl: serviceUrl('flight'), timeoutMs }),

@@ -4,13 +4,15 @@
 //   node scripts/e2e.mjs              # GATEWAY_URL defaults to http://localhost:8080
 
 const base = (process.env.GATEWAY_URL ?? 'http://localhost:8080').replace(/\/$/, '');
+// Needed for the chaos checks when the stack sets ADMIN_TOKEN.
+const adminHeaders = process.env.ADMIN_TOKEN ? { 'x-admin-token': process.env.ADMIN_TOKEN } : {};
 const runId = `e2e-${Date.now()}`;
 let failures = 0;
 
 async function call(method, path, body) {
   const res = await fetch(base + path, {
     method,
-    headers: { ...(body === undefined ? {} : { 'content-type': 'application/json' }), 'x-request-id': `${runId}-${path.split('?')[0].replaceAll('/', '_')}` },
+    headers: { ...(body === undefined ? {} : { 'content-type': 'application/json' }), ...adminHeaders, 'x-request-id': `${runId}-${path.split('?')[0].replaceAll('/', '_')}` },
     body: body === undefined ? undefined : JSON.stringify(body),
   });
   const text = await res.text();

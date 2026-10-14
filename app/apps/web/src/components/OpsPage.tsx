@@ -1,24 +1,38 @@
-import { ArrowClockwise } from '@phosphor-icons/react';
-import { useCallback, useEffect, useState } from 'react';
-import { ApiError, api, type Chaos, type ServiceStatus } from '../api';
-import { Button, Code, Notice } from './ui';
+import { ArrowClockwise, SignOut } from '@phosphor-icons/react';
+import { type FormEvent, useCallback, useEffect, useState } from 'react';
+import { ApiError, type AdminSession, api, type Chaos, type ServiceStatus } from '../api';
+import { Button, Code, Field, Input, Notice } from './ui';
 
 /** Live service status plus fault injection, for incident-response drills. */
 export function OpsPage() {
   const [status, setStatus] = useState<ServiceStatus[] | null>(null);
   const [chaos, setChaos] = useState<Record<string, Chaos | null> | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [session, setSession] = useState<AdminSession | null>(null);
 
   const refresh = useCallback(async () => {
-    try {
-      const [s, c] = await Promise.all([api.status(), api.chaos()]);
-      setStatus(s.services);
-      setChaos(c);
-      setError(null);
-    } catch (err) {
-      setError(err instanceof ApiError ? `${err.message} (${err.code})` : 'The gateway is unreachable.');
+    // Service status is public; chaos control needs a signed-in session on deployments that require one.
+    const [s, a] = await Promise.allSettled([api.status(), api.adminSession()]);
+    if (s.status === 'fulfilled') setStatus(s.value.services);
+    const admin = a.status === 'fulfilled' ? a.value : null;
+    setSession(admin);
+    let failed = s.status === 'rejected' ? s.reason : a.status === 'rejected' ? a.reason : null;
+    if (admin?.authenticated) {
+      try {
+        setChaos(await api.chaos());
+      } catch (err) {
+        failed ??= err;
+      }
+    } else {
+      setChaos(null);
     }
+    setError(failed ? (failed instanceof ApiError ? `${failed.message} (${failed.code})` : 'The gateway is unreachable.') : null);
   }, []);
+
+  const signOut = async () => {
+    await api.logout().catch(() => undefined);
+    void refresh();
+  };
 
   useEffect(() => {
     void refresh();
@@ -32,12 +46,21 @@ export function OpsPage() {
         <p className="max-w-[60ch] text-sm text-muted">
           Every service exposes the same chaos controls. Raise an error rate or add latency, then watch the trip search degrade and bookings compensate. Refreshes every 5 seconds.
         </p>
-        <Button onClick={refresh}>
-          <ArrowClockwise size={20} weight="light" aria-hidden />
-          Refresh now
-        </Button>
+        <div className="flex gap-2">
+          <Button onClick={refresh}>
+            <ArrowClockwise size={20} weight="light" aria-hidden />
+            Refresh now
+          </Button>
+          {session?.required && session.authenticated && session.passwordLogin && (
+            <Button onClick={signOut}>
+              <SignOut size={20} weight="light" aria-hidden />
+              Sign out
+            </Button>
+          )}
+        </div>
       </div>
       {error && <Notice tone="danger">{error}</Notice>}
+      {session && !session.authenticated && (session.passwordLogin ? <SignInForm onSignedIn={refresh} /> : <Notice tone="muted">Chaos control on this deployment needs an x-admin-token header; use the API directly.</Notice>)}
       {!status && !error && <div className="skeleton h-64 w-full" />}
       {status && (
         <div className="overflow-x-auto rounded-lg border border-line bg-surface">
@@ -85,6 +108,9 @@ function ChaosRow({ status, chaos, onChange }: { status: ServiceStatus; chaos: C
       if (reset) await api.resetChaos(status.service);
       else await api.setChaos(status.service, { errorRate: rate / 100, latencyMs: latency });
       setDirty(false);
+      onChange();
+    } catch {
+      // A 401 (token removed or rotated) or outage: the refresh shows why.
       onChange();
     } finally {
       setBusy(false);
@@ -149,5 +175,53 @@ function ChaosRow({ status, chaos, onChange }: { status: ServiceStatus; chaos: C
         </div>
       </td>
     </tr>
+  );
+}
+
+function SignInForm({ onSignedIn }: { onSignedIn: () => void }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | undefined>();
+
+  const submit = async (e: FormEvent) => {
+    e.preventDefault();
+    setBusy(true);
+    setError(undefined);
+    try {
+      await api.login(username.trim(), password);
+      setPassword('');
+      onSignedIn();
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : 'The gateway is unreachable.');
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <form onSubmit={submit} className="flex flex-col gap-3 rounded-lg border border-line bg-surface p-4">
+      <p className="text-sm text-muted">Chaos controls are locked on this deployment. Sign in to change error rates and latency.</p>
+      <div className="flex flex-wrap items-end gap-3">
+        <div className="min-w-[12rem] flex-1">
+          <Field label="Username">
+            {(id) => <Input id={id} autoComplete="username" value={username} onChange={(e) => setUsername(e.target.value)} />}
+          </Field>
+        </div>
+        <div className="min-w-[12rem] flex-1">
+          <Field label="Password">
+            {(id) => <Input id={id} type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} />}
+          </Field>
+        </div>
+        <Button variant="primary" busy={busy} disabled={!username.trim() || !password}>
+          Sign in
+        </Button>
+      </div>
+      {error && (
+        <p className="text-xs text-danger" role="alert">
+          {error}
+        </p>
+      )}
+    </form>
   );
 }

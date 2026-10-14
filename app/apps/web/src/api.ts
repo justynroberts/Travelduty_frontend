@@ -23,6 +23,13 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   return body as T;
 }
 
+export interface AdminSession {
+  /** False when the deployment leaves chaos control open (local development). */
+  required: boolean;
+  passwordLogin: boolean;
+  authenticated: boolean;
+}
+
 export interface Destination {
   code: string;
   city: string;
@@ -122,6 +129,10 @@ export const api = {
   bookings: (email: string) => request<{ items: Booking[] }>(`/bookings?email=${encodeURIComponent(email)}`),
   cancelBooking: (ref: string) => request<Booking>(`/bookings/${ref}/cancel`, { method: 'POST' }),
   status: () => request<{ status: string; services: ServiceStatus[] }>('/status'),
+  adminSession: () => request<AdminSession>('/admin/session'),
+  login: (username: string, password: string) =>
+    request<{ authenticated: boolean }>('/admin/login', { method: 'POST', body: JSON.stringify({ username, password }) }),
+  logout: () => request<{ authenticated: boolean }>('/admin/logout', { method: 'POST' }),
   chaos: () => request<Record<string, Chaos | null>>('/admin/chaos'),
   setChaos: (service: string, patch: Partial<Chaos>) =>
     request<Chaos>(`/admin/chaos/${service}`, { method: 'PUT', body: JSON.stringify(patch) }),

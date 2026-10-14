@@ -1,13 +1,16 @@
 import { HttpError, createService, round2, type ServiceClient, type ServiceOptions } from '@travelduty/common';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
+import { type AdminAuthOptions, createAdminAuth } from './admin-auth.js';
 
 export type ServiceName = 'destination' | 'flight' | 'hotel' | 'pricing' | 'booking' | 'payment' | 'notification';
 export type Clients = Record<ServiceName, ServiceClient>;
 
 export interface GatewayDeps {
   makeClients: (app: FastifyInstance) => Clients;
-  /** Token forwarded to services' /admin endpoints. */
+  /** Token forwarded to services' /admin endpoints, and accepted as `x-admin-token` here. */
   adminToken?: string;
+  /** Password sign-in for /api/admin; see admin-auth.ts. */
+  auth?: Omit<AdminAuthOptions, 'token'>;
   service?: Partial<ServiceOptions>;
 }
 
@@ -170,11 +173,31 @@ export function buildGateway(deps: GatewayDeps) {
     if (!SERVICES.includes(name as ServiceName)) throw new HttpError(404, 'NOT_FOUND', `Unknown service ${name}`);
     return c[name as ServiceName];
   };
-  const requireAdmin = async (req: FastifyRequest) => {
-    if (deps.adminToken && req.headers['x-admin-token'] !== deps.adminToken) {
-      throw new HttpError(401, 'UNAUTHORIZED', 'A valid x-admin-token header is required');
-    }
-  };
+  const auth = createAdminAuth({ ...deps.auth, token: deps.adminToken });
+  const requireAdmin = auth.requireAdmin;
+
+  app.get('/api/admin/session', async (req) => ({
+    required: auth.required,
+    passwordLogin: auth.passwordLogin,
+    authenticated: auth.isAdmin(req),
+  }));
+  app.post(
+    '/api/admin/login',
+    {
+      schema: {
+        body: {
+          type: 'object',
+          required: ['username', 'password'],
+          properties: { username: { type: 'string', maxLength: 200 }, password: { type: 'string', maxLength: 200 } },
+        },
+      },
+    },
+    async (req, reply) => {
+      const { username, password } = req.body as { username: string; password: string };
+      return auth.login(req, reply, username, password);
+    },
+  );
+  app.post('/api/admin/logout', async (req, reply) => auth.logout(req, reply));
 
   app.get('/api/admin/chaos', { preHandler: requireAdmin }, async (req) => {
     const entries = await Promise.all(
