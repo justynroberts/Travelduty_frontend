@@ -130,6 +130,39 @@ func (s *HoldStore[O]) Cancel(id string) (Hold[O], error) {
 	return *h, nil
 }
 
+// Prune deletes holds that finished (cancelled, or expired unconfirmed) before cutoff and returns
+// how many it removed. Finished holds no longer count against capacity, so this frees memory
+// and keeps capacity checks fast without changing availability.
+func (s *HoldStore[O]) Prune(cutoff time.Time) int {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	n := 0
+	for id, h := range s.holds {
+		s.expireLocked(h)
+		var finished time.Time
+		switch {
+		case h.Status == "cancelled" && h.CancelledAt != nil:
+			finished = *h.CancelledAt
+		case h.Status == "expired":
+			finished = h.ExpiresAt
+		default:
+			continue
+		}
+		if finished.Before(cutoff) {
+			delete(s.holds, id)
+			n++
+		}
+	}
+	return n
+}
+
+// Len returns how many holds are stored, finished ones included.
+func (s *HoldStore[O]) Len() int {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	return len(s.holds)
+}
+
 func (s *HoldStore[O]) expireLocked(h *Hold[O]) {
 	if h.Status == "held" && !s.Now().Before(h.ExpiresAt) {
 		h.Status = "expired"

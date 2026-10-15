@@ -1,7 +1,10 @@
 //! Simulated card processor: authorise-and-capture, idempotent replays and refunds.
 //! Full card numbers are only ever held in the request; records keep brand + last4.
 
-use std::{collections::HashMap, time::Duration};
+use std::{
+    collections::HashMap,
+    time::{Duration, Instant},
+};
 
 use axum::{
     body::Bytes,
@@ -70,13 +73,47 @@ pub struct Payment {
     refunded_amount: f64,
     refunds: Vec<Refund>,
     created_at: String,
+    /// When the payment was fully refunded; the clear-down deletes it once this is old enough.
+    #[serde(skip)]
+    settled_at: Option<Instant>,
 }
 
 #[derive(Default)]
 pub struct Store {
     payments: HashMap<String, Payment>,
-    /// Idempotency-Key → the original (status, body).
-    idempotency: HashMap<String, (StatusCode, Value)>,
+    /// Idempotency-Key → the original (status, body) and when it was recorded.
+    idempotency: HashMap<String, (StatusCode, Value, Instant)>,
+}
+
+impl Store {
+    /// Hands-off clear-down: deletes payments fully refunded before `cutoff` and idempotency
+    /// records older than it, returning (payments, idempotency keys) removed. Synthetic users
+    /// book and cancel around the clock, so without this the store grows for as long as the
+    /// process lives. Captured payments that still hold money are never touched.
+    pub fn prune(&mut self, cutoff: Instant) -> (usize, usize) {
+        let (payments, keys) = (self.payments.len(), self.idempotency.len());
+        self.payments.retain(|_, p| p.settled_at.map_or(true, |t| t >= cutoff));
+        self.idempotency.retain(|_, (_, _, at)| *at >= cutoff);
+        (payments - self.payments.len(), keys - self.idempotency.len())
+    }
+}
+
+/// Runs [`Store::prune`] every `interval` for the life of the process.
+pub fn spawn_clear_down(state: AppState, retention: Duration, interval: Duration) {
+    tokio::spawn(async move {
+        let mut tick = tokio::time::interval(interval);
+        tick.tick().await;
+        loop {
+            tick.tick().await;
+            let Some(cutoff) = Instant::now().checked_sub(retention) else { continue };
+            let (payments, keys) = state.store.lock().expect("store lock poisoned").prune(cutoff);
+            state.metrics.cleared_down("payments", payments);
+            state.metrics.cleared_down("idempotency_keys", keys);
+            if payments + keys > 0 {
+                tracing::info!(service = SERVICE_NAME, payments, idempotency_keys = keys, "cleared down");
+            }
+        }
+    });
 }
 
 enum Outcome {
@@ -194,7 +231,8 @@ pub async fn create(
 ) -> Result<Response, ApiError> {
     let key = idempotency_key(&headers);
     if let Some(key) = &key {
-        if let Some((status, body)) = state.store.lock().expect("store lock poisoned").idempotency.get(key).cloned() {
+        if let Some((status, body, _)) = state.store.lock().expect("store lock poisoned").idempotency.get(key).cloned()
+        {
             tracing::info!(service = SERVICE_NAME, requestId = %request_id, idempotency_key = %key, "idempotent replay");
             return Ok((status, Json(body)).into_response());
         }
@@ -239,6 +277,7 @@ pub async fn create(
                 refunded_amount: 0.0,
                 refunds: vec![],
                 created_at: now_iso(),
+                settled_at: None,
             };
             tracing::info!(
                 service = SERVICE_NAME, requestId = %request_id, payment_id = %payment.id, reference = %payment.reference,
@@ -252,7 +291,12 @@ pub async fn create(
     };
 
     if let Some(key) = key {
-        state.store.lock().expect("store lock poisoned").idempotency.insert(key, (status, body.clone()));
+        state
+            .store
+            .lock()
+            .expect("store lock poisoned")
+            .idempotency
+            .insert(key, (status, body.clone(), Instant::now()));
     }
     Ok((status, Json(body)).into_response())
 }
@@ -308,6 +352,9 @@ pub async fn refund(
 
     payment.refunded_amount = round2(payment.refunded_amount + amount);
     payment.status = if payment.refunded_amount >= payment.amount { "refunded" } else { "partially_refunded" };
+    if payment.status == "refunded" {
+        payment.settled_at = Some(Instant::now());
+    }
     payment.refunds.push(Refund { id: new_id("re"), amount, created_at: now_iso() });
     tracing::info!(
         service = SERVICE_NAME, requestId = %request_id, payment_id = %payment.id, amount,
@@ -334,6 +381,40 @@ mod tests {
         assert_eq!(brand("2223003122003222"), "mastercard");
         assert_eq!(brand("378282246310005"), "amex");
         assert_eq!(brand("6011111111111117"), "discover");
+    }
+
+    fn payment(id: &str, settled_at: Option<Instant>) -> Payment {
+        Payment {
+            id: id.into(),
+            status: if settled_at.is_some() { "refunded" } else { "captured" },
+            amount: 10.0,
+            currency: "EUR".into(),
+            reference: "TD-TEST01".into(),
+            card: CardSummary { brand: "visa", last4: "4242".into() },
+            holder_name: "Synthetic User".into(),
+            refunded_amount: 0.0,
+            refunds: vec![],
+            created_at: now_iso(),
+            settled_at,
+        }
+    }
+
+    #[test]
+    fn prune_removes_only_old_refunded_payments_and_keys() {
+        let now = Instant::now();
+        let old = now - Duration::from_secs(7200);
+        let mut store = Store::default();
+        store.payments.insert("old".into(), payment("old", Some(old)));
+        store.payments.insert("fresh".into(), payment("fresh", Some(now)));
+        store.payments.insert("captured".into(), payment("captured", None));
+        store.idempotency.insert("k-old".into(), (StatusCode::CREATED, json!({}), old));
+        store.idempotency.insert("k-new".into(), (StatusCode::CREATED, json!({}), now));
+
+        assert_eq!(store.prune(now - Duration::from_secs(3600)), (1, 1));
+        let mut left: Vec<_> = store.payments.keys().cloned().collect();
+        left.sort();
+        assert_eq!(left, ["captured", "fresh"]);
+        assert!(store.idempotency.contains_key("k-new"));
     }
 
     #[test]

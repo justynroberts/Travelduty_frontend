@@ -18,6 +18,10 @@ func main() {
 	}
 	api := flights.NewAPI(airports, time.Duration(platform.EnvInt("HOLD_TTL_SECONDS", 900))*time.Second)
 	api.Register(svc)
+	retention := time.Duration(platform.EnvInt("CLEARDOWN_RETENTION_MINUTES", 60)) * time.Minute
+	svc.ClearDown("holds", time.Duration(platform.EnvInt("CLEARDOWN_INTERVAL_SECONDS", 60))*time.Second, func() int {
+		return api.Holds.Prune(time.Now().Add(-retention))
+	})
 	if err := svc.Run(platform.EnvInt("PORT", 8082)); err != nil {
 		svc.Log.Error("server stopped", "err", err)
 		os.Exit(1)

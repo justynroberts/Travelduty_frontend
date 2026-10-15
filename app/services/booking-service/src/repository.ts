@@ -5,9 +5,14 @@ export interface BookingRepository {
   save(booking: Booking): Promise<void>;
   get(ref: string): Promise<Booking | undefined>;
   list(filter: { email?: string; limit: number }): Promise<Booking[]>;
+  /** Deletes finished (cancelled or failed) bookings for emails on `domain` last updated before `before`. */
+  purgeFinished(domain: string, before: Date): Promise<number>;
   ping(): Promise<boolean>;
   close(): Promise<void>;
 }
+
+const FINISHED = ['CANCELLED', 'FAILED'];
+const isFinished = (status: string) => FINISHED.includes(status);
 
 export class MemoryBookingRepository implements BookingRepository {
   private readonly bookings = new Map<string, Booking>();
@@ -25,6 +30,16 @@ export class MemoryBookingRepository implements BookingRepository {
       .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
       .slice(0, limit)
       .map((b) => structuredClone(b));
+  }
+  async purgeFinished(domain: string, before: Date) {
+    let n = 0;
+    for (const [ref, b] of this.bookings) {
+      if (isFinished(b.status) && b.contact.email.toLowerCase().endsWith(`@${domain}`) && b.updatedAt < before.toISOString()) {
+        this.bookings.delete(ref);
+        n++;
+      }
+    }
+    return n;
   }
   async ping() {
     return true;
@@ -84,6 +99,14 @@ export class PostgresBookingRepository implements BookingRepository {
       [email ?? null, limit],
     );
     return res.rows.map((r) => r.doc);
+  }
+
+  async purgeFinished(domain: string, before: Date) {
+    const res = await this.pool.query(
+      `DELETE FROM bookings WHERE status = ANY($1) AND lower(email) LIKE '%@' || lower($2) AND updated_at < $3`,
+      [FINISHED, domain, before],
+    );
+    return res.rowCount ?? 0;
   }
 
   async ping() {

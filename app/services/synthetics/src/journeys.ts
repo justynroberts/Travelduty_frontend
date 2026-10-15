@@ -39,6 +39,8 @@ interface TripSearch {
 /** Weighted mix: mostly browsing and searching, a booking roughly every tenth journey. */
 export const JOURNEY_WEIGHTS: Record<JourneyName, number> = { browse: 4, search: 4, book: 1, 'my-trips': 1 };
 
+/** A synthetic booking still confirmed after this long was orphaned (it is cancelled within seconds). */
+const ORPHAN_AFTER_MS = 5 * 60_000;
 const CURRENCIES = ['GBP', 'EUR', 'USD'];
 const PEOPLE = [
   ['Maren', 'Okafor'],
@@ -183,7 +185,15 @@ const JOURNEYS: Record<JourneyName, JourneyFn> = {
     ctx.pendingCancels.delete(booking.ref);
   },
 
-  async 'my-trips'(s, { random }) {
-    await s.call('GET', `/api/bookings?email=${encodeURIComponent(`synthetic.user${Math.floor(random() * 50)}@travelduty.test`)}`);
+  async 'my-trips'(s, ctx) {
+    const email = `synthetic.user${Math.floor(ctx.random() * 50)}@travelduty.test`;
+    const trips = await s.call<{ items: { ref: string; status: string; createdAt: string }[] }>('GET', `/api/bookings?email=${encodeURIComponent(email)}`);
+    // Tidy up bookings orphaned by a restart mid-journey, so none hold inventory indefinitely.
+    const cutoff = (ctx.now?.() ?? new Date()).getTime() - ORPHAN_AFTER_MS;
+    for (const t of trips.items ?? []) {
+      if (t.status === 'CONFIRMED' && Date.parse(t.createdAt) < cutoff && !ctx.pendingCancels.has(t.ref)) {
+        await s.call('POST', `/api/bookings/${t.ref}/cancel`);
+      }
+    }
   },
 };

@@ -165,3 +165,29 @@ func TestHoldStoreLifecycle(t *testing.T) {
 		t.Fatal("expired hold must not count against capacity")
 	}
 }
+
+func TestHoldStorePruneKeepsLiveHolds(t *testing.T) {
+	now := time.Date(2026, 10, 14, 9, 0, 0, 0, time.UTC)
+	store := NewHoldStore[string]("th", 15*time.Minute)
+	store.Now = func() time.Time { return now }
+
+	cancelled, _ := store.Reserve("k", 10, 1, "o", "seats")
+	store.Cancel(cancelled.ID)
+	confirmed, _ := store.Reserve("k", 10, 1, "o", "seats")
+	store.Confirm(confirmed.ID, func(Hold[string]) any { return nil })
+	store.Reserve("k", 10, 1, "o", "seats") // expires at +15m
+
+	if n := store.Prune(now.Add(-time.Minute)); n != 0 {
+		t.Fatalf("pruned %d holds finished after the cutoff", n)
+	}
+	now = now.Add(2 * time.Hour)
+	if n := store.Prune(now.Add(-time.Hour)); n != 2 {
+		t.Fatalf("want cancelled and expired pruned, got %d", n)
+	}
+	if store.Len() != 1 || store.Reserved("k") != 1 {
+		t.Fatalf("confirmed hold must survive: len=%d reserved=%d", store.Len(), store.Reserved("k"))
+	}
+	if _, err := store.Get(confirmed.ID); err != nil {
+		t.Fatal(err)
+	}
+}

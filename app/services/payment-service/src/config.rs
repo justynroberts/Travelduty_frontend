@@ -9,6 +9,9 @@ pub struct Config {
     pub chaos: ChaosState,
     /// Simulated card-processor round trip.
     pub payment_latency_ms: u64,
+    /// Finished records older than this are deleted by the clear-down.
+    pub cleardown_retention_minutes: u64,
+    pub cleardown_interval_seconds: u64,
 }
 
 impl Default for Config {
@@ -19,6 +22,8 @@ impl Default for Config {
             admin_token: None,
             chaos: ChaosState::default(),
             payment_latency_ms: 150,
+            cleardown_retention_minutes: 60,
+            cleardown_interval_seconds: 60,
         }
     }
 }
@@ -38,6 +43,8 @@ impl Config {
                 error_status: parse("CHAOS_ERROR_STATUS", defaults.error_status)?,
             },
             payment_latency_ms: parse("PAYMENT_LATENCY_MS", d.payment_latency_ms)?,
+            cleardown_retention_minutes: parse("CLEARDOWN_RETENTION_MINUTES", d.cleardown_retention_minutes)?,
+            cleardown_interval_seconds: parse("CLEARDOWN_INTERVAL_SECONDS", d.cleardown_interval_seconds)?,
         })
     }
 }

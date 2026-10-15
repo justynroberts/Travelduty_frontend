@@ -22,6 +22,11 @@ const app = buildBookingApp({
     payment: app.client({ name: 'payment-service', baseUrl: serviceUrl('payment'), timeoutMs }),
     notification: app.client({ name: 'notification-service', baseUrl: serviceUrl('notification'), timeoutMs, retries: 0 }),
   }),
+  purge: {
+    domain: envOptional('SYNTHETIC_EMAIL_DOMAIN') ?? 'travelduty.test',
+    retentionMs: envNumber('CLEARDOWN_RETENTION_MINUTES', 60) * 60_000,
+    intervalMs: envNumber('CLEARDOWN_INTERVAL_SECONDS', 60) * 1_000,
+  },
 });
 
 app.log.info({ storage: databaseUrl ? 'postgres' : 'memory' }, 'booking repository ready');

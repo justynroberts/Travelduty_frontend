@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { buildBookingApp } from '../src/app.js';
 import { MemoryBookingRepository } from '../src/repository.js';
 import { FakeWorld, validBooking } from './fakes.js';
@@ -139,5 +139,41 @@ describe('booking queries and cancellation', () => {
     expect(metrics).toMatch(/bookings_total\{status="CONFIRMED",service="booking-service"\} 1/);
     expect(metrics).toContain('upstream_calls_total');
     expect((await app.inject({ url: '/ready' })).json()).toEqual({ status: 'ready', checks: { database: true } });
+  });
+});
+
+describe('synthetic clear-down', () => {
+  const book = async (app: ReturnType<typeof build>, email: string, cancel: boolean) => {
+    const b = (await app.inject({ method: 'POST', url: '/bookings', payload: validBooking({ contact: { email } }) })).json();
+    if (cancel) await app.inject({ method: 'POST', url: `/bookings/${b.ref}/cancel` });
+    return b.ref as string;
+  };
+
+  it('deletes only finished synthetic bookings older than the retention window', async () => {
+    const app = build();
+    const oldSynthetic = await book(app, 'synthetic.user1@travelduty.test', true);
+    const confirmedSynthetic = await book(app, 'synthetic.user2@travelduty.test', false);
+    const realCancelled = await book(app, 'ada@example.com', true);
+
+    expect(await repo.purgeFinished('travelduty.test', new Date(Date.now() - 60_000))).toBe(0);
+    expect(await repo.purgeFinished('travelduty.test', new Date(Date.now() + 1_000))).toBe(1);
+    expect(await repo.get(oldSynthetic)).toBeUndefined();
+    expect(await repo.get(confirmedSynthetic)).toBeDefined();
+    expect(await repo.get(realCancelled)).toBeDefined();
+  });
+
+  it('runs on its own once the service is up and counts what it cleared', async () => {
+    const seed = build();
+    const ref = await book(seed, 'synthetic.user1@travelduty.test', true);
+    const app = buildBookingApp({
+      repo,
+      makeClients: () => world.clients(),
+      service: { logger: false },
+      purge: { domain: 'travelduty.test', retentionMs: 0, intervalMs: 60_000, now: () => Date.now() + 1_000 },
+    });
+    await app.ready();
+    await vi.waitFor(async () => expect(await repo.get(ref)).toBeUndefined());
+    expect((await app.inject({ url: '/metrics' })).body).toMatch(/cleardown_records_total\{store="bookings",service="booking-service"\} 1/);
+    await app.close();
   });
 });

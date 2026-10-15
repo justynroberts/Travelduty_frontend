@@ -1,4 +1,6 @@
-use payment_service::{build_app, Config, SERVICE_NAME};
+use std::time::Duration;
+
+use payment_service::{build_state, payments, router, Config, SERVICE_NAME};
 use tracing_subscriber::EnvFilter;
 
 #[tokio::main]
@@ -21,7 +23,13 @@ async fn main() {
     };
     let port = config.port;
     let host = std::env::var("HOST").unwrap_or_else(|_| "0.0.0.0".into());
-    let app = build_app(config);
+    let state = build_state(config);
+    payments::spawn_clear_down(
+        state.clone(),
+        Duration::from_secs(state.config.cleardown_retention_minutes * 60),
+        Duration::from_secs(state.config.cleardown_interval_seconds),
+    );
+    let app = router(state);
 
     let listener = match tokio::net::TcpListener::bind((host.as_str(), port)).await {
         Ok(l) => l,

@@ -9,7 +9,18 @@ export interface BookingDeps {
   repo: BookingRepository;
   /** Receives the app so clients can record upstream metrics on it. */
   makeClients: (app: FastifyInstance) => Clients;
+  /** Clear-down of synthetic traffic's bookings; omit to keep everything. */
+  purge?: PurgeOptions;
   service?: Partial<ServiceOptions>;
+}
+
+export interface PurgeOptions {
+  /** Bookings whose contact email is on this domain are synthetic. */
+  domain: string;
+  /** Finished synthetic bookings older than this are deleted. */
+  retentionMs: number;
+  intervalMs: number;
+  now?: () => number;
 }
 
 const card = {
@@ -103,5 +114,38 @@ export function buildBookingApp(deps: BookingDeps) {
     return cancelBooking(ctx(req), booking);
   });
 
+  if (deps.purge) startPurge(app, deps.repo, deps.purge);
+
   return app;
+}
+
+/**
+ * Hands-off clear-down: synthetic users book and cancel around the clock, so their finished
+ * bookings are deleted once they are older than the retention window. Real bookings are never
+ * touched, and neither is a synthetic booking still confirmed or in progress.
+ */
+function startPurge(app: FastifyInstance, repo: BookingRepository, opts: PurgeOptions) {
+  const now = opts.now ?? Date.now;
+  const purged = new Counter({
+    name: 'cleardown_records_total',
+    help: 'Finished records deleted by the automatic clear-down',
+    labelNames: ['store'],
+    registers: [app.metrics.registry],
+  });
+  const run = async () => {
+    try {
+      const n = await repo.purgeFinished(opts.domain, new Date(now() - opts.retentionMs));
+      purged.inc({ store: 'bookings' }, n);
+      if (n) app.log.info({ purged: n, domain: opts.domain }, 'synthetic bookings cleared down');
+    } catch (err) {
+      app.log.warn({ err }, 'synthetic clear-down failed; retrying next interval');
+    }
+  };
+  let timer: NodeJS.Timeout | undefined;
+  app.addHook('onReady', async () => {
+    timer = setInterval(run, opts.intervalMs);
+    timer.unref();
+    void run();
+  });
+  app.addHook('onClose', async () => clearInterval(timer));
 }

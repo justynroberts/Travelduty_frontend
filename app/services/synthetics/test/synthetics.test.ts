@@ -102,6 +102,23 @@ describe('journeys', () => {
     expect(calls[0]).toBe('POST /api/bookings/:ref/cancel');
     expect((await app.inject({ url: '/status' })).json().pendingCancellations).toEqual([]);
   });
+
+  it('cancels its own bookings orphaned by a restart', async () => {
+    const old = new Date(Date.now() - 10 * 60_000).toISOString();
+    const { runOnce, calls } = build({
+      'GET /api/bookings': () => ({
+        body: {
+          items: [
+            { ref: 'TD-OLD111', status: 'CONFIRMED', createdAt: old },
+            { ref: 'TD-NEW222', status: 'CONFIRMED', createdAt: new Date().toISOString() },
+            { ref: 'TD-CAN333', status: 'CANCELLED', createdAt: old },
+          ],
+        },
+      }),
+    });
+    expect((await runOnce('my-trips')).outcome).toBe('ok');
+    expect(calls).toEqual(['GET /api/bookings', 'POST /api/bookings/:ref/cancel']);
+  });
 });
 
 describe('service', () => {

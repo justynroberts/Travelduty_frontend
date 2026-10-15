@@ -30,14 +30,20 @@ pub struct AppState {
 }
 
 pub fn build_app(config: Config) -> Router {
-    let state = AppState {
+    router(build_state(config))
+}
+
+pub fn build_state(config: Config) -> AppState {
+    AppState {
         chaos: Arc::new(RwLock::new(config.chaos)),
         config: Arc::new(config),
         metrics: Arc::new(Metrics::new()),
         store: Arc::new(Mutex::new(payments::Store::default())),
         started: Instant::now(),
-    };
+    }
+}
 
+pub fn router(state: AppState) -> Router {
     // Layers run outermost-last: request id → metrics → chaos → handler.
     Router::new()
         .route("/health", get(platform::health))

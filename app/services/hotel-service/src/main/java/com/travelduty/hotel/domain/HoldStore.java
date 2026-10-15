@@ -110,6 +110,28 @@ public class HoldStore {
     return view(e);
   }
 
+  /**
+   * Deletes holds that finished (cancelled, or expired unconfirmed) before the cutoff and returns
+   * how many went. Finished holds no longer count against capacity, so availability is unchanged.
+   */
+  public synchronized int prune(Instant cutoff) {
+    int before = holds.size();
+    holds.values().removeIf(e -> {
+      expireIfDue(e);
+      Instant finished = switch (e.status) {
+        case "cancelled" -> e.cancelledAt;
+        case "expired" -> e.expiresAt;
+        default -> null;
+      };
+      return finished != null && finished.isBefore(cutoff);
+    });
+    return before - holds.size();
+  }
+
+  public synchronized int size() {
+    return holds.size();
+  }
+
   private Entry require(String id) {
     Entry e = holds.get(id);
     if (e == null) throw ApiException.notFound("Hold " + id + " not found");

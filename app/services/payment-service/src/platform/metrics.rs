@@ -14,6 +14,7 @@ pub struct Metrics {
     registry: Registry,
     requests: IntCounterVec,
     duration: HistogramVec,
+    cleardown: IntCounterVec,
 }
 
 impl Default for Metrics {
@@ -37,9 +38,19 @@ impl Metrics {
             &["method", "route"],
         )
         .expect("valid histogram");
+        let cleardown = IntCounterVec::new(
+            Opts::new("cleardown_records_total", "Finished records deleted by the automatic clear-down"),
+            &["store"],
+        )
+        .expect("valid counter");
         registry.register(Box::new(requests.clone())).expect("register counter");
         registry.register(Box::new(duration.clone())).expect("register histogram");
-        Self { registry, requests, duration }
+        registry.register(Box::new(cleardown.clone())).expect("register counter");
+        Self { registry, requests, duration, cleardown }
+    }
+
+    pub fn cleared_down(&self, store: &str, n: usize) {
+        self.cleardown.with_label_values(&[store]).inc_by(n as u64);
     }
 
     pub fn render(&self) -> String {

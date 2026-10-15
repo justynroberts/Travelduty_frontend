@@ -117,3 +117,27 @@ func TestWebhookFailureIsRecordedNotFatal(t *testing.T) {
 		t.Fatalf("expected failed webhook delivery: %+v", n.Deliveries)
 	}
 }
+
+func TestPruneSyntheticKeepsRealCustomers(t *testing.T) {
+	svc := platform.New(platform.Options{Name: "notification-service", Logger: slog.New(slog.NewJSONHandler(io.Discard, nil))})
+	api := NewAPI("", nil)
+	api.Register(svc)
+	h := svc.Handler()
+	synthetic := strings.Replace(confirmed, "ada@example.com", "synthetic.user3@TravelDuty.test", 1)
+	for _, body := range []string{synthetic, confirmed, synthetic} {
+		if code := call(t, h, "POST", "/notifications", body, nil); code != http.StatusAccepted {
+			t.Fatalf("create: %d", code)
+		}
+	}
+	if n := api.PruneSynthetic("travelduty.test", time.Now().Add(-time.Hour)); n != 0 {
+		t.Fatalf("pruned %d recent notifications", n)
+	}
+	if n := api.PruneSynthetic("travelduty.test", time.Now().Add(time.Second)); n != 2 {
+		t.Fatalf("want 2 synthetic pruned, got %d", n)
+	}
+	var list struct{ Items []Notification }
+	call(t, h, "GET", "/notifications", "", &list)
+	if len(list.Items) != 1 || list.Items[0].To != "ada@example.com" {
+		t.Fatalf("real notification must survive: %+v", list.Items)
+	}
+}

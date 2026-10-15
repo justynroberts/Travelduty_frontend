@@ -10,6 +10,8 @@ x-service: &service
     LOG_LEVEL: ${LOG_LEVEL:-info}
     APP_VERSION: ${APP_VERSION:-compose}
     ADMIN_TOKEN: ${ADMIN_TOKEN:-}
+    # Finished synthetic and released records older than this are cleared down automatically.
+    CLEARDOWN_RETENTION_MINUTES: ${CLEARDOWN_RETENTION_MINUTES:-60}
 
 services:
   gateway:

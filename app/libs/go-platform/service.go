@@ -12,6 +12,7 @@ import (
 	"os"
 	"os/signal"
 	"strings"
+	"sync"
 	"syscall"
 	"time"
 
@@ -50,6 +51,9 @@ type Service struct {
 	durations  *prometheus.HistogramVec
 	upstream   *prometheus.CounterVec
 	upstreamDu *prometheus.HistogramVec
+
+	clearDownOnce sync.Once
+	clearedDown   *prometheus.CounterVec
 }
 
 type ctxKey int

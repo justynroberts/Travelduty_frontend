@@ -157,6 +157,25 @@ func (a *API) create(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
+// PruneSynthetic deletes notifications sent to addresses on domain (synthetic users) created
+// before cutoff, so test traffic never pushes real customers' notifications out of the buffer.
+func (a *API) PruneSynthetic(domain string, cutoff time.Time) int {
+	suffix := "@" + strings.ToLower(domain)
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	kept := a.items[:0]
+	for _, n := range a.items {
+		if strings.HasSuffix(strings.ToLower(n.To), suffix) && n.CreatedAt.Before(cutoff) {
+			continue
+		}
+		kept = append(kept, n)
+	}
+	removed := len(a.items) - len(kept)
+	clear(a.items[len(kept):])
+	a.items = kept
+	return removed
+}
+
 func (a *API) list(w http.ResponseWriter, r *http.Request) error {
 	q := r.URL.Query()
 	limit := 50

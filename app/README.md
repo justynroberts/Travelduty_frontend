@@ -155,6 +155,23 @@ pages when more than half of a journey's runs fail, and `TravelDutySyntheticsDow
 traffic stops. `GET :8088/status` shows the last result and failure per journey;
 `POST :8088/admin/synthetics/pause` and `/resume` (with `x-admin-token`) stop and start it.
 
+### Clear-down
+
+Synthetic traffic would otherwise grow every store forever, so each service clears down after itself,
+every minute, with nothing to run by hand. Records are deleted once they have been finished for
+`CLEARDOWN_RETENTION_MINUTES` (default 60):
+
+| Service | Deletes | Never deletes |
+|---|---|---|
+| booking-service (Postgres) | cancelled or failed bookings on `@travelduty.test` | any real customer's booking; confirmed bookings |
+| flight-service, hotel-service | cancelled and expired holds | held or confirmed seats and rooms |
+| payment-service | fully refunded payments, idempotency keys | captured payments |
+| notification-service | notifications to `@travelduty.test` | real customers' notifications |
+
+Synthetics also cancels any of its own bookings still confirmed after 5 minutes (orphaned by a restart
+mid-booking), so those get cleared too. Each sweep counts what it removed in
+`cleardown_records_total{service,store}`.
+
 ## Develop
 
 Toolchains: Node 20, Go 1.23+, Python 3.12 via [uv](https://docs.astral.sh/uv/), Java 17 (the Maven wrapper

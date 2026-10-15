@@ -38,6 +38,7 @@ class HotelServiceTest {
   @Autowired MockMvc mvc;
   @Autowired ObjectMapper mapper;
   @Autowired MutableClock clock;
+  @Autowired com.travelduty.hotel.domain.HoldClearDown clearDown;
 
   @BeforeEach
   void resetClock() {
@@ -278,6 +279,24 @@ class HotelServiceTest {
         .andExpect(status().isConflict())
         .andExpect(jsonPath("$.error.code").value("HOLD_EXPIRED"));
     createHold(offer.get("id").asText(), 1).andExpect(status().isCreated());
+  }
+
+  @Test
+  void clearDownDeletesFinishedHoldsAndKeepsConfirmedOnes() throws Exception {
+    JsonNode offer = firstOffer("LIS", "2026-12-02", "2026-12-04", 1);
+    String cancelled = createHold(offer.get("id").asText(), 1).andReturnJson().get("id").asText();
+    mvc.perform(delete("/holds/" + cancelled)).andExpect(status().isOk());
+    String confirmed = createHold(offer.get("id").asText(), 1).andReturnJson().get("id").asText();
+    mvc.perform(post("/holds/" + confirmed + "/confirm")).andExpect(status().isOk());
+
+    assertThat(clearDown.run()).isZero();
+    mvc.perform(get("/holds/" + cancelled)).andExpect(status().isOk());
+
+    clock.advance(Duration.ofMinutes(61));
+    assertThat(clearDown.run()).isPositive();
+    mvc.perform(get("/holds/" + cancelled)).andExpect(status().isNotFound());
+    mvc.perform(get("/holds/" + confirmed)).andExpect(status().isOk()).andExpect(jsonPath("$.status").value("confirmed"));
+    mvc.perform(get("/metrics")).andExpect(content().string(matchesPattern("(?s).*cleardown_records_total\\{[^}]*store=\"holds\"[^}]*} [1-9].*")));
   }
 
   @Test
