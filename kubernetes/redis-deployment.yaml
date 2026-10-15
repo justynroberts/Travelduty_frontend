@@ -17,8 +17,8 @@ spec:
       - name: redis
         image: travelduty/redis:1.7.1
         ports:
-        - containerPort: 8488
+        - containerPort: 3653
         resources:
           requests:
-            memory: "128Mi"
+            memory: "64Mi"
             cpu: "100m"
