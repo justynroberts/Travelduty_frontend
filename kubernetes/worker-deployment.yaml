@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: worker
-        image: travelduty/worker:5.0.7
+        image: travelduty/worker:2.3.5
         ports:
-        - containerPort: 4951
+        - containerPort: 7617
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "250m"
+            memory: "64Mi"
+            cpu: "500m"
