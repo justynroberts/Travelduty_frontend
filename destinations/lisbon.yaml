@@ -1,11 +1,11 @@
 name: Lisbon
 country: Portugal
-rating: 5.0/5
-price_range: $
+rating: 4.7/5
+price_range: $$
 best_season: Fall
-flights_per_week: 8
-avg_stay_days: 8
+flights_per_week: 30
+avg_stay_days: 9
 accommodations:
-  hotels: 36
-  hostels: 17
-  resorts: 10
+  hotels: 56
+  hostels: 18
+  resorts: 18
