@@ -150,7 +150,8 @@ const JOURNEYS: Record<JourneyName, JourneyFn> = {
         await s.call('POST', `/api/bookings/${ref}/cancel`);
         ctx.pendingCancels.delete(ref);
       } catch (err) {
-        if ((err as { status?: number }).status === 409) ctx.pendingCancels.delete(ref);
+        // 409: already cancelled; 404: the booking itself is gone. Either way there is nothing left to do.
+        if ([404, 409].includes((err as { status?: number }).status ?? 0)) ctx.pendingCancels.delete(ref);
       }
     }
 
@@ -192,7 +193,8 @@ const JOURNEYS: Record<JourneyName, JourneyFn> = {
     const cutoff = (ctx.now?.() ?? new Date()).getTime() - ORPHAN_AFTER_MS;
     for (const t of trips.items ?? []) {
       if (t.status === 'CONFIRMED' && Date.parse(t.createdAt) < cutoff && !ctx.pendingCancels.has(t.ref)) {
-        await s.call('POST', `/api/bookings/${t.ref}/cancel`);
+        // Housekeeping, not part of what a customer does: a failure here must not fail the journey.
+        await s.call('POST', `/api/bookings/${t.ref}/cancel`).catch(() => ctx.pendingCancels.add(t.ref));
       }
     }
   },

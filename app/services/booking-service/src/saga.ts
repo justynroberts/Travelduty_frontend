@@ -231,19 +231,37 @@ export async function cancelBooking(ctx: SagaContext, b: Booking): Promise<Booki
     throw new HttpError(409, 'NOT_CANCELLABLE', `Booking ${b.ref} is ${b.status} and cannot be cancelled`);
   }
   const { clients, requestId } = ctx;
+  // A hold or payment the upstream no longer has (its in-memory store was reset by a restart)
+  // has nothing left to release, so cancelling carries on rather than leaving the booking stuck.
+  const unlessGone = async (what: string, step: () => Promise<void>) => {
+    try {
+      await step();
+    } catch (err) {
+      if (!(err instanceof UpstreamError && err.statusCode === 404)) throw err;
+      note(b, 'cancellation.already_released', `${what} no longer exists upstream`);
+    }
+  };
   try {
     for (const f of b.flights) {
-      await clients.flight.delete(`/holds/${f.holdId}`, { requestId });
+      await unlessGone(`flight hold ${f.holdId}`, async () => {
+        await clients.flight.delete(`/holds/${f.holdId}`, { requestId });
+      });
       f.status = 'cancelled';
     }
     if (b.hotel) {
-      await clients.hotel.delete(`/holds/${b.hotel.holdId}`, { requestId });
-      b.hotel.status = 'cancelled';
+      const hotel = b.hotel;
+      await unlessGone(`hotel hold ${hotel.holdId}`, async () => {
+        await clients.hotel.delete(`/holds/${hotel.holdId}`, { requestId });
+      });
+      hotel.status = 'cancelled';
     }
     if (b.payment) {
-      const p = await clients.payment.post<Payment>(`/payments/${b.payment.id}/refunds`, { requestId, idempotencyKey: `${b.ref}-cancel`, body: {} });
-      b.payment.status = p.status;
-      b.payment.refundedAmount = p.refundedAmount;
+      const payment = b.payment;
+      await unlessGone(`payment ${payment.id}`, async () => {
+        const p = await clients.payment.post<Payment>(`/payments/${payment.id}/refunds`, { requestId, idempotencyKey: `${b.ref}-cancel`, body: {} });
+        payment.status = p.status;
+        payment.refundedAmount = p.refundedAmount;
+      });
     }
   } catch (err) {
     note(b, 'cancellation.failed', (err as Error).message);

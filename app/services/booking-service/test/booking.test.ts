@@ -132,6 +132,20 @@ describe('booking queries and cancellation', () => {
     expect(again.json().error.code).toBe('NOT_CANCELLABLE');
   });
 
+  it('still cancels when the holds and payment were lost in an upstream restart', async () => {
+    const app = build();
+    const { ref } = (await app.inject({ method: 'POST', url: '/bookings', payload: validBooking() })).json();
+    const gone = () => ({ status: 404, body: { error: { code: 'NOT_FOUND', message: 'gone' } } });
+    world.on('DELETE flight-service/holds/{id}', gone);
+    world.on('DELETE hotel-service/holds/{id}', gone);
+    world.on('POST payment-service/payments/{id}/refunds', gone);
+
+    const res = await app.inject({ method: 'POST', url: `/bookings/${ref}/cancel` });
+    expect(res.statusCode).toBe(200);
+    expect(res.json().status).toBe('CANCELLED');
+    expect(res.json().timeline.filter((e: { event: string }) => e.event === 'cancellation.already_released')).toHaveLength(4);
+  });
+
   it('records booking outcomes in metrics and reports readiness', async () => {
     const app = build();
     await app.inject({ method: 'POST', url: '/bookings', payload: validBooking() });

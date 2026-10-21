@@ -119,6 +119,16 @@ describe('journeys', () => {
     expect((await runOnce('my-trips')).outcome).toBe('ok');
     expect(calls).toEqual(['GET /api/bookings', 'POST /api/bookings/:ref/cancel']);
   });
+
+  it('does not fail my-trips when tidying an orphan fails', async () => {
+    const old = new Date(Date.now() - 10 * 60_000).toISOString();
+    const { runOnce, app } = build({
+      'GET /api/bookings': () => ({ body: { items: [{ ref: 'TD-OLD111', status: 'CONFIRMED', createdAt: old }] } }),
+      'POST /api/bookings/:ref/cancel': () => ({ status: 502, body: { error: { code: 'UPSTREAM_UNAVAILABLE', message: 'x' } } }),
+    });
+    expect((await runOnce('my-trips')).outcome).toBe('ok');
+    expect((await app.inject({ url: '/status' })).json().pendingCancellations).toEqual(['TD-OLD111']);
+  });
 });
 
 describe('service', () => {
