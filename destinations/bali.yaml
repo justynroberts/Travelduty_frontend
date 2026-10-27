@@ -3,9 +3,9 @@ country: Indonesia
 rating: 3.6/5
 price_range: $$
 best_season: Spring
-flights_per_week: 17
-avg_stay_days: 10
+flights_per_week: 16
+avg_stay_days: 8
 accommodations:
-  hotels: 27
-  hostels: 19
-  resorts: 11
+  hotels: 14
+  hostels: 17
+  resorts: 17
