@@ -17,8 +17,8 @@ spec:
       - name: worker
         image: travelduty/worker:3.7.6
         ports:
-        - containerPort: 6446
+        - containerPort: 6794
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "250m"
+            memory: "256Mi"
+            cpu: "100m"
