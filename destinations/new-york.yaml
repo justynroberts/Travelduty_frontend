@@ -1,11 +1,11 @@
 name: New York
 country: USA
-rating: 4.7/5
-price_range: $$
-best_season: Winter
-flights_per_week: 25
-avg_stay_days: 12
+rating: 4.2/5
+price_range: $$$
+best_season: Spring
+flights_per_week: 10
+avg_stay_days: 11
 accommodations:
-  hotels: 19
-  hostels: 13
+  hotels: 10
+  hostels: 16
   resorts: 9
