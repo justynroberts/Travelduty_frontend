@@ -1,11 +1,11 @@
 name: London
 country: UK
-rating: 3.5/5
-price_range: $$
-best_season: Winter
-flights_per_week: 19
-avg_stay_days: 9
+rating: 4.4/5
+price_range: $
+best_season: Spring
+flights_per_week: 16
+avg_stay_days: 14
 accommodations:
-  hotels: 45
-  hostels: 18
-  resorts: 16
+  hotels: 39
+  hostels: 11
+  resorts: 20
